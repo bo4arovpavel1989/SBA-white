@@ -41,6 +41,8 @@ function getMarja(){
 				marja = marja -100;
 				console.log(sport + ': ' + coeffs[0] + ' - ' + coeffs[1] + ' - ' + coeffs[2] + '. Marja = ' + marja);
 				console.log('next');
+				let now = Date.now();
+				let coeff = new Coefficient({bk: 'ligastavok', betType:'live', averageType:'immediate', date: now, sport: sport, marja: marja, win: coeffs[0], draw:coeffs[1], away:coeffs[2]}).save();
 			});
 		});
 		/*let coeffs = $('.event_content').get();

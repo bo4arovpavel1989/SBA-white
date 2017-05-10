@@ -37,6 +37,8 @@ nightmare
 				if(away != '-' && away != 0) marja += 100/parseFloat(away);
 				marja = marja -100;
 				console.log(sportType + ': ' + win + ' - ' + draw + ' - ' + away + '. Marja = ' + marja);
+				let now = Date.now();
+				let coeff = new Coefficient({bk: '888', betType:'live', averageType:'immediate', date: now, sport: sportType, marja: marja, win: win, draw: draw, away: away}).save();
 	 });
 	i = i + 1;
 	if(i<=10) grabSite(i);

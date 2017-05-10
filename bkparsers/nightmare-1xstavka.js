@@ -1,6 +1,7 @@
 var Nightmare = require('nightmare');		
 var nightmare = Nightmare({ show: false });
 var cheerio = require('cheerio');
+var Coefficient = require('/../lib/models/mongoModel.js').Coefficient;
 
 
 
@@ -31,6 +32,8 @@ nightmare
 				if(away != '-' && away != 0) marja += 100/parseFloat(away);
 				marja = marja -100;
 				console.log(betType + ': ' + sportType + ': ' + win + ' - ' + draw + ' - ' + away + '. Marja = ' + marja);
+				let now = Date.now();
+				let coeff = new Coefficient({bk: '1xstavka', betType:'live', averageType:'immediate', date: now, sport: sportType, marja: marja, win: win, draw: draw, away: away}).save();
 		} catch(e) {}
 	});
   })

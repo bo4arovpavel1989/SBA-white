@@ -31,6 +31,8 @@ function getMarja(){
 				if(!isNaN(Number(away)) && (Number(away))!==0) marja += 100/Number(away);
 				marja = marja - 100;
 				console.log('liveevent coeffs: ' + sport + ' - ' + home + '-' + draw + '-' + away + '. Marja: ' + marja + '\n');
+				let now = Date.now();
+				let coeff = new Coefficient({bk: 'leon', betType:'live', averageType:'immediate', date: now, sport: sport, marja: marja, win: home, draw: draw, away: away}).save();
 			} catch(e){}
 		});
 		
@@ -50,6 +52,8 @@ function getMarja(){
 				if(!isNaN(Number(away)) && (Number(away))!==0) marja += 100/Number(away);
 				marja = marja - 100;
 				console.log('prematch coeffs: ' + sport  + ' - ' + home + '-' + draw + '-' + away + '. Marja - ' + marja + '\n');
+				let now = Date.now();
+				let coeff = new Coefficient({bk: 'leon', betType:'line', averageType:'immediate', date: now, sport: sport, marja: marja, win: home, draw: draw, away: away}).save();
 			} catch(e){}
 		});
 		
