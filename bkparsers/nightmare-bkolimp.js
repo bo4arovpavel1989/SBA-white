@@ -2,7 +2,7 @@ var Nightmare = require('nightmare');
 var nightmare = Nightmare({ show: false });
 var cheerio = require('cheerio');
 var Coefficient = require('./../lib/models/mongoModel.js').Coefficient;
-
+console.log('olimp-parser');
 nightmare
   .goto('https://bkolimpbet.ru')
   .evaluate(function () {

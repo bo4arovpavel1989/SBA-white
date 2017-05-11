@@ -3,6 +3,8 @@ var cheerio = require('cheerio');
 var phantom = require("phantom");
 var _ph, _page, _outObj;
 var Coefficient = require('./../lib/models/mongoModel.js').Coefficient;
+console.log('ligastavok -parser');
+
 function getMarja(){
 	phantom.create().then(ph => {
 		_ph = ph;

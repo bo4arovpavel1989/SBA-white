@@ -2,6 +2,7 @@ var Nightmare = require('nightmare');
 var nightmare = Nightmare({ show: false });
 var cheerio = require('cheerio');
 var Coefficient = require('./../lib/models/mongoModel.js').Coefficient;
+console.log('winline-parser');
 nightmare
   .goto('https://winlinebet.ru/?t=now')
   .wait(1000)

@@ -4,7 +4,7 @@ var cheerio = require('cheerio');
 var Coefficient = require('./../lib/models/mongoModel.js').Coefficient;
 var linksToClick=[];
 var i = 0;
-
+console.log('baltbet-parser');
 
 nightmare
   .goto('https://baltbet.ru/')

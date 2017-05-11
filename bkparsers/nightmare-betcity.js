@@ -3,7 +3,7 @@ var nightmare = Nightmare({ show: false });
 var cheerio = require('cheerio');
 var Coefficient = require('./../lib/models/mongoModel.js').Coefficient;
 
-
+console.log('betcity-parser');
 
 nightmare
   .goto('https://betcity.ru/')

@@ -3,7 +3,7 @@ var nightmare = Nightmare({ show: false });
 var cheerio = require('cheerio');
 var Coefficient = require('./../lib/models/mongoModel.js').Coefficient;
 
-
+console.log('1xstavka-parser');
 
 nightmare
   .goto('https://1xstavka.ru/')
@@ -41,7 +41,7 @@ nightmare
 	console.log(error);
   });
 
-
+	
 
 
   

@@ -4,6 +4,8 @@ var cheerio = require('cheerio');
 var Coefficient = require('./../lib/models/mongoModel.js').Coefficient;
 var counter = 1;
 
+console.log('888-parser');
+
 grabSite(counter);
 
 function grabSite(i){
