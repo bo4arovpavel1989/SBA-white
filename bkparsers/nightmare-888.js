@@ -1,6 +1,7 @@
 var Nightmare = require('nightmare');		
 var nightmare = Nightmare({ show: false });
 var cheerio = require('cheerio');
+var Coefficient = require('./../lib/models/mongoModel.js').Coefficient;
 var counter = 1;
 
 grabSite(counter);

@@ -2,7 +2,7 @@ console.log('running app');
 var cheerio = require('cheerio');
 var phantom = require("phantom");
 var _ph, _page, _outObj;
-
+var Coefficient = require('./../lib/models/mongoModel.js').Coefficient;
 function getMarja(){
 	phantom.create().then(ph => {
 		_ph = ph;
