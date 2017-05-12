@@ -26,15 +26,14 @@ nightmare
 		 try {
 		 let win, draw, away;
 		 let marketsQuantity=line.children.length;
-		 if(marketsQuantity == 3) {
 			 win = line.children[0].children[1].children[0].data;
-			 draw = line.children[1].children[1].children[0].data;
-			 away = line.children[2].children[1].children[0].data;
-		 } else if(marketsQuantity == 2) {
-			 win = line.children[0].children[1].children[0].data;
+			 if(line.children[1].attribs.class=='bet-event') {
+				 draw = line.children[1].children[1].children[0].data;
+				away = line.children[2].children[1].children[0].data;
+			 }else {
 			 draw = '-'
-			 away = line.children[1].children[1].children[0].data;
-		 }
+			 away = line.children[2].children[1].children[0].data;	 
+			 }	
 		 	let marja = 0;
 				if(win != '-' && win != 0) marja += 100/parseFloat(win);
 				if(draw != '-' && draw != 0) marja += 100/parseFloat(draw);
