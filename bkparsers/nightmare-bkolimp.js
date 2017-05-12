@@ -4,7 +4,7 @@ var cheerio = require('cheerio');
 var Coefficient = require('./../lib/models/mongoModel.js').Coefficient;
 console.log('olimp-parser');
 nightmare
-  .goto('https://bkolimpbet.ru')
+  .goto('https://olimp.bet/app/live')
   .evaluate(function () {
 	return document.body.innerHTML;
   })
@@ -33,7 +33,7 @@ nightmare
 				console.log(sport + ': ' + win + ' - ' + draw + ' - ' + away + '. Marja = ' + marja);		
 				let now = Date.now();
 				let coeff = new Coefficient({bk: 'olimp', betType:'live', averageType:'immediate', date: now, sport: sport, marja: marja, win: win, draw: draw, away: away}).save();
-		} catch(e){}
+		} catch(e){console.log(e)}
 	});
   })
   .catch(function (error) {

@@ -10,7 +10,7 @@ grabSite(counter);
 
 function grabSite(i){
 nightmare
-  .goto('https://mobile.888.ru/#/sport?sport=' + i + '&type=1&region=-1&qrange=-1&video=1')
+  .goto('https://mobile.888.ru/#/sport?sport=' + i + '&type=1&region=-1&qrange=-1&video=-1')
   .useragent("Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.111 Safari/537.36")
   .wait(5000)
   .evaluate(function () {
@@ -23,6 +23,7 @@ nightmare
 	 var sportType = sport[0].children[0].data;
 	 let lines=$('.match-markets').get();
 	 lines.forEach((line)=>{
+		 try {
 		 let win, draw, away;
 		 let marketsQuantity=line.children.length;
 		 if(marketsQuantity == 3) {
@@ -42,6 +43,7 @@ nightmare
 				console.log(sportType + ': ' + win + ' - ' + draw + ' - ' + away + '. Marja = ' + marja);
 				let now = Date.now();
 				let coeff = new Coefficient({bk: '888', betType:'live', averageType:'immediate', date: now, sport: sportType, marja: marja, win: win, draw: draw, away: away}).save();
+		 }catch(e){}	
 	 });
 	i = i + 1;
 	if(i<=10) grabSite(i);
