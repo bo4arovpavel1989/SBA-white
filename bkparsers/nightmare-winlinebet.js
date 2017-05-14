@@ -2,6 +2,7 @@ var Nightmare = require('nightmare');
 var nightmare = Nightmare({ show: false });
 var cheerio = require('cheerio');
 var Coefficient = require('./../lib/models/mongoModel.js').Coefficient;
+var sportSpelling=require('./../lib/customfunctions.js').sportSpelling;
 console.log('winline-parser');
 nightmare
   .goto('https://winlinebet.ru/?t=now')
@@ -46,6 +47,7 @@ nightmare
 				marja = marja -100;
 				console.log(sportType + ': ' + win + ' - ' + draw + ' - ' + away + '. Marja = ' + marja);
 				let now = Date.now();
+				sportType=sportSpelling(sportType);
 				let coeff = new Coefficient({bk: 'winline', betType:'live', averageType:'immediate', date: now, sport: sportType, marja: marja, win: win, draw: draw, away: away}).save();				
 		} catch(e){}
 	});

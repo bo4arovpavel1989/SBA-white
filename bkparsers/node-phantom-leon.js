@@ -3,6 +3,7 @@ var cheerio = require('cheerio');
 var phantom = require("phantom");
 var _ph, _page, _outObj;
 var Coefficient = require('./../lib/models/mongoModel.js').Coefficient;
+var sportSpelling=require('./../lib/customfunctions.js').sportSpelling;
 console.log('leon-parser');
 
 function getMarja(){
@@ -34,6 +35,7 @@ function getMarja(){
 				marja = marja - 100;
 				console.log('liveevent coeffs: ' + sport + ' - ' + home + '-' + draw + '-' + away + '. Marja: ' + marja + '\n');
 				let now = Date.now();
+				sport=sportSpelling(sport);
 				let coeff = new Coefficient({bk: 'leon', betType:'live', averageType:'immediate', date: now, sport: sport, marja: marja, win: home, draw: draw, away: away}).save();
 			} catch(e){}
 		});
@@ -55,6 +57,7 @@ function getMarja(){
 				marja = marja - 100;
 				console.log('prematch coeffs: ' + sport  + ' - ' + home + '-' + draw + '-' + away + '. Marja - ' + marja + '\n');
 				let now = Date.now();
+				sport=sportSpelling(sport);
 				let coeff = new Coefficient({bk: 'leon', betType:'line', averageType:'immediate', date: now, sport: sport, marja: marja, win: home, draw: draw, away: away}).save();
 			} catch(e){}
 		});
