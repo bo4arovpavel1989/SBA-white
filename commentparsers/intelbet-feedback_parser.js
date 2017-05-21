@@ -16,18 +16,21 @@ function getFeedback(i){
 	  .wait(1500)
 	  .then(()=>{
 		  console.log(bks[i]);
-		  checkExists('#get-feedbacks-list', 0, i);
+		  checkExists('#get-feedbacks-list', i);
 	  })
 }
 
-function checkExists(selector, attempt, i){
+function checkExists(selector, i){
 	console.log(1);
-	if (attempt>=5) doGrabbing(i);
-	else nightmare.exists(selector)
-			 .then(result=>{
-					if(result)       nightmare.click(selector)
-									 .wait(3000)
-									 .then(()=>{checkExists(selector, attempt+1, i)})
+	     nightmare.exists(selector)
+			      .then(result=>{
+					if(result)  nightmare.exists('.hide' + selector)
+									     .then(result2=>{
+												  if(result2)doGrabbing(i);
+												  else nightmare.click(selector)
+																.wait(3000)
+																.then(()=>{checkExists(selector, i)})
+											  })
 					else doGrabbing(i);								
 				});
 }
