@@ -3,7 +3,7 @@ var bks_formatted=['fonbet', 'leon', '888', 'ligastavok', '1xstavka', 'olimp', '
 
 
 var Nightmare = require('nightmare');		
-var nightmare = Nightmare({ show: false });
+var nightmare = Nightmare({ show: true });
 var cheerio = require('cheerio');
 var Feedback = require('./../lib/models/mongoModel.js').Feedback;
 console.log('intelbet_parser');
@@ -13,31 +13,36 @@ getFeedback(0);
 function getFeedback(i){
 	nightmare
 	  .goto('http://www.intelbet.ru/feedback/' + bks[i] + '/')
-	  .exists('#get-feedbacks-list')
-	  .then(result=>{
-		  if(result) return nightmare.click('#get-feedbacks-list')
-									 .wait(3000)
-									 .exists('#get-feedbacks-list')
-									 .then(result2=>{
-										 if (result2) return nightmare.click('#get-feedbacks-list')
-																	  .wait(3000)
-																	  .evaluate(()=>{
-																		  return document.body.innerHTML
-																	  })
-										 else return nightmare.evaluate(()=>{
-														 return document.body.innerHTML;
-													 });
-									 })					 
-		  else return nightmare.evaluate(()=>{
-										 return document.body.innerHTML;
-									 });						 
+	  .wait(1500)
+	  .then(()=>{
+		  console.log(bks[i]);
+		  checkExists('#get-feedbacks-list', 0, i);
 	  })
+}
+
+function checkExists(selector, attempt, i){
+	console.log(1);
+	if (attempt>=5) doGrabbing(i);
+	else nightmare.exists(selector)
+			 .then(result=>{
+					if(result)       nightmare.click(selector)
+									 .wait(3000)
+									 .then(()=>{checkExists(selector, attempt+1, i)})
+					else doGrabbing(i);								
+				});
+}
+
+function doGrabbing(i){
+	nightmare.evaluate(()=>{
+						return document.body.innerHTML;
+					})
 	  .then(function (body) {
+		  console.log(2);
 		 var $ = cheerio.load(body);
 		 let feedbacks=$('.feedback').get();
 		 console.log(bks[i] + ' ' + feedbacks.length)
 		 feedbacks.forEach(feedback=>{
-			console.log(feedback) 
+			//console.log(feedback) 
 		 });
 		 i++;
 		 if(i<bks.length)getFeedback(i); 
@@ -45,5 +50,6 @@ function getFeedback(i){
 	  .catch(function (error) {
 		console.error('Search failed:', error);
 	  });
+	
+	
 }
-
