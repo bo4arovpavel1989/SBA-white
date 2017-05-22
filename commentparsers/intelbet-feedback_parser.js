@@ -3,7 +3,7 @@ var bks_formatted=['fonbet', 'leon', '888', 'ligastavok', '1xstavka', 'olimp', '
 
 
 var Nightmare = require('nightmare');		
-var nightmare = Nightmare({ show: true });
+var nightmare = Nightmare({ show: false });
 var cheerio = require('cheerio');
 var Feedback = require('./../lib/models/mongoModel.js').Feedback;
 console.log('intelbet_parser');
@@ -45,7 +45,20 @@ function doGrabbing(i){
 		 let feedbacks=$('.feedback').get();
 		 console.log(bks[i] + ' ' + feedbacks.length)
 		 feedbacks.forEach(feedback=>{
-			//console.log(feedback) 
+		 let date = feedback.children[1].children[5].children[1].children[1].children[0].data;
+		 let comments = feedback.children[3].children;
+		 comments.forEach(comment=>{
+			 try {
+				 if (comment.attribs.class==='cons'){
+					 let consString = comment.children[3].children[0].data.split('\n')[1].slice(20)
+					 console.log(consString)
+				 }
+				 if (comment.attribs.class==='pros'){
+					 let prosString = comment.children[3].children[0].data.split('\n')[1].slice(20);
+					 console.log(prosString)
+				 }
+			 } catch(e){}
+		 });
 		 });
 		 i++;
 		 if(i<bks.length)getFeedback(i); 
