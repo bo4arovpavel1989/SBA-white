@@ -1,5 +1,5 @@
 var bks = ['fon', 'bk-leon', '888', 'liga-stavok', '1xstavka', 'bk-olimp', 'winline', 'bk-betcity', 'bk-baltbet'];
-var bks_formatted=['fonbet', 'leon', '888', 'ligastavok', '1xstavka', 'olimp', 'winline', 'betcity', 'baltbet'];
+var bks_formatted=['fonbet', 'leon', '888', 'ligastavok', '1xstavka', 'olimp', 'winline', 'betcity', 'baltbet']; //bk names as i use it in ither modules
 
 
 var Nightmare = require('nightmare');		
@@ -24,10 +24,10 @@ function checkExists(selector, i){
 	console.log(1);
 	     nightmare.exists(selector) // //check if there is more button on the page. if none - start parsing date
 			      .then(result=>{
-					if(result)  nightmare.exists('.hide' + selector) //check if more button has hide class. more button has hide class where all feedback is loaded now
+					if(result)  nightmare.exists('.hide' + selector) //check if more button has hide class. more button has hide class where all feedback is loaded now and its time to start parsing
 									     .then(result2=>{
 												  if(result2)doGrabbing(i);
-												  else nightmare.click(selector)
+												  else nightmare.click(selector) //more button hasnt yet hide class so i click it and start from the beginning
 																.wait(3000)
 																.then(()=>{checkExists(selector, i)})
 											  })
