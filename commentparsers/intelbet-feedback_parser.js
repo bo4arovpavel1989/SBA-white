@@ -42,6 +42,7 @@ function doGrabbing(i){
 	  .then(function (body) {
 		  console.log(2);
 		 var $ = cheerio.load(body);
+		 var bknumer = i;
 		 let feedbacks=$('.feedback').get();
 		 console.log(bks[i] + ' ' + feedbacks.length)
 		 feedbacks.forEach(feedback=>{
@@ -62,7 +63,7 @@ function doGrabbing(i){
 					 prosString = comment.children[3].children[0].data.split('\n')[1].slice(20);//string starts from about 20 space symbols
 				 }
 				 let feedback = new Feedback({
-					 bk: bks_formatted[i], 
+					 bk: bks_formatted[bknumer], 
 					 type: 'feedback', 
 					 date: date, 
 					 isPositive: isPositive, 
