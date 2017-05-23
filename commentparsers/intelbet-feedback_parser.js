@@ -45,18 +45,31 @@ function doGrabbing(i){
 		 let feedbacks=$('.feedback').get();
 		 console.log(bks[i] + ' ' + feedbacks.length)
 		 feedbacks.forEach(feedback=>{
-		 let date = feedback.children[1].children[5].children[1].children[1].children[0].data;
+		 var date = feedback.children[1].children[5].children[1].children[1].children[0].data;
+		 console.log(date);
 		 let comments = feedback.children[3].children;
 		 comments.forEach(comment=>{
+			 let isPositive, isNegative, prosString, consString;
+			 isPositive=false;
+			 isNegative=false;
 			 try {
 				 if (comment.attribs.class==='cons'){
-					 let consString = comment.children[3].children[0].data.split('\n')[1].slice(20)
-					 console.log(consString)
+					 isNegative=true;
+					 consString = comment.children[3].children[0].data.split('\n')[1].slice(20)
 				 }
 				 if (comment.attribs.class==='pros'){
-					 let prosString = comment.children[3].children[0].data.split('\n')[1].slice(20);
-					 console.log(prosString)
+					 isPositive=true;
+					 prosString = comment.children[3].children[0].data.split('\n')[1].slice(20);
 				 }
+				 let feedback = new Feedback({
+					 bk: bks_formatted[i], 
+					 type: 'feedback', 
+					 date: date, 
+					 isPositive: isPositive, 
+					 isNegative: isNegative,
+					 positive: prosString,
+					 negative: consString
+				 }).save();
 			 } catch(e){}
 		 });
 		 });
