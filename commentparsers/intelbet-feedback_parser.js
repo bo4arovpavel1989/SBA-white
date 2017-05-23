@@ -16,15 +16,15 @@ function getFeedback(i){
 	  .wait(1500)
 	  .then(()=>{
 		  console.log(bks[i]);
-		  checkExists('#get-feedbacks-list', i);
+		  checkExists('#get-feedbacks-list', i); //check if there is more button on the page. if none - start parsing date
 	  })
 }
 
 function checkExists(selector, i){
 	console.log(1);
-	     nightmare.exists(selector)
+	     nightmare.exists(selector) // //check if there is more button on the page. if none - start parsing date
 			      .then(result=>{
-					if(result)  nightmare.exists('.hide' + selector)
+					if(result)  nightmare.exists('.hide' + selector) //check if more button has hide class. more button has hide class where all feedback is loaded now
 									     .then(result2=>{
 												  if(result2)doGrabbing(i);
 												  else nightmare.click(selector)
@@ -55,11 +55,11 @@ function doGrabbing(i){
 			 try {
 				 if (comment.attribs.class==='cons'){
 					 isNegative=true;
-					 consString = comment.children[3].children[0].data.split('\n')[1].slice(20)
+					 consString = comment.children[3].children[0].data.split('\n')[1].slice(20)//string starts from about 20 space symbols
 				 }
 				 if (comment.attribs.class==='pros'){
 					 isPositive=true;
-					 prosString = comment.children[3].children[0].data.split('\n')[1].slice(20);
+					 prosString = comment.children[3].children[0].data.split('\n')[1].slice(20);//string starts from about 20 space symbols
 				 }
 				 let feedback = new Feedback({
 					 bk: bks_formatted[i], 
