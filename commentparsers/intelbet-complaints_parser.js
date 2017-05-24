@@ -8,6 +8,10 @@ var cheerio = require('cheerio');
 var Complaint = require('./../lib/models/mongoModel.js').Complaint;
 console.log('intelbet_parser');
 
+String.prototype.replaceAll = function(search, replace){
+  return this.split(search).join(replace);
+}
+
 getFeedback(0);
 
 function getFeedback(i){
@@ -47,7 +51,17 @@ function doGrabbing(i){
 		 var $ = cheerio.load(body);
 		 var bknumer = i;
 		 let complaints = $('.complaint-cell').get();
-		 console.log(complaints.length);
+		 complaints.forEach(complaint=>{
+			 try{
+				 let complStatus = complaint.children[1].children[1].children[0].data;
+				 let complHead = complaint.children[3].children[1].children[0].data;
+				 let complText = complaint.children[3].children[3].attribs['data-text'];
+				 complText = complText.replaceAll(/\t/, '');
+				 complHead=complHead.replaceAll(/\t/, '');
+				 console.log(complHead);
+				 console.log(complText);
+			 } catch(e){}
+		 });
 		 i++;
 		 if(i<bks.length)getFeedback(i); 
 	  })
