@@ -28,26 +28,31 @@ function scrollScreen(i, currH){
 	console.log('scroll');
 	var previousHeight, currentHeight=currH;
 	previousHeight=currentHeight;
-	 console.log(currentHeight);
+	console.log(currentHeight);
 	console.log(previousHeight);
-	nightmare.evaluate(function() {
+	nightmare
+	.evaluate(()=>{
       return document.body.scrollHeight;
-    }).then(height=>{
+    })
+	.then(height=>{
 		currentHeight=height;
-		nightmare.scrollTo(currentHeight, 0)
-             .wait(3000).then(()=>{
-				 if(currentHeight==previousHeight) doGrabbing(i)
+		nightmare
+			.scrollTo(currentHeight, 0)
+            .wait(3000)
+			.then(()=>{
+				 if(currentHeight==previousHeight) doGrabbing(i) //check if screen position changed after scroll operation if not - that means all data is loaded
 				 else scrollScreen(i, currentHeight);
 			 });
-	})	
+	});	
 }
 
 function doGrabbing(i){
-	nightmare.evaluate(()=>{
+	nightmare
+	  .evaluate(()=>{
 						return document.body.innerHTML;
 					})
 	  .then(function (body) {
-		  console.log(2);
+		 console.log(2);
 		 var $ = cheerio.load(body);
 		 var bknumer = i;
 		 let complaints = $('.complaint-cell').get();
