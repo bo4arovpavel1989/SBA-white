@@ -56,10 +56,18 @@ function doGrabbing(i){
 				 let complStatus = complaint.children[1].children[1].children[0].data;
 				 let complHead = complaint.children[3].children[1].children[0].data;
 				 let complText = complaint.children[3].children[3].attribs['data-text'];
+				 let date = complaint.children[5].children[1].children[3].children[3].children[0].data;
 				 complText = complText.replaceAll(/\t/, '');
 				 complHead=complHead.replaceAll(/\t/, '');
-				 console.log(complHead);
-				 console.log(complText);
+				 console.log(date);
+				 let complaintToWrite = new Complaint({
+					bk: bks_formatted[bknumer],
+					type: 'complaint',
+					heading: complHead,
+					complaint: complText,
+					date: date,
+					status: complStatus
+				 }).save();
 			 } catch(e){}
 		 });
 		 i++;
