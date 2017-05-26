@@ -67,6 +67,7 @@ function doGrabbing(i){
 				 console.log(date);
 				 let complaintToWrite = new Complaint({
 					bk: bks_formatted[bknumer],
+					source: 'intelbet.ru',
 					type: 'complaint',
 					heading: complHead,
 					complaint: complText,

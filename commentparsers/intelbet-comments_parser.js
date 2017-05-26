@@ -56,6 +56,7 @@ function doGrabbing(i){
 					  console.log(commentContent);
 					 let newComment = new Comment({
 						 bk: bks_formatted[bknumer],
+						 source: 'intelbet.ru',
 						 date: date,
 						 comment: commentContent,
 						 type: 'comment'

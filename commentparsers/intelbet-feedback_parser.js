@@ -64,6 +64,7 @@ function doGrabbing(i){
 				 }
 				 let feedback = new Feedback({
 					 bk: bks_formatted[bknumer], 
+					 source: 'intelbet.ru',
 					 type: 'feedback', 
 					 date: date, 
 					 isPositive: isPositive, 
