@@ -1,5 +1,5 @@
-var bks = ['fonbet', 'leonbets', '888sport', 'liga-stavok', '1h-stavka', 'olimp-kz', 'winlinebet', 'betcity', 'baltbet-tsupis'];
-var bks_formatted=['fonbet', 'leon', '888', 'ligastavok', '1xstavka', 'olimp', 'winline', 'betcity', 'baltbet']; //bk names as i use it in ither modules
+var bks = ['liga-stavok', '888sport', 'fonbet', 'leonbets', '1h-stavka', 'olimp-kz', 'winlinebet', 'betcity', 'baltbet-tsupis'];
+var bks_formatted=['ligastavok', '888', 'fonbet', 'leon', '1xstavka', 'olimp', 'winline', 'betcity', 'baltbet']; //bk names as i use it in ither modules
 
 
 var Nightmare = require('nightmare');		
@@ -7,6 +7,10 @@ var nightmare = Nightmare({ show: false });
 var cheerio = require('cheerio');
 var Feedback = require('./../lib/models/mongoModel.js').Feedback;
 console.log('bookmaker-rating_parser');
+
+String.prototype.replaceAll = function(search, replace){
+  return this.split(search).join(replace);
+}
 
 getFeedback(0);
 
@@ -41,7 +45,14 @@ function doGrabbing(i){
 		  console.log(2);
 		 var $ = cheerio.load(body);
 		 var bknumer = i;
-		
+		 let complaints = $('.block-content').get();
+		 complaints.forEach(complaint=>{
+			 try {
+				 let complStatus = complaint.children[1].children[3].children[1].children[0].data;
+				 complStatus=complStatus.replace(/[^a-zA-ZА-Яа-яЁё]/gi,'').replace(/\s+/gi,', ');
+				 console.log(complStatus)
+			 }catch(e){}
+		 });
 		 i++;
 		 if(i<bks.length)getFeedback(i); 
 	  })
