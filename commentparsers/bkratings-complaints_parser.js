@@ -5,7 +5,7 @@ var bks_formatted=['ligastavok', '888', 'fonbet', 'leon', '1xstavka', 'olimp', '
 var Nightmare = require('nightmare');		
 var nightmare = Nightmare({ show: false });
 var cheerio = require('cheerio');
-var Feedback = require('./../lib/models/mongoModel.js').Feedback;
+var Complaint = require('./../lib/models/mongoModel.js').Complaint;
 console.log('bookmaker-rating_parser');
 
 String.prototype.replaceAll = function(search, replace){
@@ -50,8 +50,31 @@ function doGrabbing(i){
 			 try {
 				 let complStatus = complaint.children[1].children[3].children[1].children[0].data;
 				 complStatus=complStatus.replace(/[^a-zA-ZА-Яа-яЁё]/gi,'').replace(/\s+/gi,', ');
-				 console.log(complStatus)
-			 }catch(e){}
+				 switch (complStatus) {
+					 case 'Безосновательная':
+					 complStatus = 'Необоснованно';
+					 break;
+					 case 'Удовлетворена':
+					 complStatus = 'Решено';
+					 break;
+					 case 'Обрабатывается':
+					 complStatus = 'Рассматривается';
+					 break;
+					 case 'Не удовлетворена':
+					 complStatus = 'Не решено';
+					 break;
+				 }
+				 let complText = complaint.children[5].children[3].children[1].children[0].data;
+				 console.log(complText);
+				 let complaintToWrite = new Complaint({
+					bk: bks_formatted[bknumer],
+					source: 'bookmaker-ratings.ru',
+					type: 'complaint',
+					complaint: complText,
+					status: complStatus
+				 }).save()
+				 
+			 }catch(e){console.log(e)}
 		 });
 		 i++;
 		 if(i<bks.length)getFeedback(i); 

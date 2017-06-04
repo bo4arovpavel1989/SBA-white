@@ -64,7 +64,7 @@ function doGrabbing(i){
 				 let date = complaint.children[5].children[1].children[3].children[3].children[0].data;
 				 complText = complText.replaceAll(/\t/, '');
 				 complHead=complHead.replaceAll(/\t/, '');
-				 console.log(date);
+				 console.log(complStatus);
 				 let complaintToWrite = new Complaint({
 					bk: bks_formatted[bknumer],
 					source: 'intelbet.ru',
