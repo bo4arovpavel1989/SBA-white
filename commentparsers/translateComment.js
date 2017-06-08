@@ -5,7 +5,10 @@ console.log(apiKey);
 
 Comment.find({}, (err, reps)=>{
 	if(reps){
+		var counter=100;
 		reps.forEach(rep=>{
+			if (counter<200){
+				counter++;
 			console.log(rep.comment)
 			var id = rep._id;
 			rep.comment = encodeURIComponent(rep.comment);
@@ -35,7 +38,8 @@ Comment.find({}, (err, reps)=>{
 				})
 			});
 
-			req.end();			
+			req.end();	
+			}			
 		});
 	
 	}

@@ -5,26 +5,36 @@ var util = require('util'),
 	Comment = require('./../lib/models/mongoModel.js').Comment;
 
 var config = apiKey;
+console.log(config);
 
-
-
+Comment.find({}, (err, reps)=>{
+	if(reps){
+		reps.forEach(rep=>{
+			analyze(rep.engComment, (response)=>{
+				console.log('====================');
+				console.log(rep.comment);
+				console.log(response[0].sentiment);
+				console.log('====================');
+			});
+		});
+	}
+});
 
  function analyze(text, callback) {
-  var twitterClient = new twitter(config);
-  var response = [], dbData = []; // to store the tweets and sentiment
-
-  twitterClient.search(text, function(data) {
+  let twitterClient = new twitter(config);
+  var response = []; // to store the tweets and sentiment
+  let options =  { count: 100};
+  twitterClient.get('search/tweets', {q:text}, (error, data, resp)=>{
+	  console.log(resp);
+	  //console.log(data);
+	  /*
     for (var i = 0; i < data.statuses.length; i++) {
       var resp = {};
-
       resp.tweet = data.statuses[i];
       resp.sentiment = sentimentAnalysis(data.statuses[i].text);
-      dbData.push({
-        tweet: resp.tweet.text,
-        score: resp.sentiment.score
-      });
       response.push(resp);
     };
-    callback(response);
+    callback(response);*/
   });
+  
 }

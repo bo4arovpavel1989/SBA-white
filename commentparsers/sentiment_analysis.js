@@ -6,11 +6,13 @@ var analyze = require('sentimental').analyze;
 Comment.find({}, (err, reps)=>{
 	if(reps){
 		reps.forEach(rep=>{
+			try {
 			let score = analyze(rep.engComment);
 			console.log('===============\n');
 			console.log('score: ' + score.score + '\n');
 			console.log(rep.comment);
 			console.log('===============\n');
+			}catch(e){}
 		});
 	}
 });
