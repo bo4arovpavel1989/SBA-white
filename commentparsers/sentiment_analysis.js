@@ -6,7 +6,7 @@ var analyze = require('sentimental').analyze;
 Comment.find({}, (err, reps)=>{
 	if(reps){
 		reps.forEach(rep=>{
-			let score = analyze(rep.comment);
+			let score = analyze(rep.engComment);
 			console.log('===============\n');
 			console.log('score: ' + score.score + '\n');
 			console.log(rep.comment);
