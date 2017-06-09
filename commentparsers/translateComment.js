@@ -3,12 +3,13 @@ var Comment = require('./../lib/models/mongoModel.js').Comment;
 var apiKey=require('./../credentials.js').secret.translateAPIKey;
 console.log(apiKey);
 
-Comment.find({}, (err, reps)=>{
+translateTransaction(0, 100);
+
+function translateTransaction (skip, limit){
+	Comment.find({}).skip(skip).limit(limit).exec((err, reps)=>{
 	if(reps){
-		var counter=100;
+		var counter = skip+1;
 		reps.forEach(rep=>{
-			if (counter<200){
-				counter++;
 			console.log(rep.comment)
 			var id = rep._id;
 			rep.comment = encodeURIComponent(rep.comment);
@@ -34,13 +35,18 @@ Comment.find({}, (err, reps)=>{
 					data=JSON.parse(data);
 					let english = data.text[0];
 					Comment.update({_id: id}, {$set:{engComment: english}}).exec();
-					}catch(e){}
-				})
+					counter++;
+					if(counter==limit-1){console.log('next round');translateTransaction(skip+100, limit+100);}
+					}catch(e){
+						counter++;
+						if(counter==limit-1){console.log('next round');translateTransaction(skip+100, limit+100);}
+						}
+				});
 			});
-
 			req.end();	
-			}			
-		});
-	
-	}
-}); 
+		});	
+	} else {console.log('end')}
+	});
+}
+
+ 
