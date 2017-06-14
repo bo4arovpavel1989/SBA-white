@@ -1,15 +1,19 @@
 var https=require('https');
+var Vacancy = require('./../lib/models/mongoModel.js').Vacancy;
 
-var bookmakers = encodeURIComponent('букмекерские');
+getVacancies(0);
+
+function getVacancies(page){
+			var bookmakers = encodeURIComponent('букмекерские');
 			var options = {
 				host: 'api.hh.ru',
 				port: 443,
 				headers: {'user-agent': 'Mozilla/5.0'},
-				path: '/vacancies?text=' + bookmakers,
+				path: '/vacancies?per_page=100&page=' + page + '&text=' + bookmakers,
 				method: 'GET'
 			};
 
-			var req = https.request(options, function(res) {
+			let req = https.request(options, function(res) {
 				console.log("statusCode: ", res.statusCode);
 				console.log("headers: ", res.headers);
 				var data='';
@@ -18,9 +22,26 @@ var bookmakers = encodeURIComponent('букмекерские');
 					data +=d;
 				});
 				res.on('end', ()=>{
-					
 					data=JSON.parse(data);
-					console.log(data);
+					console.log(data)
+					let quantity = data.found;
+					let pages = data.pages;
+					let vacancies = data.items;
+					vacancies.forEach(vacancy=>{
+						var salary = vacancy.salary.from + ' - ' + vacancy.salary.to + ' ' + vacancy.salary,currency;
+						let vacancyToWrite=new Vacancy({
+							company: vacancy.employer.name,
+							type: vacancy.name,
+							area: vacancy.area.name,
+							salary: vacancy,
+							link: vacancy.url,
+							description: vacancy.snippet.responsibility
+						}).save();
+					});
+					if(quantity>100&&page<pages) getVacancies(page +1);
+					
+					
 				});
 			});
 			req.end();	
+}			
