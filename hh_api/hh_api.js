@@ -28,18 +28,27 @@ function getVacancies(page){
 					let pages = data.pages;
 					let vacancies = data.items;
 					vacancies.forEach(vacancy=>{
-						var salary = vacancy.salary.from + ' - ' + vacancy.salary.to + ' ' + vacancy.salary,currency;
-						let vacancyToWrite=new Vacancy({
-							company: vacancy.employer.name,
-							type: vacancy.name,
-							area: vacancy.area.name,
-							salary: vacancy,
-							link: vacancy.url,
-							description: vacancy.snippet.responsibility
-						}).save();
+						try {
+						let salary 
+						if(vacancy.salary) {
+							vacancy.salary.from=(vacancy.salary.from===null) ? 'n/a' : vacancy.salary.from;
+							vacancy.salary.to=(vacancy.salary.to===null) ? 'n/a' : vacancy.salary.to;
+							salary = vacancy.salary.from + ' - ' + vacancy.salary.to + ' ' + vacancy.salary.currency;
+						} else salary = '-';
+						let objectToWrite={
+								company: vacancy.employer.name,
+								type: vacancy.name,
+								area: vacancy.area.name,
+								salary: salary,
+								link: vacancy.url,
+								description: vacancy.snippet.responsibility
+							};
+							console.log(objectToWrite);
+						let vacancyToWrite=new Vacancy(objectToWrite).save();
+						} catch(e){}
 					});
 					if(quantity>100&&page<pages) getVacancies(page +1);
-					
+				
 					
 				});
 			});
