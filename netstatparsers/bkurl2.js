@@ -8,6 +8,6 @@ module.exports.bkurl = {
 		{site: '888', url: 'http://www.alexa.com/siteinfo/888.ru'},
 		{site: 'olimp', url: 'http://www.alexa.com/siteinfo/bkolimpbet.ru'},
 		{site: 'baltbet', url: 'http://www.alexa.com/siteinfo/baltbet.ru'},
-		{site: 'betcity', url: 'https://www.alexa.com/website/betcity.ru'}
+		{site: 'betcity', url: 'https://www.alexa.com/siteinfo/betcity.ru'}
 		]
 };
