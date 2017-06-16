@@ -3,15 +3,15 @@ var nightmare = Nightmare({ show: false });
 var cheerio = require('cheerio');
 var Coefficient = require('./../lib/models/mongoModel.js').Coefficient;
 var sportSpelling=require('./../lib/customfunctions.js').sportSpelling;
-var counter = 1;
+const START = 1;
 
 console.log('888-parser');
 
-grabSite(counter);
+grabSite(START, 1);
 
-function grabSite(i){
+function grabSite(i, type){
 nightmare
-  .goto('https://mobile.888.ru/#/sport?sport=' + i + '&type=1&region=-1&qrange=-1&video=-1')
+  .goto('https://mobile.888.ru/#/sport?sport=' + i + '&type=' + type + '&region=-1&qrange=-1&video=-1')
   .useragent("Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.111 Safari/537.36")
   .wait(5000)
   .evaluate(function () {
@@ -40,22 +40,26 @@ nightmare
 				if(draw != '-' && draw != 0) marja += 100/parseFloat(draw);
 				if(away != '-' && away != 0) marja += 100/parseFloat(away);
 				marja = marja -100;
-				console.log(sportType + ': ' + win + ' - ' + draw + ' - ' + away + '. Marja = ' + marja);
+				let betType;
+				betType = (type == 1) ? 'live' : 'line';
+				console.log(betType + ': ' + sportType + ': ' + win + ' - ' + draw + ' - ' + away + '. Marja = ' + marja);
 				let now = Date.now();
 				sportType=sportSpelling(sportType);
-				let coeff = new Coefficient({bk: '888', betType:'live', averageType:'immediate', date: now, sport: sportType, marja: marja, win: win, draw: draw, away: away}).save();
+				let coeff = new Coefficient({bk: '888', betType:betType, averageType:'immediate', date: now, sport: sportType, marja: marja, win: win, draw: draw, away: away}).save();
 		 }catch(e){}	
 	 });
 	i = i + 1;
-	if(i<=10) grabSite(i);
+	if(i<=10) grabSite(i, type);
+	else if(i>10&&type==1) grabSite (START, 0);
   })
   .catch(function (error) {
 	console.log('no event for sport №' + i);
     i = i + 1;
-	if(i<=10) grabSite(i);
+	if(i<=10) grabSite(i, type);
+	else if(i>10&&type==1) grabSite(START, 0);
   });
 }
 
-
+function getLine(){}
 
   
