@@ -3,7 +3,7 @@ var nightmare = Nightmare({ show: false });
 var cheerio = require('cheerio');
 var Coefficient = require('./../lib/models/mongoModel.js').Coefficient;
 var sportSpelling=require('./../lib/customfunctions.js').sportSpelling;
-const START = 1;
+const START = 1; // 1 - type of bet - Live; 0 - type of bet -Line
 
 console.log('888-parser');
 
