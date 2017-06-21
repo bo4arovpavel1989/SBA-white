@@ -22,28 +22,50 @@ getLinks();
 				links.push(link.attribs.href);
 			 }catch(e){}
 		 });
-		 goToLinks(0);
+		 checkLink(0);
 	  })
 	  .catch(function (error) {
 		console.error('Search failed:', error);
 	  }); 
   };
   
-  function goToLinks(i){
+  function checkLink(i){
 	  if(i<links.length) {
 		  nightmare
-		  .goto('https://olimp.bet/' + links[i])
-		  .evaluate(function () {
-			return document.body.innerHTML;
-		  })
-		  .then(function (body) {
-			 var $ = cheerio.load(body);
-			 
-		  })
+		  .goto('https://olimp.bet' + links[i])
+		  .exists('#eg-1') //thats the name of 1x2 market
+		  .then(result=>{
+			  if(result)doGrabbing(i);
+			  else checkLink(i+1)  
+	      })
 		  .catch(function (error) {
 			console.error('Search failed:', error);
+			checkLink(i+1)
 		  }); 
 	  }else {
 		  console.log('done')
 	  }
+  }
+  
+  function doGrabbing(i){
+	   nightmare
+	  .goto('https://olimp.bet' + links[i])
+	  .evaluate(function () {
+		return document.body.innerHTML;
+	  })
+	  .then(function (body) {
+		 var $ = cheerio.load(body);
+		 let markets=$('#eg-1').get();
+		 markets.forEach(market=>{
+			 try{
+			 console.log(market)
+				
+			 }catch(e){}
+		 });
+		 checkLink(i+1);
+	  })
+	  .catch(function (error) {
+		console.error('Search failed:', error);
+		checkLink(i+1);
+	  });
   }
