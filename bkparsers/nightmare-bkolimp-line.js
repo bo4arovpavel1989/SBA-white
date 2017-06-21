@@ -55,13 +55,30 @@ getLinks();
 	  })
 	  .then(function (body) {
 		 var $ = cheerio.load(body);
-		 let markets=$('#eg-1').get();
-		 markets.forEach(market=>{
-			 try{
-			 console.log(market)
-				
-			 }catch(e){}
-		 });
+		 try{
+		 let market=$('#eg-1').get();
+		 let sportType = $('#breadcrumbs').get();
+		 let sport = sportType[0].children[1].children[0].children[0].data;
+		 let win, draw, away, marja;
+		 win = market[0].children[1].children[0].children[1].children[0].children[0].data;
+		 let isDraw = market[0].children[1].children[1].children[0].attribs.title;
+		 if(isDraw=='Ничья'){
+			 draw=market[0].children[1].children[1].children[1].children[0].children[0].data;
+			 away=market[0].children[1].children[2].children[1].children[0].children[0].data;
+		 }else{
+			  draw='-';
+			  away=market[0].children[1].children[1].children[1].children[0].children[0].data;
+		 }
+		 marja=0;
+		 if(win != '-' && win != 0) marja += 100/parseFloat(win);
+		 if(draw != '-' && draw != 0) marja += 100/parseFloat(draw);
+		 if(away != '-' && away != 0) marja += 100/parseFloat(away);
+		 marja = marja -100;
+		 let now = Date.now();
+		 sport=sportSpelling(sport);
+		 console.log(sport + ': ' + win + ' - ' + draw + ' - ' + away + '. Marja = ' + marja);	
+		 let coeff = new Coefficient({bk: 'olimp', betType:'line', averageType:'immediate', date: now, sport: sport, marja: marja, win: win, draw: draw, away: away}).save();
+	    } catch(e){}
 		 checkLink(i+1);
 	  })
 	  .catch(function (error) {
