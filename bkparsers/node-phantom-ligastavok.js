@@ -49,27 +49,6 @@ function getMarja(){
 				let coeff = new Coefficient({bk: 'ligastavok', betType:'live', averageType:'immediate', date: now, sport: sport, marja: marja, win: coeffs[0], draw:coeffs[1], away:coeffs[2]}).save();
 			});
 		});
-		/*let coeffs = $('.event_content').get();
-		coeffs.forEach((coeff)=>{
-			//console.log(coeff.children[1]);
-			try{
-				let sport=coeff.attribs.sptype;
-				console.log(sport);
-				let tables = coeff.children[1].children; //this is list of each table in the sport
-				tables.forEach((table)=>{
-					let oneLine = table.children[0].children[0].children; //list of single lines of a table
-					oneLine.forEach((line)=>{
-						var cells = line.children;
-						cells.forEach((cell)=>{
-							if(cell.attribs.class='btscnt') console.log(cell.children[0].children[0]);
-							//if(cell.attribs.class.indexOf('typeWIN') != -1) console.log(cell);
-						});
-						//if(elem.attribs.class.indexOf('typeWIN') != -1) console.log(elem);//if(elem.children[0].children[0].children[0].data != undefined) console.log(elem.children[0].children[0].children[0].data);
-					});
-				});
-				console.log('next');
-			} catch(e){}
-		});*/
 		_page.close();
 		_ph.exit();
 	}).catch(e => console.log(e));
@@ -78,4 +57,3 @@ function getMarja(){
 
 
 getMarja();
-//setInterval(function(){getMarja()}, 5000);
