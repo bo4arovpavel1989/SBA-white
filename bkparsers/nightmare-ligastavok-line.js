@@ -4,15 +4,15 @@ var cheerio = require('cheerio');
 var Coefficient = require('./../lib/models/mongoModel.js').Coefficient;
 var sportSpelling=require('./../lib/customfunctions.js').sportSpelling;
 var links=[];
-console.log('betcity-parser');
+console.log('ligastavok-parser');
 
 findLinks();
 
 function findLinks(){
 	nightmare
-	  .goto('https://betcity.ru/line/competions/ft=1;')
+	  .goto('https://www.ligastavok.ru/')
 	  .useragent("Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.111 Safari/537.36")
-	  .wait('.competitions-content-table-item-text__title')
+	  .wait('li.menu__item a.menu__link')
 	  .evaluate(function () {
 		return document.body.innerHTML;
 	  })
@@ -20,7 +20,7 @@ function findLinks(){
 		  console.log('start parsing');
 		  var $ = cheerio.load(body);
 		  let linksToClick;
-		  linksToClick = $('.competitions-content-table-item-text__title').get();
+		  linksToClick = $('li.menu__item a.menu__link').get();
 		   console.log(linksToClick);
 		  linksToClick.forEach(oneLink=>{
 			  console.log(oneLink.attribs.href);
@@ -36,13 +36,17 @@ function findLinks(){
 function checkLinks(i){
 	if(i<links.length){
 		nightmare
-		  .goto('https://betcity.ru' + links[i])
+		  .goto('https://ligastavok.ru' + links[i])
 		  .useragent("Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.111 Safari/537.36")
-		  .wait('.live-list__championship-header-name')
-		  .exists('.live-list__championship-event-winner-text')
+		  .wait('.fa.fa-check')
+		  .click('.fa.fa-check')
+		  .wait(500)
+		  .click('button.button.button_default.topic__btn')
+		  .wait('.grid__row')
+		  .exists('.line.topic__table')
 		  .then(result=>{
-			  if(result)checkLinks(i+1);
-			  else doGrabbing(i);
+			  if(result)doGrabbing(i);
+			  else checkLinks(i+1);
 		  })
 		  .catch(function (error) {
 			console.log(error);
@@ -60,8 +64,8 @@ function doGrabbing(i){
 	  })
 	  .then(function (body) {
 		  var $ = cheerio.load(body);
-		  let sportSelector = $('.live-list__championship-header-name').get();
-		  var sport = sportSelector[0].children[0].children[0].data.split('. ')[0];
+		  let sportSelector = $('.events-table-wrapper h1 nobr').get();
+		  var sport = sportSelector[0].children[0].children[0].data;
 		  console.log(sport);
 		  checkLinks(i+1);
 	  })
