@@ -61,8 +61,29 @@ function doGrabbing(i){
 	  .then(function (body) {
 		  var $ = cheerio.load(body);
 		  let sportSelector = $('.live-list__championship-header-name').get();
-		  var sport = sportSelector[0].children[0].children[0].data.split('. ')[0];
-		  console.log(sport);
+		  try{
+			  var sport = sportSelector[0].children[0].children[0].data.split('. ')[0];
+			  console.log(sport);
+			  let markets=$('.live-list__championship-event').get();
+			  //console.log(markets[0]);
+			  let win, draw, away, marja;
+			  win=markets[0].children[4].children[0].children[0].children[0].data;
+			  console.log(win)
+			  if(markets[0].children[5].children[0].children[0]!=undefined)
+			  draw=markets[0].children[5].children[0].children[0].children[0].data;
+		      else draw='-';
+			  away=markets[0].children[6].children[0].children[0].children[0].data;
+			  marja=0;
+			 if(win != '-' && win != 0) marja += 100/parseFloat(win);
+			 if(draw != '-' && draw != 0) marja += 100/parseFloat(draw);
+			 if(away != '-' && away != 0) marja += 100/parseFloat(away);
+			 marja = marja -100;
+			 let now = Date.now();
+			 sport=sportSpelling(sport);
+			 console.log(sport + ': ' + win + ' - ' + draw + ' - ' + away + '. Marja = ' + marja);	
+			 let coeff = new Coefficient({bk: 'betcity', betType:'line', averageType:'immediate', date: now, sport: sport, marja: marja, win: win, draw: draw, away: away}).save();
+		  
+			}catch(e){console.log(e)}
 		  checkLinks(i+1);
 	  })
 	  .catch(function (error) {
