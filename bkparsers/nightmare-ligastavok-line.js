@@ -64,9 +64,36 @@ function doGrabbing(i){
 	  })
 	  .then(function (body) {
 		  var $ = cheerio.load(body);
-		  let sportSelector = $('.events-table-wrapper h1 nobr').get();
-		  var sport = sportSelector[0].children[0].children[0].data;
-		  console.log(sport);
+		  try{
+			  let sportSelector = $('.events-table-wrapper h1 nobr').get();
+			  var sport = sportSelector[0].children[0].children[0].data;
+			  console.log(sport);
+			  let markets=$('td.sportEventCell').get();
+			  markets.forEach(market=>{
+			  try{	  
+				let win, draw, away, marja, isDraw;
+				  win=market.next.children[0].children[0].children[0].data.replace(',', '.');
+				  isDraw=market.next.next.next.children[0].children[0].children;
+				  //console.log(isDraw);
+				  if(isDraw.length==0) {
+					  draw='-';
+					  away=market.next.next.children[0].children[0].children[0].data.replace(',', '.');
+				  } else {
+					  draw=market.next.next.children[0].children[0].children[0].data.replace(',', '.');
+					  away=market.next.next.next.children[0].children[0].children[0].data.replace(',', '.');
+				  }
+				  marja=0;
+			 if(win != '-' && win != 0) marja += 100/parseFloat(win);
+			 if(draw != '-' && draw != 0) marja += 100/parseFloat(draw);
+			 if(away != '-' && away != 0) marja += 100/parseFloat(away);
+			 marja = marja -100;
+			 let now = Date.now();
+			 sport=sportSpelling(sport);
+			 console.log(sport + ': ' + win + ' - ' + draw + ' - ' + away + '. Marja = ' + marja);	
+			 let coeff = new Coefficient({bk: 'betcity', betType:'line', averageType:'immediate', date: now, sport: sport, marja: marja, win: win, draw: draw, away: away}).save();  
+			  }catch(e){}	
+			 });
+		  }catch(e){console.log(e)}
 		  checkLinks(i+1);
 	  })
 	  .catch(function (error) {
