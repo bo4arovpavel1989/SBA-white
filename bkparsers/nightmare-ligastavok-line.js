@@ -90,7 +90,7 @@ function doGrabbing(i){
 			 let now = Date.now();
 			 sport=sportSpelling(sport);
 			 console.log(sport + ': ' + win + ' - ' + draw + ' - ' + away + '. Marja = ' + marja);	
-			 let coeff = new Coefficient({bk: 'betcity', betType:'line', averageType:'immediate', date: now, sport: sport, marja: marja, win: win, draw: draw, away: away}).save();  
+			 let coeff = new Coefficient({bk: 'ligastavok', betType:'line', averageType:'immediate', date: now, sport: sport, marja: marja, win: win, draw: draw, away: away}).save();  
 			  }catch(e){}	
 			 });
 		  }catch(e){console.log(e)}
