@@ -87,11 +87,13 @@ function doGrabbing(i){
 			 if(draw != '-' && draw != 0) marja += 100/parseFloat(draw);
 			 if(away != '-' && away != 0) marja += 100/parseFloat(away);
 			 marja = marja -100;
-			 let now = Date.now();
-			 sport=sportSpelling(sport);
-			 console.log(sport + ': ' + win + ' - ' + draw + ' - ' + away + '. Marja = ' + marja);	
-			 let coeff = new Coefficient({bk: 'ligastavok', betType:'line', averageType:'immediate', date: now, sport: sport, marja: marja, win: win, draw: draw, away: away}).save();  
-			  }catch(e){}	
+			 if(marja>0&&marja!=NaN){
+				 let now = Date.now();
+				 sport=sportSpelling(sport);
+				 console.log(sport + ': ' + win + ' - ' + draw + ' - ' + away + '. Marja = ' + marja);	
+				 let coeff = new Coefficient({bk: 'ligastavok', betType:'line', averageType:'immediate', date: now, sport: sport, marja: marja, win: win, draw: draw, away: away}).save();  
+			 }		
+			 }catch(e){}	
 			 });
 		  }catch(e){console.log(e)}
 		  checkLinks(i+1);

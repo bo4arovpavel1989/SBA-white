@@ -40,12 +40,14 @@ nightmare
 				if(draw != '-' && draw != 0) marja += 100/parseFloat(draw);
 				if(away != '-' && away != 0) marja += 100/parseFloat(away);
 				marja = marja -100;
-				let betType;
-				betType = (type == 1) ? 'live' : 'line';
-				console.log(betType + ': ' + sportType + ': ' + win + ' - ' + draw + ' - ' + away + '. Marja = ' + marja);
-				let now = Date.now();
-				sportType=sportSpelling(sportType);
-				let coeff = new Coefficient({bk: '888', betType:betType, averageType:'immediate', date: now, sport: sportType, marja: marja, win: win, draw: draw, away: away}).save();
+				if(marja>0&&marja!=NaN){
+					let betType;
+					betType = (type == 1) ? 'live' : 'line';
+					console.log(betType + ': ' + sportType + ': ' + win + ' - ' + draw + ' - ' + away + '. Marja = ' + marja);
+					let now = Date.now();
+					sportType=sportSpelling(sportType);
+					let coeff = new Coefficient({bk: '888', betType:betType, averageType:'immediate', date: now, sport: sportType, marja: marja, win: win, draw: draw, away: away}).save();
+				}
 		 }catch(e){}	
 	 });
 	i = i + 1;

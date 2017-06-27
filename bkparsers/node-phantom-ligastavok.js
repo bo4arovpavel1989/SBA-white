@@ -42,11 +42,13 @@ function getMarja(){
 				if(coeffs[1] != '-' && coeffs[1] != 0) marja += 100/parseFloat(coeffs[1]);
 				if(coeffs[2] != '-' && coeffs[2] != 0) marja += 100/parseFloat(coeffs[2]);
 				marja = marja -100;
-				console.log(sport + ': ' + coeffs[0] + ' - ' + coeffs[1] + ' - ' + coeffs[2] + '. Marja = ' + marja);
-				console.log('next');
-				let now = Date.now();
-				sport=sportSpelling(sport);
-				let coeff = new Coefficient({bk: 'ligastavok', betType:'live', averageType:'immediate', date: now, sport: sport, marja: marja, win: coeffs[0], draw:coeffs[1], away:coeffs[2]}).save();
+				if(marja>0&&marja!=NaN){
+					console.log(sport + ': ' + coeffs[0] + ' - ' + coeffs[1] + ' - ' + coeffs[2] + '. Marja = ' + marja);
+					console.log('next');
+					let now = Date.now();
+					sport=sportSpelling(sport);
+					let coeff = new Coefficient({bk: 'ligastavok', betType:'live', averageType:'immediate', date: now, sport: sport, marja: marja, win: coeffs[0], draw:coeffs[1], away:coeffs[2]}).save();
+			    }
 			});
 		});
 	}).catch(e => console.log(e));
