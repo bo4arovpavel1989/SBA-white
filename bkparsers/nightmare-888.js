@@ -3,11 +3,11 @@ var nightmare = Nightmare({ show: false });
 var cheerio = require('cheerio');
 var Coefficient = require('./../lib/models/mongoModel.js').Coefficient;
 var sportSpelling=require('./../lib/customfunctions.js').sportSpelling;
-const START = 1; // 1 - type of bet - Live; 0 - type of bet -Line
+const TYPE = 1; // 1 - type of bet - Live; 0 - type of bet -Line
 
 console.log('888-parser');
 
-grabSite(START, 1);
+grabSite(1, TYPE);
 
 function grabSite(i, type){
 nightmare
@@ -50,16 +50,15 @@ nightmare
 	 });
 	i = i + 1;
 	if(i<=10) grabSite(i, type);
-	else if(i>10&&type==1) grabSite (START, 0);
+	else console.log('done');
   })
   .catch(function (error) {
 	console.log('no event for sport №' + i);
     i = i + 1;
 	if(i<=10) grabSite(i, type);
-	else if(i>10&&type==1) grabSite(START, 0);
+	else console.log('done');
   });
 }
 
-function getLine(){}
 
   

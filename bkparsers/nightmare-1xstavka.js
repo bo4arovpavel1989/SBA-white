@@ -18,16 +18,17 @@ nightmare
 	var lines=$('.c-bets').get();
 	lines.forEach((line)=>{
 		try {
-		let betType, sport, sportType, win, draw, away;
-		//console.log(line);
-		//betType = line.parent.parent.parent.parent.children[1].children[1].attribs['data-top10'];
-		sport = line.prev.prev.prev.prev.prev.prev.attribs.href;
-		sportType=sport.split('/')[1];
-		betType=sport.split('/')[0];
-		win = line.children[0].children[0].attribs['data-coef'];if(win ==undefined) win='-';
-		draw = line.children[0].children[1].attribs['data-coef'];if(draw ==undefined) draw='-';
-		away = line.children[0].children[2].attribs['data-coef'];if(away ==undefined) away='-';
-		let marja = 0;
+			let betType, sport, sportType, win, draw, away;
+			//console.log(line);
+			//betType = line.parent.parent.parent.parent.children[1].children[1].attribs['data-top10'];
+			sport = line.prev.prev.prev.prev.prev.prev.attribs.href;
+			sportType=sport.split('/')[1];
+			betType=sport.split('/')[0];
+			if(betType=='live'){
+				win = line.children[0].children[0].attribs['data-coef'];if(win ==undefined) win='-';
+				draw = line.children[0].children[1].attribs['data-coef'];if(draw ==undefined) draw='-';
+				away = line.children[0].children[2].attribs['data-coef'];if(away ==undefined) away='-';
+				let marja = 0;
 				if(win != '-' && win != 0) marja += 100/parseFloat(win);
 				if(draw != '-' && draw != 0) marja += 100/parseFloat(draw);
 				if(away != '-' && away != 0) marja += 100/parseFloat(away);
@@ -36,6 +37,7 @@ nightmare
 				let now = Date.now();
 				sportType=sportSpelling(sportType);
 				let coeff = new Coefficient({bk: '1xstavka', betType:betType, averageType:'immediate', date: now, sport: sportType, marja: marja, win: win, draw: draw, away: away}).save();
+			}
 		} catch(e) {}
 	});
   })

@@ -49,8 +49,6 @@ function getMarja(){
 				let coeff = new Coefficient({bk: 'ligastavok', betType:'live', averageType:'immediate', date: now, sport: sport, marja: marja, win: coeffs[0], draw:coeffs[1], away:coeffs[2]}).save();
 			});
 		});
-		_page.close();
-		_ph.exit();
 	}).catch(e => console.log(e));
 }
 
