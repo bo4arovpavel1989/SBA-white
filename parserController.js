@@ -6,34 +6,42 @@ var liveParsers=['nightmare-1xstavka.js', 'nightmare-888.js', 'nightmare-baltbet
 var lineParsers=['nightmare-1xstavka-line.js', 'nightmare-888-line.js', 'nightmare-baltbet-line.js', 'nightmare-betcity-line.js', 
 'nightmare-bkolimp-line.js', 'nightmare-fonbet-line.js', 'nightmare-winlinebet-line.js', 'node-phantom-leon-line.js', 'nightmare-ligastavok-line.js'];
 
-var callLiveParsers = setInterval(()=>{
+var callLiveParsers = function(){
+	console.log('live parsing starting...');
+	var liveInterval = setInterval(()=>{
 		if(i==liveParsers.length) {
 			i=0;
 			liveParsers.forEach(parser=>{
 				delete require.cache[require.resolve('./bkparsers/' + parser)];
 			})
-			clearInterval(callLiveParsers);
+			clearInterval(liveInterval);
 		}
 		require('./bkparsers/' + liveParsers[i]);
 		i++;
 	}, 60*1000);
+};
 
-var callLineParsers = setInterval(()=>{
+
+var callLineParsers = function(){
+	console.log('line parsing starting...');
+	var lineInterval=setInterval(()=>{
 		if(j==lineParsers.length) {
 			j=0;
 			lineParsers.forEach(parser=>{
 				delete require.cache[require.resolve('./bkparsers/' + parser)];
 			})
-			clearInterval(callLineParsers);
+			clearInterval(lineInterval);
 		}
 		require('./bkparsers/' + lineParsers[j]);
 		j++;
-	}, 60*1000);
+	}, 60*1000)
+};
+
 
 setInterval(()=>{
-	callLineParsers;
+	callLineParsers();
 }, 60*60*1000);
 
 setInterval(()=>{
-	callLiveParsers;
+	callLiveParsers();
 }, 15*60*1000);
