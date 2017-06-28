@@ -35,6 +35,7 @@ nightmare
 	this.scrollTo(100000, 0);
 	return document.body.innerHTML;
   })
+  .end()
   .then(function (body) {
      var $ = cheerio.load(body);
 	//console.log($.html());

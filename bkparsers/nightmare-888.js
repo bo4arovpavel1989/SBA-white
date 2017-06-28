@@ -52,13 +52,19 @@ nightmare
 	 });
 	i = i + 1;
 	if(i<=10) grabSite(i, type);
-	else console.log('done');
+	else {
+		console.log('done');
+		nightmare.end();
+	}
   })
   .catch(function (error) {
 	console.log('no event for sport №' + i);
     i = i + 1;
 	if(i<=10) grabSite(i, type);
-	else console.log('done');
+	else {
+		console.log('done');
+		nightmare.end();
+	}
   });
 }
 

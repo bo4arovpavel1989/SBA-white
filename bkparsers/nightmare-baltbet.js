@@ -73,11 +73,19 @@ function parseBaltBet(link){
 		i++;
 		console.log(i)
 		if(i<linksToClick.length) parseBaltBet(linksToClick[i])
+		else {
+			console.log('done');
+			nightmare.end();
+		}	
 	
   })
   .catch(function (error) {
 	i++;
 	if(i<linksToClick.length) parseBaltBet(linksToClick[i])
+	else {
+		console.log('done');
+		nightmare.end();
+	}
   });
 }
 

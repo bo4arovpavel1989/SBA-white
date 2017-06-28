@@ -13,6 +13,7 @@ nightmare
   .evaluate(function () {
 	return document.body.innerHTML;
   })
+  .end()
   .then(function (body) {
 	  console.log('start parsing');
      var $ = cheerio.load(body);

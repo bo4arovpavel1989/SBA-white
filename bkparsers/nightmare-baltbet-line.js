@@ -58,12 +58,18 @@ function goGrabbing(i){
 				 }catch(e){}
 			 });
 			 if(i<=20)goGrabbing(i+1);
-			 else console.log('done')
+			 else {
+				console.log('done');
+				nightmare.end();
+			}
 		  })
 		  .catch(function (error) {
 			console.log(error);
 			if(i<=20)goGrabbing(i+1);
-			 else console.log('done')
+			 else {
+				console.log('done');
+				nightmare.end();
+			}
 		  });
 	}
 	else console.log('done')

@@ -49,7 +49,8 @@ function checkLinks(i){
 			checkLinks(i+1);
 		  });
 	}else {
-		console.log('done')
+		console.log('done');
+		nightmare.end();
 	}
 }
 

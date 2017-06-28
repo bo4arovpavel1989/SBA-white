@@ -42,6 +42,8 @@ function getMarja(){
 				}
 			} catch(e){}
 		});
+		_page.close();
+ 		_ph.exit();
 	}).catch(e => console.log(e));
 }
 getMarja();
