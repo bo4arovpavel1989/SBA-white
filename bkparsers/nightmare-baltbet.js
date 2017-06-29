@@ -75,7 +75,7 @@ function parseBaltBet(link){
 		if(i<linksToClick.length) parseBaltBet(linksToClick[i])
 		else {
 			console.log('done');
-			nightmare.end();
+			return nightmare.end();
 		}	
 	
   })
@@ -84,10 +84,12 @@ function parseBaltBet(link){
 	if(i<linksToClick.length) parseBaltBet(linksToClick[i])
 	else {
 		console.log('done');
-		nightmare.end();
+		return nightmare.end();
 	}
   });
 }
 
-
+setTimeout(()=>{
+	nightmare.end();
+}, 5*60*1000);
   

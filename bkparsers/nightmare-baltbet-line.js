@@ -60,7 +60,7 @@ function goGrabbing(i){
 			 if(i<=20)goGrabbing(i+1);
 			 else {
 				console.log('done');
-				nightmare.end();
+				return nightmare.end();
 			}
 		  })
 		  .catch(function (error) {
@@ -68,9 +68,13 @@ function goGrabbing(i){
 			if(i<=20)goGrabbing(i+1);
 			 else {
 				console.log('done');
-				nightmare.end();
+				return nightmare.end();
 			}
 		  });
 	}
 	else console.log('done')
 }
+
+setTimeout(()=>{
+	nightmare.end();
+}, 5*60*1000);

@@ -13,7 +13,7 @@ function grabSite(i, type){
 nightmare
   .goto('https://mobile.888.ru/#/sport?sport=' + i + '&type=' + type + '&region=-1&qrange=-1&video=-1')
   .useragent("Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.111 Safari/537.36")
-  .wait(5000)
+  .wait('span.heading-title>a>span.ng-binding')
   .evaluate(function () {
 	return document.body.innerHTML;
   })
@@ -54,7 +54,7 @@ nightmare
 	if(i<=10) grabSite(i, type);
 	else {
 		console.log('done');
-		nightmare.end();
+		return nightmare.end();
 	}
   })
   .catch(function (error) {
@@ -63,10 +63,16 @@ nightmare
 	if(i<=10) grabSite(i, type);
 	else {
 		console.log('done');
-		nightmare.end();
+		return nightmare.end();
 	}
   });
 }
 
+function stopExecution(){
+	nightmare.end();
+}
 
+setTimeout(()=>{
+	stopExecution();
+}, 5*60*1000);
   

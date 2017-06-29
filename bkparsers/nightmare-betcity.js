@@ -48,6 +48,8 @@ nightmare
 	console.log(error);
   });
 
-
+setTimeout(()=>{
+	nightmare.end();
+}, 5*60*1000);
 
 

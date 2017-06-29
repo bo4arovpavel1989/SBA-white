@@ -12,9 +12,11 @@ var callLiveParsers = function(){
 	var liveInterval = setInterval(()=>{
 		if(i==liveParsers.length) {
 			i=0;
-			liveParsers.forEach(parser=>{
-				delete require.cache[require.resolve('./bkparsers/' + parser)];
-			})
+			setTimeout(()=>{
+				liveParsers.forEach(parser=>{
+					delete require.cache[require.resolve('./bkparsers/' + parser)];
+				});
+			}, 6*60*1000);
 			clearInterval(liveInterval);
 		} else{
 			require('./bkparsers/' + liveParsers[i]);
@@ -30,9 +32,11 @@ var callLineParsers = function(){
 	var lineInterval=setInterval(()=>{
 		if(j==lineParsers.length) {
 			j=0;
-			lineParsers.forEach(parser=>{
-				delete require.cache[require.resolve('./bkparsers/' + parser)];
-			})
+			setTimeout(()=>{
+				lineParsers.forEach(parser=>{
+					delete require.cache[require.resolve('./bkparsers/' + parser)];
+				});
+			}, 6*60*1000);
 			clearInterval(lineInterval);
 		} else{
 			require('./bkparsers/' + lineParsers[j]);
@@ -44,8 +48,8 @@ var callLineParsers = function(){
 
 setInterval(()=>{
 	callLineParsers();
-}, 60*60*1000);
+}, 2*60*60*1000);
 
 setInterval(()=>{
 	callLiveParsers();
-}, 13*60*1000);
+}, 23*60*1000);

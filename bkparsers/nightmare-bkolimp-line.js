@@ -44,7 +44,7 @@ getLinks();
 		  }); 
 	  }else {
 		console.log('done');
-		nightmare.end();
+		return nightmare.end();
 	}
   }
   
@@ -89,3 +89,7 @@ getLinks();
 		checkLink(i+1);
 	  });
   }
+  
+  setTimeout(()=>{
+	nightmare.end();
+}, 5*60*1000);

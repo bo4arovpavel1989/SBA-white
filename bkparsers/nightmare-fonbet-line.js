@@ -58,4 +58,7 @@ function getLine(){
   });
 }
 
+setTimeout(()=>{
+	nightmare.end();
+}, 5*60*1000);
 

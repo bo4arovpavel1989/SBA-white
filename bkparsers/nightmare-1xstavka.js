@@ -9,6 +9,8 @@ console.log('1xstavka-parser');
 nightmare
   .goto('https://1xstavka.ru/')
   .useragent("Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.111 Safari/537.36")
+  .click('#countLiveEventsOnMain > div.labelFdropList > div:nth-child(5)')
+  .wait(1500)
   .evaluate(function () {
 	return document.body.innerHTML;
   })
@@ -48,7 +50,9 @@ nightmare
 	console.log(error);
   });
 
-	
+setTimeout(()=>{
+	nightmare.end();
+}, 5*60*1000);	
 
 
   

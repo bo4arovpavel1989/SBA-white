@@ -54,7 +54,7 @@ function checkLinks(i){
 		  });
 	}else {
 		console.log('done');
-		nightmare.end();
+		return nightmare.end();
 	}
 }
 
@@ -104,3 +104,7 @@ function doGrabbing(i){
 		checkLinks(i+1);
 	  });
 }
+
+setTimeout(()=>{
+	nightmare.end();
+}, 5*60*1000);

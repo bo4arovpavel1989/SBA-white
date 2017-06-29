@@ -43,3 +43,7 @@ nightmare
   .catch(function (error) {
     console.error('Search failed:', error);
   });
+  
+  setTimeout(()=>{
+	nightmare.end();
+}, 5*60*1000);
