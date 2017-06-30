@@ -30,6 +30,7 @@ function findLinks(){
 	  })
 	  .catch(function (error) {
 		console.log(error);
+		return nightmare.end();
 	  });
 }
 
