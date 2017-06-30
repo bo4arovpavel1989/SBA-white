@@ -72,10 +72,13 @@ function goGrabbing(i){
 			}
 		  });
 	}
-	else console.log('done')
+	else {
+			console.log('done');
+			nightmare.end();
+			}
 }
 
 setTimeout((nightmare)=>{
 	console.log('timeout stop');
-	nightmare.end();
+	if(nightmare) nightmare.end();
 }, 5*60*1000);

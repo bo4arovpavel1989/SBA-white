@@ -52,8 +52,9 @@ nightmare
 
 setTimeout((nightmare)=>{
 	console.log('timeout stop');
-	nightmare.end();
+	if(nightmare) nightmare.end();
 }, 5*60*1000);
+
 
 
   

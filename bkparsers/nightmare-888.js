@@ -55,7 +55,7 @@ nightmare
 	if(i<=SPORTNUMBER) grabSite(i, type);
 	else {
 		console.log('done');
-		//return nightmare.end();
+		return nightmare.end();
 	}
   })
   .catch(function (error) {
@@ -64,7 +64,7 @@ nightmare
 	if(i<=SPORTNUMBER) grabSite(i, type);
 	else {
 		console.log('done');
-		//return nightmare.end();
+		return nightmare.end();
 	}
   });
 }
@@ -72,6 +72,7 @@ nightmare
 
 setTimeout((nightmare)=>{
 	console.log('timeout stop');
-	nightmare.end();
+	if(nightmare) nightmare.end();
 }, 5*60*1000);
+
   

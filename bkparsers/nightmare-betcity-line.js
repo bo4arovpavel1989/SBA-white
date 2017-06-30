@@ -50,7 +50,7 @@ function checkLinks(i){
 		  });
 	}else {
 		console.log('done');
-		return nightmare.end();
+		nightmare.end();
 	}
 }
 
@@ -96,5 +96,5 @@ function doGrabbing(i){
 
 setTimeout((nightmare)=>{
 	console.log('timeout stop');
-	nightmare.end();
+	if(nightmare) nightmare.end();
 }, 5*60*1000);
