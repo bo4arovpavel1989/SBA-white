@@ -4,6 +4,7 @@ var cheerio = require('cheerio');
 var Coefficient = require('./../lib/models/mongoModel.js').Coefficient;
 var sportSpelling=require('./../lib/customfunctions.js').sportSpelling;
 const TYPE = 1; // 1 - type of bet - Live; 0 - type of bet -Line
+const SPORTNUMBER=15;
 
 console.log('888-parser');
 
@@ -29,11 +30,11 @@ nightmare
 		 let marketsQuantity=line.children.length;
 			 win = line.children[0].children[1].children[0].data;
 			 if(line.children[1].attribs.class=='bet-event') {
-				 draw = line.children[1].children[1].children[0].data;
+				draw = line.children[1].children[1].children[0].data;
 				away = line.children[2].children[1].children[0].data;
 			 }else {
-			 draw = '-'
-			 away = line.children[2].children[1].children[0].data;	 
+				 draw = '-'
+				 away = line.children[2].children[1].children[0].data;	 
 			 }	
 		 	let marja = 0;
 				if(win != '-' && win != 0) marja += 100/parseFloat(win);
@@ -51,28 +52,26 @@ nightmare
 		 }catch(e){}	
 	 });
 	i = i + 1;
-	if(i<=10) grabSite(i, type);
+	if(i<=SPORTNUMBER) grabSite(i, type);
 	else {
 		console.log('done');
-		return nightmare.end();
+		//return nightmare.end();
 	}
   })
   .catch(function (error) {
 	console.log('no event for sport №' + i);
     i = i + 1;
-	if(i<=10) grabSite(i, type);
+	if(i<=SPORTNUMBER) grabSite(i, type);
 	else {
 		console.log('done');
-		return nightmare.end();
+		//return nightmare.end();
 	}
   });
 }
 
-function stopExecution(){
-	nightmare.end();
-}
 
-setTimeout(()=>{
-	stopExecution();
+setTimeout((nightmare)=>{
+	console.log('timeout stop');
+	nightmare.end();
 }, 5*60*1000);
   

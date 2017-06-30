@@ -89,7 +89,7 @@ function parseBaltBet(link){
   });
 }
 
-setTimeout(()=>{
+setTimeout((nightmare)=>{
+	console.log('timeout stop');
 	nightmare.end();
 }, 5*60*1000);
-  

@@ -75,6 +75,7 @@ function goGrabbing(i){
 	else console.log('done')
 }
 
-setTimeout(()=>{
+setTimeout((nightmare)=>{
+	console.log('timeout stop');
 	nightmare.end();
 }, 5*60*1000);

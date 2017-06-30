@@ -63,12 +63,12 @@ nightmare
 	if(i<=10) grabSite(i, type);
 	else {
 		console.log('done');
-		nightmare.end();
+		return nightmare.end();
 	}
   });
 }
 
-setTimeout(()=>{
+setTimeout((nightmare)=>{
+	console.log('timeout stop');
 	nightmare.end();
 }, 5*60*1000);
-  

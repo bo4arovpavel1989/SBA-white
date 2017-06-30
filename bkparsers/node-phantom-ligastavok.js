@@ -55,7 +55,13 @@ function getMarja(){
 			_page.close();
 			_ph.exit();
 		}, 3*60*1000);
-	}).catch(e => console.log(e));
+	}).catch(e => {
+			console.log(e);
+			setTimeout(()=>{
+				_page.close();
+				_ph.exit();
+			}, 3*60*1000);
+		});
 }
 
 
