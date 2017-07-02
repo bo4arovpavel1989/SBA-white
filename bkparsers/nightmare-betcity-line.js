@@ -1,5 +1,5 @@
 var Nightmare = require('nightmare');		
-var nightmare = Nightmare({ show: false });
+var nightmare = Nightmare({ show: true });
 var cheerio = require('cheerio');
 var Coefficient = require('./../lib/models/mongoModel.js').Coefficient;
 var sportSpelling=require('./../lib/customfunctions.js').sportSpelling;
@@ -30,7 +30,7 @@ function findLinks(){
 	  })
 	  .catch(function (error) {
 		console.log(error);
-		return nightmare.end();
+		//return nightmare.end();
 	  });
 }
 
@@ -95,7 +95,13 @@ function doGrabbing(i){
 	  });
 }
 
-setTimeout((nightmare)=>{
+setTimeout(()=>{
 	console.log('timeout stop');
-	if(nightmare) nightmare.end();
-}, 5*60*1000);
+	if(nightmare) {
+		nightmare.end();
+		nightmare.proc.disconnect();
+		nightmare.proc.kill();
+		nightmare.ended = true;
+		nightmare = null;
+	}
+}, 60*1000);
