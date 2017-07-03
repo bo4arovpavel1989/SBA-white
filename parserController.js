@@ -52,4 +52,4 @@ setInterval(()=>{
 
 setInterval(()=>{
 	callLiveParsers();
-}, 23*60*1000);
+}, 17*60*1000);

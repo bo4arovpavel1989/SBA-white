@@ -1,5 +1,5 @@
 var Nightmare = require('nightmare');		
-var nightmare = Nightmare({ show: false });
+var nightmare = Nightmare({ show: true });
 var cheerio = require('cheerio');
 var Coefficient = require('./../lib/models/mongoModel.js').Coefficient;
 var sportSpelling=require('./../lib/customfunctions.js').sportSpelling;
@@ -52,12 +52,13 @@ nightmare
 setTimeout(()=>{
 	console.log('timeout stop');
 	if(nightmare) {
+		try{
 		nightmare.end();
 		nightmare.proc.disconnect();
 		nightmare.proc.kill();
 		nightmare.ended = true;
 		nightmare = null;
+		}catch(e){}
 	}
 }, 5*60*1000);
-
 

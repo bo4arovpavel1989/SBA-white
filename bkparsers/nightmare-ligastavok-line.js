@@ -55,11 +55,13 @@ function checkLinks(i){
 	}else {
 		console.log('done');
 		if(nightmare) {
+			try{
 			nightmare.end();
 			nightmare.proc.disconnect();
 			nightmare.proc.kill();
 			nightmare.ended = true;
 			nightmare = null;
+			}catch(e){}
 		}
 	}
 }
@@ -115,10 +117,12 @@ function doGrabbing(i){
 setTimeout(()=>{
 	console.log('timeout stop');
 	if(nightmare) {
+		try{
 		nightmare.end();
 		nightmare.proc.disconnect();
 		nightmare.proc.kill();
 		nightmare.ended = true;
 		nightmare = null;
+		}catch(e){}
 	}
 }, 5*60*1000);
