@@ -30,7 +30,7 @@ function findLinks(){
 	  })
 	  .catch(function (error) {
 		console.log(error);
-		//return nightmare.end();
+		return nightmare.end();
 	  });
 }
 
@@ -104,4 +104,4 @@ setTimeout(()=>{
 		nightmare.ended = true;
 		nightmare = null;
 	}
-}, 60*1000);
+}, 5*60*1000);

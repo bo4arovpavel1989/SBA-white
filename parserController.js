@@ -48,8 +48,8 @@ var callLineParsers = function(){
 
 setInterval(()=>{
 	callLineParsers();
-}, 15*60*1000);
-/*
+}, 60*60*1000);
+
 setInterval(()=>{
 	callLiveParsers();
-}, 23*60*1000);*/
+}, 23*60*1000);

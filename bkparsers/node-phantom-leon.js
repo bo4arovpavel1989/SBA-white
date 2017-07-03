@@ -42,15 +42,19 @@ function getMarja(){
 			} catch(e){}
 		});
 		setTimeout(()=>{
-			_page.close();
-			_ph.exit();
+			try{
+				_page.close();
+				_ph.exit();
+			}catch(e){}
 		}, 3*60*1000);
 	}).catch(e => {
 			console.log(e);
 			setTimeout(()=>{
-				_page.close();
-				_ph.exit();
-			}, 3*60*1000);
+				try{
+					_page.close();
+					_ph.exit();
+				}catch(e){}
+			}, 3*60*1000);		
 		});
 }
 getMarja();

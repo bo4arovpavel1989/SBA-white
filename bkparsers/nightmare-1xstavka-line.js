@@ -50,9 +50,16 @@ nightmare
 	console.log(error);
   });
 
-setTimeout((nightmare)=>{
+
+setTimeout(()=>{
 	console.log('timeout stop');
-	if(nightmare) nightmare.end();
+	if(nightmare) {
+		nightmare.end();
+		nightmare.proc.disconnect();
+		nightmare.proc.kill();
+		nightmare.ended = true;
+		nightmare = null;
+	}
 }, 5*60*1000);
 
 

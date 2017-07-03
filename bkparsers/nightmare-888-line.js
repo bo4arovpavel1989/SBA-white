@@ -68,8 +68,14 @@ nightmare
   });
 }
 
-setTimeout((nightmare)=>{
-	console.log('timeout stop');
-	if(nightmare) nightmare.end();
-}, 5*60*1000);
 
+setTimeout(()=>{
+	console.log('timeout stop');
+	if(nightmare) {
+		nightmare.end();
+		nightmare.proc.disconnect();
+		nightmare.proc.kill();
+		nightmare.ended = true;
+		nightmare = null;
+	}
+}, 5*60*1000);
