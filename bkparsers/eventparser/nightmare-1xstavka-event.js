@@ -48,7 +48,6 @@ let grabEvent = function (link, callback){
   });	
 }
 
-grabEvent('https://1xstavka.ru/line/Tennis/69371-Wimbledon/13601085-Grigor-Dimitrov-Marcos-Baghdatis/');
 module.exports.grabEvent = grabEvent;
 
 setTimeout(()=>{

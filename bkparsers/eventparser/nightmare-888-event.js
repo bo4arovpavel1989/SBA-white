@@ -50,8 +50,6 @@ nightmare
   });
 };
 
-grabEvent('http://mobile.888.ru/#/match/7204351?type=1');
-
 module.exports.grabEvent = grabEvent;
 
 setTimeout(()=>{
