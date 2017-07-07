@@ -30,11 +30,11 @@ let grabEvent = function(link, callback){
 		 draw = '-';
 		 away = market1x2.children[0].children[1].children[0].children[2].children[0].data;
 	 }
-	 marja = 0;
-				if(win != '-' && win != 0) marja += 100/parseFloat(win);
-				if(draw != '-' && draw != 0) marja += 100/parseFloat(draw);
-				if(away != '-' && away != 0) marja += 100/parseFloat(away);
-				marja = marja -100;
+	marja = 0;
+	if(win != '-' && win != 0) marja += 100/parseFloat(win);
+	if(draw != '-' && draw != 0) marja += 100/parseFloat(draw);
+	if(away != '-' && away != 0) marja += 100/parseFloat(away);
+	marja = marja -100;
 	console.log(win + ' - ' + draw + ' - ' + away + ". Marja: " + marja);	
 	objectToReturn.win = win;
 	objectToReturn.draw = draw;
@@ -46,11 +46,7 @@ let grabEvent = function(link, callback){
 	console.log(error);
 	callback(error, null);
   });
-
 };
-
-grabEvent('https://betcity.ru/live/ev/id=4201027;');
-
 
 setTimeout(()=>{
 	console.log('timeout stop');
