@@ -1,13 +1,14 @@
 var Nightmare = require('nightmare');		
 var nightmare = Nightmare({ show: false });
 var cheerio = require('cheerio');
-var objectToReturn = {
-	bk: 'betcity'
-};
+
 
 console.log('betcity-parser');
 
 let grabEvent = function(link, callback){
+	var objectToReturn = {
+		bk: 'betcity'
+	};
    nightmare
   .goto(link)
   .useragent("Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.111 Safari/537.36")
@@ -46,9 +47,8 @@ let grabEvent = function(link, callback){
 	console.log(error);
 	callback(error, null);
   });
-};
-
-setTimeout(()=>{
+  
+  setTimeout(()=>{
 	console.log('timeout stop');
 	if(nightmare) {
 		try{
@@ -59,5 +59,9 @@ setTimeout(()=>{
 		nightmare = null;
 		}catch(e){}
 	}
-}, 5*60*1000);
+  }, 5*60*1000);
+  
+};
+
+module.exports.grabEvent=grabEvent;
 

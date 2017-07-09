@@ -1,12 +1,14 @@
 var Nightmare = require('nightmare');		
 var nightmare = Nightmare({ show: false });
 var cheerio = require('cheerio');
-var objectToReturn = {
-	bk: 'baltbet'
-};
+
 console.log('baltbet-parser');
 
 let grabEvent = function (id, callback){
+var objectToReturn = {
+	bk: 'baltbet'
+};
+
    nightmare
   .goto('https://baltbet.ru/')
   .useragent("Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.111 Safari/537.36")
@@ -46,6 +48,7 @@ let grabEvent = function (id, callback){
 		}
 		}catch(e){}
 			console.log('done');
+			callback(null, objectToReturn);
 			return nightmare.end();
   })
   .catch(function (error) {
@@ -53,19 +56,22 @@ let grabEvent = function (id, callback){
 	callback(error, null);
 	return nightmare.end();
   });
-}
+  
+	  
+	setTimeout(()=>{
+		console.log('timeout stop');
+		if(nightmare) {
+			try{
+			nightmare.end();
+			nightmare.proc.disconnect();
+			nightmare.proc.kill();
+			nightmare.ended = true;
+			nightmare = null;
+			}catch(e){}
+		}
+	}, 5*60*1000);
+
+};
 
 module.exports.grabEvent = grabEvent;
 
-setTimeout(()=>{
-	console.log('timeout stop');
-	if(nightmare) {
-		try{
-		nightmare.end();
-		nightmare.proc.disconnect();
-		nightmare.proc.kill();
-		nightmare.ended = true;
-		nightmare = null;
-		}catch(e){}
-	}
-}, 5*60*1000);
