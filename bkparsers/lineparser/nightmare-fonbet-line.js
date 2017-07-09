@@ -1,12 +1,15 @@
 var Nightmare = require('nightmare');		
 var nightmare = Nightmare({ show: false });
 var cheerio = require('cheerio');
-var Coefficient = require('./../lib/models/mongoModel.js').Coefficient;
-var sportSpelling=require('./../lib/customfunctions.js').sportSpelling;
+var Coefficient = require('./../../lib/models/mongoModel.js').Coefficient;
+var sportSpelling=require('./../../lib/customfunctions.js').sportSpelling;
 console.log('fonbet-parser');
 
-nightmare
-  .goto('https://www.fonbet.ru/#!/live')
+getLine();
+
+function getLine(){
+   nightmare
+  .goto('https://www.fonbet.ru/#!/bets')
   .useragent("Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.111 Safari/537.36")
   .wait(5000)
   .evaluate(function () {
@@ -15,7 +18,7 @@ nightmare
   .end()
   .then(function (body) {
 	  console.log('start parsing');
-     var $ = cheerio.load(body);
+		var $ = cheerio.load(body);
 		let lines=$('.table__row').get();
 		console.log(lines);
 		lines.forEach((line)=>{
@@ -43,28 +46,28 @@ nightmare
 					console.log(sport + ': ' + win + ' - ' + draw + ' - ' + away + '. Marja = ' + marja);
 					let now = Date.now();
 					sport=sportSpelling(sport);
-					let coeff = new Coefficient({bk: 'fonbet', betType:'live', averageType:'immediate', date: now, sport: sport, marja: marja, win: win, draw: draw, away: away}).save();
+					let coeff = new Coefficient({bk: 'fonbet', betType:'line', averageType:'immediate', date: now, sport: sport, marja: marja, win: win, draw: draw, away: away}).save();
 				}
 			}
-			
-			}catch(e){}	
+			}catch(e){}
 		});
-		console.log('done');
+	console.log('done');
   })
   .catch(function (error) {
 	console.log(error);
   });
-
+}
 
 setTimeout(()=>{
 	console.log('timeout stop');
 	if(nightmare) {
 		try{
-			nightmare.end();
-			nightmare.proc.disconnect();
-			nightmare.proc.kill();
-			nightmare.ended = true;
-			nightmare = null;
+		nightmare.end();
+		nightmare.proc.disconnect();
+		nightmare.proc.kill();
+		nightmare.ended = true;
+		nightmare = null;
 		}catch(e){}
 	}
 }, 5*60*1000);
+

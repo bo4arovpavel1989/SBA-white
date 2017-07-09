@@ -1,8 +1,8 @@
 var Nightmare = require('nightmare');		
 var nightmare = Nightmare({ show: false });
 var cheerio = require('cheerio');
-var Coefficient = require('./../lib/models/mongoModel.js').Coefficient;
-var sportSpelling=require('./../lib/customfunctions.js').sportSpelling;
+var Coefficient = require('./../../lib/models/mongoModel.js').Coefficient;
+var sportSpelling=require('./../../lib/customfunctions.js').sportSpelling;
 
 console.log('betcity-parser');
 

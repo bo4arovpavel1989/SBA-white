@@ -1,4 +1,4 @@
-var Coefficient = require('./lib/models/mongoModel.js').Coefficient;
+var Coefficient = require('./../lib/models/mongoModel.js').Coefficient;
 var fs=require('fs');
 Coefficient.find({}, (err, reps)=>{
 	reps.forEach(rep=>{
