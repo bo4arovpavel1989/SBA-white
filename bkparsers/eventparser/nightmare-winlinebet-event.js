@@ -48,9 +48,7 @@ nightmare
 	callback(error, null)
   });
   
-};
-
-setTimeout(()=>{
+  setTimeout(()=>{
 	console.log('timeout stop');
 	if(nightmare) {
 		try{
@@ -61,4 +59,9 @@ setTimeout(()=>{
 			nightmare = null;
 		}catch(e){}
 	}
-}, 5*60*1000);
+  }, 5*60*1000);
+  
+};
+
+module.exports.grabEvent=grabEvent;
+
