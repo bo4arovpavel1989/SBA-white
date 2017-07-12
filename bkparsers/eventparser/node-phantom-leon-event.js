@@ -21,9 +21,9 @@ let grabEvent = function (event, callback){
 		let $ = cheerio.load(content);
 		let allEvents=$('.liveeventTeam').get();
 		allEvents.forEach(singleEvent=>{
-			if(singleEvent.children[0].data==event){
+			if(singleEvent.children[0].data.indexOf(event)!=-1){
 				let win, draw, away, marja;
-				win=singleEvent.parent.parent.next.next.next.next.children[1].children[0].data;
+				win=singleEvent.parent.parent.next.next.next.next.next.children[1].children[0].data;
 				draw=singleEvent.parent.parent.next.next.next.next.next.next.next.next.next.children[1].children[0].data;;	
 				away=singleEvent.parent.parent.next.next.next.next.next.next.next.next.next.next.next.next.next.children[1].children[0].data;
 				marja = 0;
@@ -56,6 +56,4 @@ let grabEvent = function (event, callback){
 			}, 3*60*1000);		
 		});
 }
-
-grabEvent('Вардан, Вишну - Му, Тао (+4)', ()=>{})
 module.exports.grabEvent=grabEvent;

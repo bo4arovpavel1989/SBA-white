@@ -21,7 +21,7 @@ nightmare
 	 let allEvents=$('td.table__col._size_long').get();
 	 allEvents.forEach(singlEvent=>{
 		 try{
-			if(singlEvent.children[0].children[1].children[0].data==event){
+			if(singlEvent.children[0].children[1].children[0].data.indexOf(event)!=-1){
 				let win, draw, away, marja;
 				if(marketType=='1x2'){
 					win=singlEvent.next.children[0].data;
@@ -68,5 +68,6 @@ nightmare
 	}, 5*60*1000);
 	
 };
+
 
 module.exports.grabEvent=grabEvent;
