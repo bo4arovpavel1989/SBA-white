@@ -44,6 +44,7 @@ let grabEvent = function(link, callback){
 	  })
 	  .catch(function (error) {
 		console.log(error);
+		callback(error, null);
 	  });
 	
 	

@@ -36,9 +36,9 @@ let grabEvent = function (event, callback){
 				objectToReturn.draw = draw;
 				objectToReturn.away = away;
 				objectToReturn.marja = marja;
-				callback(null, objectToReturn);
 			}
 		});
+		callback(null, objectToReturn);
 		setTimeout(()=>{
 			try{
 				_page.close();

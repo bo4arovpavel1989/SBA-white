@@ -19,6 +19,7 @@ nightmare
 	  console.log('start parsing');
      var $ = cheerio.load(body);
 	 let allEvents=$('td.table__col._size_long').get();
+	 console.log(event)
 	 allEvents.forEach(singlEvent=>{
 		 try{
 			if(singlEvent.children[0].children[1].children[0].data.indexOf(event)!=-1){
@@ -42,11 +43,10 @@ nightmare
 				objectToReturn.draw = draw;
 				objectToReturn.away = away;
 				objectToReturn.marja = marja;
-				callback(null, objectToReturn);
 			}
-		 }catch(e){callback(e, null);}
+		 }catch(e){}
 	 });
-	
+	callback(null, objectToReturn);
   })
   .catch(function (error) {
 	console.log(error);
