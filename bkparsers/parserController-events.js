@@ -70,6 +70,8 @@ function parseEvents(objectToGet){
 		(err)=>{
 			console.log(Date.now()+'/r/n');
 			console.log(objectToWrite);
+			objectToWrite=JSON.stringify(objectToWrite);
+			redisClient.lpush('eventCoefficients', objectToWrite);
 		}
 	);
 }
