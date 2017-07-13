@@ -13,56 +13,57 @@ var redisClient = redis.createClient();
 
 function parseEvents(objectToGet){
 	var objectToWrite={};
+	console.log(objectToGet);
 	async.parallel([
 	(callback)=>{
-		grabLeon(objectToGet.leon.eventName, (err, rep)=>{
+		grabLeon(objectToGet.leon, (err, rep)=>{
 			objectToWrite.leon=rep;
 			callback();
 		});
 	},
 	(callback)=>{
-		grabFonbet(objectToGet.fonbet.eventName, objectToGet.fonbet.betType, (err, rep)=>{
+		grabFonbet(objectToGet.fonbet, objectToGet.fonbetType, (err, rep)=>{
 			objectToWrite.fonbet=rep;
 			callback();
 		});
 	},
 	(callback)=>{
-		grab888(objectToGet.bk888.link, (err, rep)=>{
+		grab888(objectToGet.bk888, (err, rep)=>{
 			objectToWrite.bk888=rep;
 			callback();
 		});
 	},
 	(callback)=>{
-		grab1xstavka(objectToGet.bk1xstavka.link, (err, rep)=>{
+		grab1xstavka(objectToGet.bk1xstavka, (err, rep)=>{
 			objectToWrite.bk1xstavka=rep;
 			callback();
 		});
 	},
 	(callback)=>{
-		grabLigastavok(objectToGet.ligastavok.link, (err, rep)=>{
+		grabLigastavok(objectToGet.ligastavok, (err, rep)=>{
 			objectToWrite.ligastavok=rep;
 			callback();
 		});
 	},
 	(callback)=>{
-		grabWinline(objectToGet.winline.link, (err, rep)=>{
+		grabWinline(objectToGet.winline, (err, rep)=>{
 			objectToWrite.winline=rep;
 			callback();
 		});
 	},(callback)=>{
-		grabBkolimp(objectToGet.bkolimp.link, (err, rep)=>{
+		grabBkolimp(objectToGet.bkolimp, (err, rep)=>{
 			objectToWrite.bkolimp=rep;
 			callback();
 		});
 	},
 	(callback)=>{
-		grabBaltbet(objectToGet.baltbet.id, (err, rep)=>{
+		grabBaltbet(objectToGet.baltbet, (err, rep)=>{
 			objectToWrite.baltbet=rep;
 			callback();
 		});
 	},
 	(callback)=>{
-		grabBetcity(objectToGet.betcity.link, (err, rep)=>{
+		grabBetcity(objectToGet.betcity, (err, rep)=>{
 			objectToWrite.betcity=rep;
 			callback();
 		});
@@ -82,11 +83,13 @@ function startEventGrabbing(){
 		(callback)=>{
 			redisClient.hgetall('eventToGrab', (err, rep)=>{
 			eventObject=rep;
+			console.log(eventObject)
 			callback();
 			});
 		}
 		], 
 		(err)=>{
+			parseEvents(eventObject);
 			setInterval(()=>{
 				parseEvents(eventObject);
 			},

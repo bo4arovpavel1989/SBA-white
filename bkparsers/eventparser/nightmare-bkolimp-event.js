@@ -55,7 +55,7 @@ let grabEvent = function(link, callback){
 				nightmare = null;
 			}catch(e){}
 		}
-	}, 5*60*1000);	
+	}, 3*60*1000);	
 	
 	
 };

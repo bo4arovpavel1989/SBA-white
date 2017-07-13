@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SBA - adding new event</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<script src="api/jquery2.js"></script>
+	<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" />
+	<style>
+        html, body, #map {
+            width: 100%; height: 100%; padding: 0; margin: 0;
+        }
+    </style>
+</head>
+<body>
+	<form id="addEvent"  action="/addevent" method="post" style="margin-left: 5%;">
+    <div class="form-group">
+		<div class="input-group">
+			<input type="text" class="form-control" name='leon' placeholder="leon(name of event)" required>
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="input-group">
+			<input type="text" class="form-control" name='fonbet' placeholder="fonbet(name of event)" required>
+			<select name='fonbetType' class='form-control'>
+				<option class='productAddCategory' value='1x2'>1x2</option>
+				<option class='productAddCategory' value='1x2'>12</option>
+			</select>
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="input-group">
+			<input type="text" class="form-control" name='baltbet' placeholder="baltbet(id of link)" required>
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="input-group">
+			<input type="text" class="form-control" name='bk888' placeholder="888(link)" required>
+		</div>
+	</div>
+	
+	<div class="form-group">
+		<div class="input-group">
+			<input type="text" class="form-control" name='bk1xstavka' placeholder="1xstavka(link)" required>
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="input-group">
+			<input type="text" class="form-control" name='winline' placeholder="winline(link)" required>
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="input-group">
+			<input type="text" class="form-control" name='bkolimp' placeholder="bkolimp(link)" required>
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="input-group">
+			<input type="text" class="form-control" name='ligastavok' placeholder="ligastavok(link)" required>
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="input-group">
+			<input type="text" class="form-control" name='betcity' placeholder="betcity(link)" required>
+		</div>
+	</div>
+    <div class="form-group">
+		<input id='addProductButton' class="btn btn-primary" type="submit" value="Добавить"></input>
+ </div>
+</form>
+</body>
+</html>
