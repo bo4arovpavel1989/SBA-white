@@ -8,7 +8,8 @@ var grabBkolimp=require('./eventparser/nightmare-bkolimp-event.js').grabEvent;
 var grabBaltbet=require('./eventparser/nightmare-baltbet-event.js').grabEvent;
 var grabBetcity=require('./eventparser/nightmare-betcity-event.js').grabEvent;
 var async=require('async');
-
+var redis = require('redis');
+var redisClient = redis.createClient();
 
 function parseEvents(objectToGet){
 	var objectToWrite={};
@@ -73,17 +74,22 @@ function parseEvents(objectToGet){
 	);
 }
 
+function startEventGrabbing(){
+	var eventObject={};
+	async.series([
+		(callback)=>{
+			redisClient.hgetall('eventToGrab', (err, rep)=>{
+			eventObject=rep;
+			callback();
+			});
+		}
+		], 
+		(err)=>{
+			setInterval(()=>{
+				parseEvents(eventObject);
+			},
+			5*60*1000)
+		});
+	}
 
-var thisObject={
-	betcity: {link:'https://betcity.ru/live/ev/id=4210914;'},
-	baltbet: {id:'#addl2325307'},
-	bkolimp:{link:'https://olimp.bet/app/event/live/1/33036188'},
-	winline:{link:'https://winline.ru/stavki/sport/futbol/mezhdunarodnye_/mezhdunarodnye_(kluby)/liga_evropy_uefa/plus/921241/?v=tablmt&t=lineall'},
-	ligastavok:{link:'https://www.ligastavok.ru/Live#game/7595955/nid/28083411/vid/0/track/false'},
-	bk1xstavka:{link:'https://1xstavka.ru/live/Football/118593-UEFA-Europa-League/130149089-Inter-Baku-Fola/'},
-	bk888:{link:'https://mobile.888.ru/#/match/7211604?type=1'},
-	fonbet:{eventName:'Интер Баку — Фола Эш', betType:'1x2'},
-	leon:{eventName:'Интер Баку - КС Фола Эш'}
-};
-
-parseEvents(thisObject);
+startEventGrabbing();
