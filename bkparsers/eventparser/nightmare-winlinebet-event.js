@@ -1,9 +1,10 @@
-var Nightmare = require('nightmare');		
-var nightmare = Nightmare({ show: false });
+
 var cheerio = require('cheerio');
 console.log('winline-parser');
 
 let grabEvent = function (link, callback){
+	var Nightmare = require('nightmare');		
+	var nightmare = Nightmare({ show: false });
 	var objectToReturn={
 		bk: 'winline'
 	};

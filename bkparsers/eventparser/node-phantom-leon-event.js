@@ -1,11 +1,10 @@
 console.log('running app');
 var cheerio = require('cheerio');
-var phantom = require("phantom");
-var _ph, _page, _outObj;
 console.log('leon-parser');
 
 let grabEvent = function (event, callback){
-	
+	var phantom = require("phantom");
+	var _ph, _page, _outObj;
 	var objectToReturn={bk:'leon'};
 	
 	phantom.create().then(ph => {

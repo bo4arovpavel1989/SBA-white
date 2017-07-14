@@ -69,13 +69,28 @@ function parseEvents(objectToGet){
 		});
 	}],
 		(err)=>{
-			console.log(Date.now()+'/r/n');
+			let time = getTime();
+			console.log(time+'/r/n');
 			console.log(objectToWrite);
 			objectToWrite=JSON.stringify(objectToWrite);
 			redisClient.lpush('eventCoefficients', objectToWrite);
 		}
 	);
 }
+
+function getTime(){
+	let date = new Date();
+	let h, m, s, time;
+	h=date.getHours();
+	m=date.getMinutes();
+	s=date.getSeconds();
+	if(h.length==1)h='0' + h;
+	if(m.length==1)h='0' + m;
+	if(s.length==1)h='0' + s;
+	time = h + ':' + m + ':' + s;
+	return time;
+}
+
 
 function startEventGrabbing(){
 	var eventObject={};

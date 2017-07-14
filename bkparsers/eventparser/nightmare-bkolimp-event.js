@@ -1,9 +1,9 @@
-var Nightmare = require('nightmare');		
-var nightmare = Nightmare({ show: false });
 var cheerio = require('cheerio');
 console.log('olimp-parser');
 
 let grabEvent = function(link, callback){
+	var Nightmare = require('nightmare');		
+	var nightmare = Nightmare({ show: false });
 	var objectToReturn={
 		bk:'olimp'
 	};
