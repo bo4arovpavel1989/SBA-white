@@ -17,8 +17,9 @@
     <link href="http://fonts.googleapis.com/css?family=Palatino+Linotype" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Abel" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
-
+	<link href="css/simple-sidebar.css" rel="stylesheet">
     <link href="styles/custom.css" rel="stylesheet" type="text/css" />
+	<script src="api/jquery2.js"></script>
 </head>
 <body id="pageBody">
 
@@ -38,18 +39,18 @@
                         </button>
                         <div class="nav-collapse collapse">
                            <ul class="nav nav-pills ddmenu">
-                                <li class="dropdown active"><a href="index.html">Главная</a></li>
-								<li class="dropdown"><a href="about.html">Онлайн</a></li>
-								<li class="dropdown"><a href="about.html">Оффлайн</a></li>
-                                <li class="dropdown">
+                                <li id='mainLink' class="dropdown"><a href="index.html">Главная</a></li>
+								<li id='onlineLink' class="dropdown"><a href="about.html">Онлайн</a></li>
+								<li id='offlineLink'class="dropdown"><a href="about.html">Оффлайн</a></li>
+                                <li id='marketLink' class="dropdown">
 									<a href="page.html" class="dropdown-toggle">Рынок <b class="caret"></b></a>
 									<ul class="dropdown-menu">
 										<li><a href="full.html">Рынок труда</a></li>
 										<li><a href="2-column.html">Рекламные площадки</a></li>
 										<li><a href="3-column.html">Пульс рынка</a></li>
+										<li><a href="3-column.html">Календарь</a></li>
 									</ul>
                                 </li>
-								<li class="dropdown"><a href="about.html">Календарь</a></li>
                             </ul>
                         </div>
                     </div>
@@ -153,9 +154,9 @@
 
                     <p class="social_bookmarks">
                         <a href="#"><i class="social foundicon-facebook"></i> Facebook</a>
-			<a href=""><i class="social foundicon-twitter"></i> Twitter</a>
-			<a href="#"><i class="social foundicon-pinterest"></i> Pinterest</a>
-			<a href="#"><i class="social foundicon-rss"></i> Rss</a>
+						<a href=""><i class="social foundicon-twitter"></i> Twitter</a>
+						<a href="#"><i class="social foundicon-pinterest"></i> Pinterest</a>
+						<a href="#"><i class="social foundicon-rss"></i> Rss</a>
                     </p>
                 </div>
             </div>
