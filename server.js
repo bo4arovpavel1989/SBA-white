@@ -7,7 +7,7 @@ var server = require('http').createServer();
 var app = express();
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.urlencoded({ extended: false }));
-app.engine('handlebars', handlebars({defaultLayout: 'main'}));
+app.engine('handlebars', handlebars({defaultLayout: null}));
 app.set('view engine', 'handlebars');
 app.use(cookieParser());
 
