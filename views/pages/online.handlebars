@@ -1,0 +1,94 @@
+ <div id="wrapper">
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li>
+                    <a href="#">Сводная таблица</a>
+                </li>
+                <li>
+                    <a href="#">Продукт</a>
+                </li>
+                <li>
+                    <a href="#">Коэффициенты</a>
+                </li>
+                <li>
+                    <a href="#">График</a>
+                </li>
+                <li>
+                    <a href="#">Социальные факторы</a>
+                </li>
+				<li>
+                    <a href="#">Репутация</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /#sidebar-wrapper -->
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+			<a href="#menu-toggle" class="btn btn-primary" id="menu-toggle"><span class="icon-chevron-left icon-white"></span></a>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <div id="divHeaderLine1" style='margin-top: 40px;'>Конкурентный анализ букмекерских контор</div>
+						<div class="table-responsive">
+							<table class="table table-striped" style='margin-top: 40px;'>
+							  <thead>
+								<tr>
+								  <th></th>
+								  <th></th>
+								  <th>Итоговый рейтинг</th>
+								  <th>Репутация</th>
+								  <th>Доля онлайн</th>
+								  <th>Поисковый траффик</th>
+								  <th>Прямой траффик</th>
+								  <th>Упоминания в СМИ</th>
+								  <th>Маржа лайв</th>
+								  <th>Маржа</th>
+								  <th>Соц. факторы</th>
+								  <th>Продукт</th>
+								</tr>
+							  </thead>
+							  <tbody>
+							  {{#each bk}}
+								<tr>
+								  <td class='placenumber'></td>
+								  <td><a href='/bkpage/{{bk}}'>{{name}}</a></td>
+								  <td>{{totalRate}}</td>
+								  <td>{{reputation}}</td>
+								  <td>{{onlineShareRate}}</td>
+								  <td>{{searchTraffic}}</td>
+								  <td>{{directTraffic}}</td>
+								  <td>{{massMedia}}</td>
+								  <td>{{marja_live}}</td>
+								  <td>{{marja}}</td>
+								  <td>{{social}}</td>
+								  <td>{{product}}</td>
+								</tr>
+								{{/each}}
+							  </tbody>
+							</table>
+						</div>	
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+    <script>
+	$(document).ready(function(){
+		placeNumbers();
+		$('#onlineLink').addClass('active');
+		$("#menu-toggle").click(function(e) {
+			e.preventDefault();
+			$("#wrapper").toggleClass("toggled");
+		});
+	});
+	function placeNumbers(){
+		let i=1;
+		$('.placenumber').each(function(){
+			$(this).html(i);
+			i++;
+		});
+	}
+    </script>
+ </div>
