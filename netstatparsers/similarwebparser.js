@@ -43,7 +43,7 @@ bkurl.resources.forEach((resource)=>{
 		data.trafficSource.social = $('.trafficSourcesChart-value').eq(3).html();
 		data.trafficSource.mail = $('.trafficSourcesChart-value').eq(4).html();
 		console.log(data);
-		if(data.rank !== undefined) var bkStat = new BkSitesStats({stats: data}).save(()=>{
+		if(data.rank !== undefined) var bkStat = new BkSitesStats({bk: resource.site, stats: data}).save(()=>{
 																	step++;
 																	if(step === bkurl.resources.length) process.exit();
 																});

@@ -1,5 +1,5 @@
 var bks = ['liga-stavok', '888sport', 'fonbet', 'leonbets', '1h-stavka', 'olimp-kz', 'winlinebet', 'betcity', 'baltbet-tsupis'];
-var bks_formatted=['ligastavok', '888', 'fonbet', 'leon', '1xstavka', 'olimp', 'winline', 'betcity', 'baltbet']; //bk names as i use it in ither modules
+var bks_formatted=['ligastavok', 'bk888', 'fonbet', 'leon', 'bk1xbet', 'bkolimp', 'winline', 'betcity', 'baltbet']; //bk names as i use it in ither modules
 
 
 var Nightmare = require('nightmare');		

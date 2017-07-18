@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>SBA admin</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" />
+	<link rel="stylesheet" type="text/css" href="/css/1.css"/>
+	<link rel="shortcut icon" href="/images/favicon.png" type="image/png">
+</head>
+<body>
+<form id="getEditRateForm"  action="/admin/getEditRateForm" method="post" style="margin-left: 5%;" enctype="multipart/form-data" >
+		<h3>Рейтинговые оценки бк</h3>
+    	<div class="form-group">
+			<select name='bk' class='form-control'>
+				{{#each bk}}
+				<option value={{this}}>{{this}}</option>
+				{{/each}}
+			</select>
+		</div>
+    <div class="form-group">
+		<input id='addProductButton' class="btn btn-primary" type="submit" value="Редактировать"></input>
+ </div>
+</form>
+<div id='load'>
+</div>
+</body>
+<script src="/api/jquery2.js"></script>
+<script src="/api/collapse.js"></script>
+<script src="/scripts/tabsApp.js"></script>
+<script>
+	$('#getEditRateForm').on('submit', function(e){
+		e.preventDefault();
+		var $that = $(this);
+		var formData = new FormData($that.get(0));
+		$.ajax({
+				url: $that.attr('action'),
+				type: $that.attr('method'),
+				contentType: false,
+				processData: false,
+				data: formData,
+				success: function(html){
+						$('#load').empty();
+						$('#load').append(html);
+				}
+		});
+		
+	});
+</script>

@@ -1,10 +1,10 @@
 var i=0;
 var j=0;
-var liveParsers=['nightmare-1xstavka.js', 'nightmare-888.js', 'nightmare-baltbet.js', 'nightmare-betcity.js', 'nightmare-bkolimp.js', 'nightmare-fonbet.js', 
-'nightmare-winlinebet.js', 'node-phantom-leon.js', 'node-phantom-ligastavok.js'];
+var liveParsers=['nightmare-bk1xbet.js', 'nightmare-bk888.js', 'nightmare-baltbet.js', 'nightmare-betcity.js', 'nightmare-bkolimp.js', 'nightmare-fonbet.js', 
+'nightmare-winline.js', 'node-phantom-leon.js', 'node-phantom-ligastavok.js'];
 
-var lineParsers=['nightmare-1xstavka-line.js', 'nightmare-888-line.js', 'nightmare-baltbet-line.js', 'nightmare-betcity-line.js', 
-'nightmare-bkolimp-line.js', 'nightmare-fonbet-line.js', 'nightmare-winlinebet-line.js', 'node-phantom-leon-line.js', 'nightmare-ligastavok-line.js'];
+var lineParsers=['nightmare-bk1xbet-line.js', 'nightmare-bk888-line.js', 'nightmare-baltbet-line.js', 'nightmare-betcity-line.js', 
+'nightmare-bkolimp-line.js', 'nightmare-fonbet-line.js', 'nightmare-winline-line.js', 'node-phantom-leon-line.js', 'nightmare-ligastavok-line.js'];
 
 
 var callLiveParsers = function(){

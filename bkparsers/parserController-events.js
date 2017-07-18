@@ -1,9 +1,9 @@
 var grabLeon=require('./eventparser/node-phantom-leon-event.js').grabEvent;
 var grabFonbet=require('./eventparser/nightmare-fonbet-event.js').grabEvent;
-var grab888=require('./eventparser/nightmare-888-event.js').grabEvent;
-var grab1xstavka=require('./eventparser/nightmare-1xstavka-event.js').grabEvent;
+var grabBk888=require('./eventparser/nightmare-bk888-event.js').grabEvent;
+var grabBk1xbet=require('./eventparser/nightmare-bk1xbet-event.js').grabEvent;
 var grabLigastavok=require('./eventparser/nightmare-ligastavok-event.js').grabEvent;
-var grabWinline=require('./eventparser/nightmare-winlinebet-event.js').grabEvent;
+var grabWinline=require('./eventparser/nightmare-winline-event.js').grabEvent;
 var grabBkolimp=require('./eventparser/nightmare-bkolimp-event.js').grabEvent;
 var grabBaltbet=require('./eventparser/nightmare-baltbet-event.js').grabEvent;
 var grabBetcity=require('./eventparser/nightmare-betcity-event.js').grabEvent;
@@ -28,14 +28,14 @@ function parseEvents(objectToGet){
 		});
 	},
 	(callback)=>{
-		grab888(objectToGet.bk888, (err, rep)=>{
+		grabBk888(objectToGet.bk888, (err, rep)=>{
 			objectToWrite.bk888=rep;
 			callback();
 		});
 	},
 	(callback)=>{
-		grab1xstavka(objectToGet.bk1xstavka, (err, rep)=>{
-			objectToWrite.bk1xstavka=rep;
+		grabBk1xbet(objectToGet.bk1xbet, (err, rep)=>{
+			objectToWrite.bk1xbet=rep;
 			callback();
 		});
 	},

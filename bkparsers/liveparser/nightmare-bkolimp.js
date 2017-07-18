@@ -35,7 +35,7 @@ nightmare
 					console.log(sport + ': ' + win + ' - ' + draw + ' - ' + away + '. Marja = ' + marja);		
 					let now = Date.now();
 					sport=sportSpelling(sport);
-					let coeff = new Coefficient({bk: 'olimp', betType:'live', averageType:'immediate', date: now, sport: sport, marja: marja, win: win, draw: draw, away: away}).save();
+					let coeff = new Coefficient({bk: 'bkolimp', betType:'live', averageType:'immediate', date: now, sport: sport, marja: marja, win: win, draw: draw, away: away}).save();
 				}
 		} catch(e){console.log(e)}
 	});

@@ -2,7 +2,7 @@ var fs = require("fs");
 var BkPPS = require('/../lib/models/mongoModel.js').BkPPS;
 var bks=['atlantik-m', 'betring', 'betru', 'digitalbetting', 'favorit', 'firmastom', 'fortuna', 'investcompcentr', 'investgarant',
 'johnygame', 'marathon', 'matchbet', 'melofon', 'panorama', 'rosbet', 'rosippodromi', 'rusteletot', 'sportbet', 'starbet', 
-'williamhill', 'winline', 'olimp', 'leon', '888', 'fonbet', 'baltbet', '1xstavka', 'ligastavok'];
+'williamhill', 'winline', 'bkolimp', 'leon', 'bk888', 'fonbet', 'baltbet', 'bk1xbet', 'ligastavok'];
 
 //parsing of pps addresses from txt files to mongoDB
 /*

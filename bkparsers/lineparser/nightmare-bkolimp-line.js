@@ -87,7 +87,7 @@ getLinks();
 			 let now = Date.now();
 			 sport=sportSpelling(sport);
 			 console.log(sport + ': ' + win + ' - ' + draw + ' - ' + away + '. Marja = ' + marja);	
-			 let coeff = new Coefficient({bk: 'olimp', betType:'line', averageType:'immediate', date: now, sport: sport, marja: marja, win: win, draw: draw, away: away}).save();
+			 let coeff = new Coefficient({bk: 'bkolimp', betType:'line', averageType:'immediate', date: now, sport: sport, marja: marja, win: win, draw: draw, away: away}).save();
 	     }
 		} catch(e){}
 		 checkLink(i+1);

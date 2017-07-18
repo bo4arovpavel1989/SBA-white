@@ -1,0 +1,108 @@
+<form id="editRate"  action="/admin/editRate" method="post" style="margin-left: 5%;">
+	<h3>Рейтинговые оценки БК</h3>
+	<div class="form-group">
+		<div class="input-group">
+			<label for = "name">Короткое название БК</label>
+			<input type="text" class="form-control" name='bk' value='{{bk}}' readonly>
+		</div>
+	</div>
+    <div class="form-group">
+		<div class="input-group">
+			<label for = "name">Полное название БК</label>
+			<input type="text" class="form-control" name='name' value='{{name}}'>
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="input-group">
+			<label for = "name">Итоговый рейтинг</label>
+			<input type="number" class="form-control" name='totalRate' value='{{totalRate}}'>
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="input-group">
+			<label for = "name">Репутация</label>
+			<input type="number" class="form-control" name='reputation' value='{{reputation}}'>
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="input-group">
+			<label for = "name">Отзывы игроков</label>
+			<input type="number" class="form-control" name='playerFeedbackRate' value='{{playerFeedbackRate}}'>
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="input-group">
+			<label for = "name">Доля онлайн</label>
+			<input type="number" class="form-control" name='onlineShareRate' value='{{onlineShareRate}}'>
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="input-group">
+			<label for = "name">Доля оффлайн</label>
+			<input type="number" class="form-control" name='offlineShareRate' value='{{offlineShareRate}}'>
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="input-group">
+			<label for = "name">Доля итого</label>
+			<input type="number" class="form-control" name='totalShareRate' value='{{totalShareRate}}'>
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="input-group">
+			<label for = "name">Выручка</label>
+			<input type="number" class="form-control" name='profit' value='{{profit}}'>
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="input-group">
+			<label for = "name">Оценка эксперта</label>
+			<input type="number" class="form-control" name='expertsMark' value='{{expertsMark}}'>
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="input-group">
+			<label for = "name">Маржа</label>
+			<input type="number" class="form-control" name='marja' value='{{marja}}'>
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="input-group">
+			<label for = "name">Маржа-лайв</label>
+			<input type="number" class="form-control" name='marja_live' value='{{marja_live}}'>
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="input-group">
+			<label for = "name">Поисковый траффик</label>
+			<input type="number" class="form-control" name='searchTraffic' value='{{searchTraffic}}'>
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="input-group">
+			<label for = "name">Прямой траффик</label>
+			<input type="number" class="form-control" name='directTraffic' value='{{directTraffic}}'>
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="input-group">
+			<label for = "name">СМИ</label>
+			<input type="number" class="form-control" name='massMedia' value='{{massMedia}}'>
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="input-group">
+			<label for = "name">Соцсети</label>
+			<input type="number" class="form-control" name='social' value='{{social}}'>
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="input-group">
+			<label for = "name">Продукт</label>
+			<input type="number" class="form-control" name='product' value='{{product}}'>
+		</div>
+	</div>
+    <div class="form-group">
+		<input class="btn btn-primary" type="submit" value="Изменить"></input>
+ </div>
+</form>

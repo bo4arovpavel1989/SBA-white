@@ -39,7 +39,7 @@ bkurl.resources.forEach((resource)=>{
 		data.pagesPerVisit = $('.metrics-data.align-vmiddle').eq(3).html();
 		data.bounceRate = $('.metrics-data.align-vmiddle').eq(2).html();
 		console.log(data);
-		if(data.rank !== undefined) var bkStat = new BkSitesStats({stats: data}).save(()=>{
+		if(data.rank !== undefined) var bkStat = new BkSitesStats({bk: resource.site, stats: data}).save(()=>{
 																	step++;
 																	if(step === bkurl.resources.length) process.exit();
 																});

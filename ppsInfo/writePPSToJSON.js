@@ -18,7 +18,7 @@ BkPPSCoordinates.find({}, function(err, reps){
 
 let bks=['atlantik-m', 'betring', 'betru', 'digitalbetting', 'favorit', 'firmastom', 'fortuna', 'investcompcentr', 'investgarant',
 'johnygame', 'marathon', 'matchbet', 'melofon', 'panorama', 'rosbet', 'rosippodromi', 'rusteletot', 'sportbet', 'starbet', 
-'williamhill', 'winline', 'olimp', 'leon', '888', 'fonbet', 'baltbet', '1xstavka', 'ligastavok'];
+'williamhill', 'winline', 'bkolimp', 'leon', 'bk888', 'fonbet', 'baltbet', 'bk1xbet', 'ligastavok'];
 
 bks.forEach(bk=>{
 	BkPPSCoordinates.find({bk: bk}, function(err, rep){

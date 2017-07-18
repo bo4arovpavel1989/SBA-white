@@ -17,7 +17,7 @@ provider.getText = function (point) {
 
 var bks=['atlantik-m', 'betring', 'betru', 'digitalbetting', 'favorit', 'firmastom', 'fortuna', 'investcompcentr', 'investgarant',
 'johnygame', 'marathon', 'matchbet', 'melofon', 'panorama', 'rosbet', 'rosippodromi', 'rusteletot', 'sportbet', 'starbet', 
-'williamhill', 'winline', 'olimp', 'leon', '888', 'fonbet', 'baltbet', '1xstavka', 'ligastavok'];
+'williamhill', 'winline', 'bkolimp', 'leon', 'bk888', 'fonbet', 'baltbet', 'bk1xbet', 'ligastavok'];
 
 var j=0;
 getPPSCoord();
