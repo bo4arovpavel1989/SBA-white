@@ -1,0 +1,230 @@
+<form id="editBkPage"  action="/admin/editBkPage" method="post" style="margin-left: 5%;">
+	<h3>Страница букмекера {{name}}</h3>
+	<div class="form-group">
+		<div class="input-group">
+			<label for = "name">Короткое название БК</label>
+			<input type="text" class="form-control" name='bk' value='{{bk}}' readonly>
+		</div>
+	</div>
+    <div class="form-group">
+		<div class="input-group">
+			<label for = "name">Полное название БК</label>
+			<input type="text" class="form-control" name='name' value='{{name}}'>
+		</div>
+	</div>
+	 <div class="form-group">
+	 <h4>Репутация</h4>
+		<div class="input-group">
+			<label for = "name">Всего отзывов</label>
+			<input type="number" class="form-control" name='reputation.totalFeedbacks' value='{{reputation.totalFeedbacks}}'>
+		</div>
+		<div class="input-group">
+			<label for = "name">Положительных</label>
+			<input type="number" class="form-control" name='reputation.positiveFeedbacks' value='{{reputation.positiveFeedbacks}}'>
+		</div>
+		<div class="input-group">
+			<label for = "name">Отрицательных</label>
+			<input type="number" class="form-control" name='reputation.negativeFeedbacks' value='{{reputation.negativeFeedbacks}}'>
+		</div>
+		<div class="input-group">
+			<label for = "name">Нейтральных</label>
+			<input type="number" class="form-control" name='reputation.neutralFeedbacks' value='{{reputation.neutralFeedbacks}}'>
+		</div>
+	</div>
+	<div class="form-group">
+	 <h4>Социальные сети</h4>
+		<div class="input-group">
+			<label for = "name">ВК(подписчики, лайки, шэры, каменты)</label>
+			<input type="number" class="form-control" name='social.vk.sbcrb' value='{{social.vk.sbcrb}}'>
+			<input type="number" class="form-control" name='social.vk.like' value='{{social.vk.like}}'>
+			<input type="number" class="form-control" name='social.vk.share' value='{{social.vk.share}}'>
+			<input type="number" class="form-control" name='social.vk.comment' value='{{social.vk.comment}}'>
+		</div>
+		<div class="input-group">
+			<label for = "name">ФБ(подписчики, лайки, шэры, каменты)</label>
+			<input type="number" class="form-control" name='social.fb.sbcrb' value='{{social.fb.sbcrb}}'>
+			<input type="number" class="form-control" name='social.fb.like' value='{{social.fb.like}}'>
+			<input type="number" class="form-control" name='social.fb.share' value='{{social.fb.share}}'>
+			<input type="number" class="form-control" name='social.fb.comment' value='{{social.fb.comment}}'>
+		</div>
+		<div class="input-group">
+			<label for = "name">Инста(подписчики, лайки, шэры, каменты)</label>
+			<input type="number" class="form-control" name='social.insta.sbcrb' value='{{social.insta.sbcrb}}'>
+			<input type="number" class="form-control" name='social.insta.like' value='{{social.insta.like}}'>
+			<input type="number" class="form-control" name='social.insta.share' value='{{social.insta.share}}'>
+			<input type="number" class="form-control" name='social.insta.comment' value='{{social.insta.comment}}'>
+		</div>
+		<div class="input-group">
+			<label for = "name">Ютуб(подписчики, лайки, шэры, каменты)</label>
+			<input type="number" class="form-control" name='social.ytb.sbcrb' value='{{social.ytb.sbcrb}}'>
+			<input type="number" class="form-control" name='social.ytb.like' value='{{social.ytb.like}}'>
+			<input type="number" class="form-control" name='social.ytb.share' value='{{social.ytb.share}}'>
+			<input type="number" class="form-control" name='social.ytb.comment' value='{{social.ytb.comment}}'>
+		</div>
+	</div>
+	 <div class="form-group">
+	 <h4>Линия</h4>
+		<div class="input-group">
+			<label for = "name">Количество вилдов спорта</label>
+			<input type="number" class="form-control" name='line.sportTypeQuantity' value='{{line.sportTypeQuantity}}'>
+		</div>
+		<div class="input-group">
+			<label for = "name">Количество событий</label>
+			<input type="number" class="form-control" name='line.eventQuantity' value='{{line.eventQuantity}}'>
+		</div>
+		<div class="input-group">
+			<label for = "name">Количество рынков</label>
+			<input type="number" class="form-control" name='line.marketQuantity' value='{{line.marketQuantity}}'>
+		</div>
+		<div class="input-group">
+			<label for = "name">Маржа прематч</label>
+			<input type="number" class="form-control" name='line.marja_prematch' value='{{line.marja_prematch}}'>
+		</div>
+		<div class="input-group">
+			<label for = "name">Маржа лайв</label>
+			<input type="number" class="form-control" name='line.marja_live' value='{{line.marja_live}}'>
+		</div>
+	</div>
+	 <div class="form-group">
+	 <h4>Продукт</h4>
+		<div class="input-group">
+			<label for = "name">Веб-сайт</label>
+			<input type="number" min='0' max='3' class="form-control" name='product.website' value='{{product.website}}'>
+		</div>
+		<div class="input-group">
+			<label for = "name">Мобильная версия</label>
+			<input type="number" min='0' max='3'  class="form-control" name='product.mobile' value='{{product.mobile}}'>
+		</div>
+		<div class="input-group">
+			<label for = "name">Приложение</label>
+			<input type="number" min='0' max='3'  class="form-control" name='product.application' value='{{product.application}}'>
+		</div>
+		<div class="input-group">
+			<label for = "name">Тотализатор(1 или 0)</label>
+			<input type="number" min='0' max='1' class="form-control" name='product.totalizator' value='{{product.totalizator}}'>
+		</div>
+		<div class="input-group">
+			<label for = "name">Статистика(1 или 0)</label>
+			<input type="number" min='0' max='1' class="form-control" name='product.statystics' value='{{product.statystics}}'>
+		</div>
+		<div class="input-group">
+			<label for = "name">Результаты(1 или 0)</label>
+			<input type="number" min='0' max='1' class="form-control" name='product.results' value='{{product.results}}'>
+		</div>
+		<div class="input-group">
+			<label for = "name">Трансляции(1 или 0)</label>
+			<input type="number" min='0' max='1' class="form-control" name='product.translations' value='{{product.translations}}'>
+		</div>
+		<div class="input-group">
+			<label for = "name">Бытсрые игры(1 или 0)</label>
+			<input type="number" min='0' max='1' class="form-control" name='product.quickgames' value='{{product.quickgames}}'>
+		</div>
+		<div class="input-group">
+			<label for = "name">ПАБК(1 или 0)</label>
+			<input type="number" min='0' max='1' class="form-control" name='product.pabk' value='{{product.pabk}}'>
+		</div>
+		<div class="input-group">
+			<label for = "name">Экспресс(1 или 0)</label>
+			<input type="number" min='0' max='1' class="form-control" name='product.express' value='{{product.express}}'>
+		</div>
+		<div class="input-group">
+			<label for = "name">Лайв-трекер(1 или 0)</label>
+			<input type="number"min='0' max='1' class="form-control" name='product.livetracker' value='{{product.livetracker}}'>
+		</div>
+		<div class="input-group">
+			<label for = "name">Оффшорный продукт(1 или 0)</label>
+			<input type="number" min='0' max='1' class="form-control" name='product.offshore' value='{{product.offshore}}'>
+		</div>
+	</div>
+	<div class="form-group">
+	 <h4>ППС</h4>
+		<div class="input-group">
+			<label for = "name">Точек всего</label>
+			<input type="number" class="form-control" name='pps.totalQuantity' value='{{pps.totalQuantity}}'>
+		</div>
+		<div class="input-group">
+			<label for = "name">Динамика</label>
+			<input type="text" class="form-control" name='pps.dynamics' value='{{pps.dynamics}}'>
+		</div>
+	</div>
+	 <div class="form-group">
+	 <h4>Трафик</h4>
+		<div class="input-group">
+			<label for = "name">Визиты</label>
+			<input type="number" class="form-control" name='traffic.visits' value='{{traffic.visits}}'>
+		</div>
+		<div class="input-group">
+			<label for = "name">Отказы</label>
+			<input type="number" class="form-control" name='traffic.bouncerate' value='{{traffic.bouncerate}}'>
+		</div>
+		<div class="input-group">
+			<label for = "name">Прямой</label>
+			<input type="number" class="form-control" name='traffic.direct' value='{{traffic.direct}}'>
+		</div>
+		<div class="input-group">
+			<label for = "name">Органический</label>
+			<input type="number" class="form-control" name='traffic.organic' value='{{traffic.organic}}'>
+		</div>
+		<div class="input-group">
+			<label for = "name">Реферральный</label>
+			<input type="number" class="form-control" name='traffic.referral' value='{{traffic.referral}}'>
+		</div>
+	</div>
+	 <div class="form-group">
+	 <h4>Вакансии</h4>
+		<div class="input-group">
+			<label for = "name">Открыто вакансий</label>
+			<input type="number" class="form-control" name='vacancy.opened' value='{{vacancy.opened}}'>
+		</div>
+		<div class="input-group">
+			<label for = "name">За последние 3 мес открыто</label>
+			<input type="number" class="form-control" name='vacancy.lastopened' value='{{vacancy.lastopened}}'>
+		</div>
+	</div>
+	 <div class="form-group">
+	 <h4>Экспертные оценки</h4>
+		<div class="input-group">
+			<label for = "name">Качество линии прематч</label>
+			<input type="number" min='0' max='10' class="form-control" name='expert.prematch_line' value='{{expert.prematch_line}}'>
+		</div>
+		<div class="input-group">
+			<label for = "name">Качество линии лайв</label>
+			<input type="number" min='0' max='10' class="form-control" name='expert.live_line' value='{{expert.live_line}}'>
+		</div>
+		<div class="input-group">
+			<label for = "name">Качество продукта</label>
+			<input type="number" min='0' max='10' class="form-control" name='expert.product' value='{{expert.product}}'>
+		</div>
+		<div class="input-group">
+			<label for = "name">Веб-сайт</label>
+			<input type="number" min='0' max='10' class="form-control" name='expert.website' value='{{expert.website}}'>
+		</div>
+		<div class="input-group">
+			<label for = "name">Мобильная версия</label>
+			<input type="number" min='0' max='10' class="form-control" name='expert.mobile' value='{{expert.mobile}}'>
+		</div>
+		<div class="input-group">
+			<label for = "name">Приложение</label>
+			<input type="number" min='0' max='10' class="form-control" name='expert.application' value='{{expert.application}}'>
+		</div>
+		<div class="input-group">
+			<label for = "name">Поддержка</label>
+			<input type="number" min='0' max='10' class="form-control" name='expert.support' value='{{expert.support}}'>
+		</div>
+		<div class="input-group">
+			<label for = "name">Партнерская программа</label>
+			<input type="number" min='0' max='10' class="form-control" name='expert.partnership' value='{{expert.partnership}}'>
+		</div>
+		<div class="input-group">
+			<label for = "name">Бонусы</label>
+			<input type="number" min='0' max='10' class="form-control" name='expert.bonuses' value='{{expert.bonuses}}'>
+		</div>
+		<div class="input-group">
+			<label for = "name">Маркетинг</label>
+			<input type="number" min='0' max='10' class="form-control" name='expert.marketing' value='{{expert.marketing}}'>
+		</div>
+	</div>
+    <div class="form-group">
+		<input class="btn btn-primary" type="submit" value="Сохранить"></input>
+ </div>
+</form>

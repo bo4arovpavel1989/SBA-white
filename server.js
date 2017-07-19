@@ -2,8 +2,8 @@ var express = require('express');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var handlebars = require('express-handlebars');
+var helpers = require('handlebars-helpers')();
 var server = require('http').createServer();
-
 var app = express();
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.urlencoded({ extended: false }));

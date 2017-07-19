@@ -1,0 +1,102 @@
+
+<div class='container'>
+    <div class="divPanel page-content">
+        <div class="breadcrumbs">
+                <a href="/">SBA</a> &nbsp;/&nbsp;  <a href="/online">Онлайн</a> &nbsp;/&nbsp;<span>Страница букмекера</span>
+            </div> 
+        <div class="row-fluid">
+                <div class="span12">
+                    <h1>Страница букмекера {{bk.name}}</h1>
+                    <div id="gridArea" style="height: 1795px;">
+                        <ul id="tiles" style='list-style-type: none;'>
+                        <li>
+                            <h4><a href="#">Репутация</a></h4>
+                            <p>Всего отзывов:<span class='pull-right'>{{bk.reputation.totalFeedbacks}}</span></p>
+							<p>Положительных:<span class='pull-right'>{{bk.reputation.positiveFeedbacks}}</span></p>
+							<p>Отрицательных:<span class='pull-right'>{{bk.reputation.negativeFeedbacks}}</span></p>
+							<p>Нейтральных:<span class='pull-right'>{{bk.reputation.neutralFeedbacks}}</span></p>
+							<br><a href="/reputation/{{bk.bk}}" class="pull-right more_link">Подробнее...</a>
+                        </li>            
+                        <li>
+                            <h4><a href="#">Социальные сети</a></h4>
+                            <p><span class='pull-right'>Подписчики / Лайки / Шэры / Коммент.</span></p>
+                            <p>Вконтакте <span class='pull-right'>{{bk.social.vk.sbcrb}} / {{bk.social.vk.like}} / {{bk.social.vk.share}} / {{bk.social.vk.comment}}</span></p>
+							<p>Фейсбук <span class='pull-right'>{{bk.social.fb.sbcrb}} / {{bk.social.fb.like}} / {{bk.social.fb.share}} / {{bk.social.fb.comment}}</span></p>
+							<p>Инстаграмм <span class='pull-right'>{{bk.social.insta.sbcrb}} / {{bk.social.insta.like}} / {{bk.social.insta.share}} / {{bk.social.insta.comment}}</span></p>
+							<p>Ютьюб <span class='pull-right'>{{bk.social.ytb.sbcrb}} / {{bk.social.ytb.like}} / {{bk.social.ytb.share}} / {{bk.social.ytb.comment}}</span></p>
+							<br><a href="/social/{{bk.bk}}" class="pull-right more_link">Подробнее...</a>
+						</li>
+                        <li>
+                            <h4><a href="#">Линия</a></h4>
+                            <p>Количество видов спорта: <span class='pull-right'>{{bk.line.sportTypeQuantity}}</span></p> 
+                            <p>Количество событий: <span class='pull-right'>{{bk.line.eventQuantity}}</span></p> 
+							<p>Количество рынков: <span class='pull-right'>{{bk.line.marketQuantity}}</span></p>
+							<p>Маржа прематч: <span class='pull-right'>{{bk.line.marja_prematch}}</span></p>
+							<p>Маржа лайв: <span class='pull-right'>{{bk.line.marja_live}}</span></p>
+							<br><a href="/line/{{bk.bk}}" class="pull-right more_link">Подробнее...</a>
+						</li>
+                        <li>
+                            <h4><a href="#">Продукт</a></h4>
+                            <p>Веб-сайт:<span class='pull-right'>{{bk.product.website}}/3</span></p>
+							<p>Мобильная версия:<span class='pull-right'>{{bk.product.mobile}}/3</span></p></p>
+							<p>Приложение:<span class='pull-right'>{{bk.product.application}}/3</span></p></p>
+							<p>Тотализатор:{{#gt bk.product.totalizator '0'}}<span class='pull-right'>ДА</span>{{/gt}}</p>
+							<p>Статистика:{{#gt bk.product.statystics '0'}}<span class='pull-right'>ДА</span>{{/gt}}</p>
+							<p>Результаты:{{#gt bk.product.results '0'}}<span class='pull-right'>ДА</span>{{/gt}}</p>
+							<p>Трансляции:{{#gt bk.product.translations '0'}}<span class='pull-right'>ДА</span>{{/gt}}</p>
+							<p>Быстрые игры:{{#gt bk.product.quickgames '0'}}<span class='pull-right'>ДА</span>{{/gt}}</p>
+							<p>ПАБК:{{#gt bk.product.pabk '0'}}<span class='pull-right'>ДА</span>{{/gt}}</p>
+							<p>Экспресс:{{#gt bk.product.express '0'}}<span class='pull-right'>ДА</span>{{/gt}}</p>
+							<p>Лайв-трекер:{{#gt bk.product.livetracker '0'}}<span class='pull-right'>ДА</span>{{/gt}}</p>
+							<p>Оффшорный продукт:{{#gt bk.product.offshore '0'}}<span class='pull-right'>ДА</span>{{/gt}}</p>
+                        </li>  
+                        <li>
+                            <h4><a href="#">ППС</a></h4>
+                            <p>Точек всего: <span class='pull-right'>{{bk.pps.totalQuantity}}</span></p>
+                            <p>По сравнению с предыдущим месяцем: <span class='pull-right'>{{bk.pps.dynamics}}</span></p>
+							<br><a href="/pps/{{bk.bk}}" class="pull-right more_link">Подробнее...</a></li>
+						</li>
+                        <li>
+                            <h4><a href="#">Трафик</a></h4>
+                            <p>Визиты: <span class='pull-right'>{{bk.traffic.visits}}</span></p>
+                            <p>Отказы: <span class='pull-right'>{{bk.traffic.bouncerate}}</span></p></p>
+                            <p>Прямой: <span class='pull-right'>{{bk.traffic.direct}}</span></p></p>
+                            <p>Органический: <span class='pull-right'>{{bk.traffic.organic}}</span></p></p>
+                            <p>Реферральный: <span class='pull-right'>{{bk.traffic.referral}}</span></p></p>
+                            <br><a href="/traffic/{{bk.bk}}" class="pull-right more_link">Подробнее...</a>
+						</li>
+                        <li>
+                            <h4><a href="#">Вакансии</a></h4>
+                            <p>Открыто вакансий: <span class='pull-right'>{{bk.vacancy.opened}}</span></p>
+                            <p>За последние 3 месяца открыто:  <span class='pull-right'>{{bk.vacancy.lastopened}}</span></p></p>
+							<br><a href="/vacancy/{{bk.bk}}" class="pull-right more_link">Подробнее...</a>
+							</li>
+                        <li>
+                            <h4><a href="#">Экспертные оценки</a></h4> 
+	                            <p>Качество линии прематч:<span class='pull-right'>{{bk.expert.prematch_line}}/10</span></p>
+								<p>Качество линии лайв: <span class='pull-right'>{{bk.expert.live_line}}/10</span></p>
+								<p>Качество продукта: <span class='pull-right'>{{bk.expert.product}}/10</span></p>
+								<p>Веб сайт: <span class='pull-right'>{{bk.expert.website}}/10</span></p>
+								<p>Мобильная версия: <span class='pull-right'>{{bk.expert.mobile}}/10</span></p>
+								<p>Приложение: <span class='pull-right'>{{bk.expert.application}}/10</span></p>
+								<p>Поддержка: <span class='pull-right'>{{bk.expert.support}}/10</span></p>
+								<p>Партнерская программа: <span class='pull-right'>{{bk.expert.partnership}}/10</span></p>
+								<p>Бонусы: <span class='pull-right'>{{bk.expert.bonuses}}/10</span></p>
+								<p>Маркетинг: <span class='pull-right'>{{bk.expert.marketing}}/10</span></p>
+								<br><a href="/expert/{{bk.bk}}" class="pull-right more_link">Подробнее...</a>
+                        </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+    </div>
+</div>
+<script>
+	$(document).ready(function(){
+		$('#onlineLink').addClass('active');
+		$("#menu-toggle").click(function(e) {
+			e.preventDefault();
+			$("#wrapper").toggleClass("toggled");
+		});
+	});
+ </script>

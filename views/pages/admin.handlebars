@@ -9,8 +9,21 @@
 	<link rel="shortcut icon" href="/images/favicon.png" type="image/png">
 </head>
 <body>
-<form id="getEditRateForm"  action="/admin/getEditRateForm" method="post" style="margin-left: 5%;" enctype="multipart/form-data" >
+<form id="getEditRateForm"  class='editFormCall' action="/admin/getEditRateForm" method="post" style="margin-left: 5%;" enctype="multipart/form-data" >
 		<h3>Рейтинговые оценки бк</h3>
+    	<div class="form-group">
+			<select name='bk' class='form-control'>
+				{{#each bk}}
+				<option value={{this}}>{{this}}</option>
+				{{/each}}
+			</select>
+		</div>
+    <div class="form-group">
+		<input id='addProductButton' class="btn btn-primary" type="submit" value="Редактировать"></input>
+ </div>
+</form>
+<form id="getEditBkPageForm"  class='editFormCall' action="/admin/geteditbkpageform" method="post" style="margin-left: 5%;" enctype="multipart/form-data" >
+		<h3>Страница букмекера</h3>
     	<div class="form-group">
 			<select name='bk' class='form-control'>
 				{{#each bk}}
@@ -29,7 +42,7 @@
 <script src="/api/collapse.js"></script>
 <script src="/scripts/tabsApp.js"></script>
 <script>
-	$('#getEditRateForm').on('submit', function(e){
+	$('.editFormCall').on('submit', function(e){
 		e.preventDefault();
 		var $that = $(this);
 		var formData = new FormData($that.get(0));
