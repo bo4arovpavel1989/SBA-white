@@ -74,6 +74,8 @@ function getPoints(bks, callback){
 }
 
 function drawMap(){
+		var filterView = document.getElementById("addToFilter");
+		filterView.scrollIntoView({block: "start", behavior: "smooth"});
 	  $('#bkFilterList').empty();
 	  var colorsFilter=[];
 	  var myMap = new ymaps.Map('map', {
