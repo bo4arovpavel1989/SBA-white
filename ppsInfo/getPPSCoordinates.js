@@ -1,7 +1,7 @@
 var https = require('https');
 let secret = 'AIzaSyBkhoB5RgaYw19-QWiFDoUc2AtTO-Sc2P0';
-var BkPPS = require('./lib/models/mongoModel.js').BkPPS;
-var BkPPSCoordinates = require('./lib/models/mongoModel.js').BkPPSCoordinates;
+var BkPPS = require('./../lib/models/mongoModel.js').BkPPS;
+var BkPPSCoordinates = require('./../lib/models/mongoModel.js').BkPPSCoordinates;
 
 var MultiGeocoder = require('multi-geocoder'),
 geocoder = new MultiGeocoder({ coordorder: 'latlong', lang: 'ru-RU' });
@@ -15,24 +15,22 @@ provider.getText = function (point) {
 };
 
 
-var bks=['atlantik-m', 'betring', 'betru', 'digitalbetting', 'favorit', 'firmastom', 'fortuna', 'investcompcentr', 'investgarant',
-'johnygame', 'marathon', 'matchbet', 'melofon', 'panorama', 'rosbet', 'rosippodromi', 'rusteletot', 'sportbet', 'starbet', 
-'williamhill', 'winline', 'bkolimp', 'leon', 'bk888', 'fonbet', 'baltbet', 'bk1xbet', 'ligastavok'];
-
+var bks=require('./../bklist.js').bkList_offline;
 var j=0;
 getPPSCoord();
 function getPPSCoord(){
-BkPPS.find({bk:bks[j]}, function(err, rep){
+BkPPS.find({bk:bks[j].bk, name:bks[j].name}, function(err, rep){
 	geocoder.geocode(rep).then(res=>{
 		let i=0;
-		console.log('working on ' + bks[j]);
-		var name = bks[j];
+		console.log('working on ' + bks[j].name);
+		var shortname = bks[j].bk;
+		var bkname = bks[j].name;
 		j++;
 		if(j<bks.length) getPPSCoord();
 		try{
 			res.result.features.forEach(point=>{
-				let bkPPS = new BkPPSCoordinates({bk:name, data: point}).save();
-				console.log(i + ' ' + name);
+				let bkPPS = new BkPPSCoordinates({bk:shortname, name:bkname, data: point}).save();
+				console.log(i + ' ' + bkname);
 				i++;
 			});
 		}catch(e){

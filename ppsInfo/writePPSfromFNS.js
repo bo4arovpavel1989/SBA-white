@@ -1,13 +1,10 @@
 var fs = require("fs");
-var BkPPS = require('/../lib/models/mongoModel.js').BkPPS;
-var bks=['atlantik-m', 'betring', 'betru', 'digitalbetting', 'favorit', 'firmastom', 'fortuna', 'investcompcentr', 'investgarant',
-'johnygame', 'marathon', 'matchbet', 'melofon', 'panorama', 'rosbet', 'rosippodromi', 'rusteletot', 'sportbet', 'starbet', 
-'williamhill', 'winline', 'bkolimp', 'leon', 'bk888', 'fonbet', 'baltbet', 'bk1xbet', 'ligastavok'];
+var BkPPS = require('./../lib/models/mongoModel.js').BkPPS;
+var bks=require('./../bklist.js').bkList_offline;
 
-//parsing of pps addresses from txt files to mongoDB
 /*
 bks.forEach(bk=>{
-	fs.readFile("ppsAddressesFromFNS/" + bk + 'pps.txt', "utf8", 
+	fs.readFile("ppsAddressesFromFNS/" + bk.bk + 'pps.txt', "utf8", 
              function(error,data){
                 console.log("Асинхронное чтение файла");
                 if(error) throw error; // если возникла ошибка
@@ -22,7 +19,7 @@ bks.forEach(bk=>{
 						   if (line.length>5) {
 								let slicePoint = line.indexOf(' ');
 								line = line.slice(slicePoint + 1);
-							    var bkPPS = new BkPPS({bk:bk, address: line}).save();
+							    var bkPPS = new BkPPS({bk:bk.bk, name:bk.name, address: line}).save();
 						   }
 					  })
 				  }

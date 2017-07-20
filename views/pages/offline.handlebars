@@ -1,0 +1,59 @@
+ <div id="wrapper">
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li>
+                    <a href="#" class='sidebar_btn active' data-name='offline_table'>Таблица</a>
+                </li>
+                <li>
+                    <a href="#" class='sidebar_btn' data-name='offline_graph'>График</a>
+                </li>
+                <li>
+                    <a href="#" class='sidebar_btn' data-name='offline_map'>Карта</a>
+                </li>
+                <li>
+                    <a href="#" class='sidebar_btn' data-name='offline_regionpotential'>Потенциал региона</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /#sidebar-wrapper -->
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper" style='font-family: "Open Sans", sans-serif;'>
+			<a href="#menu-toggle" class="btn btn-primary" id="menu-toggle"><span class="icon-chevron-left icon-white"></span></a>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12 text-center" id='tabsData'>
+                        <div id="divHeaderLine1" style='margin-top: 40px;'>Таблица</div>
+		
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+    <script>
+	$(document).ready(function(){
+		$('#offlineLink').addClass('active');
+		$("#menu-toggle").click(function(e) {
+			e.preventDefault();
+			$("#wrapper").toggleClass("toggled");
+		});
+		$(".sidebar_btn").click(function(){ /*переключение вкладок*/
+		var clickedTab = $(this);
+		var queryTarget = $(this).data('name');
+		if (!$(this).hasClass('active')) {
+			$('.active').removeClass("active");
+			$(this).addClass("active");
+			var query = '/getofflinecomponent/' + queryTarget;
+			$("#tabsData").empty();
+			$.ajax({
+				url: query,
+				success: function(html){
+							$("#tabsData").append(html);
+						}
+			});
+		}			
+		});
+	});
+    </script>
+ </div>

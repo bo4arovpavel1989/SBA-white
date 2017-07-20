@@ -1,22 +1,26 @@
 var filter=[];
 var points=[];
+var month;
+var year;
 ymaps.ready(function () {
 	addToFilter();
 	showOnMap();
-
-    
-});
-
+	 resetMap();
+})
 
 	
 function addToFilter(){
 	$('#addToFilter').on('submit', function(e){
 		e.preventDefault();
+		month=$('#monthSelect').val();
+		year=$('#yearSelect').val();
 		let bk = $('#bkSelect').val();
+		let bkname=$('#bkSelect').data('name');
 		if (filter.indexOf(bk) == -1)
 		{
 			filter.push(bk);
-			$('#bkFilterList').append(' ' + bk);
+			$('#bkFilterList').append(' <span class="bkinfilter" onclick="deleteFromFilter($(this));"data-name="'+bk+'">'+bk+'</span>');
+			
 		}
 	});
 }
@@ -24,17 +28,39 @@ function addToFilter(){
 function showOnMap(){
 	$('#showMap').on('click', function(){
 		$('#map').empty();
+		console.log(filter);
 		getPoints(filter, function(ready){
 			if(ready) drawMap();
 		});
 	});
 }
 
+function resetMap(){
+	$('#resetMap').on('click', function(){
+		$("#tabsData").empty();
+			$.ajax({
+				url: '/getofflinecomponent/offline_map',
+				success: function(html){
+							$("#tabsData").append(html);
+						}
+			});
+	});
+}
+
+function deleteFromFilter(spanTag){
+		let bkToDelete=spanTag.data('name');
+		console.log(bkToDelete);
+		spanTag.remove();
+		let index = filter.indexOf(bkToDelete);
+		filter.splice(index,1);
+		console.log(filter)
+}
+
 function getPoints(bks, callback){
 	var counter = bks.length;
 	bks.forEach(function(bk){
 	$.ajax({
-		url: '/bkpps/ppscoordinates' + bk + '.json',
+		url: '/bkpps/'+year+'/'+month+'/ppscoordinates'+bk+'.json',
 		dataType: 'json',
 		success: function(data){
 			data.forEach(dat=>{
@@ -89,7 +115,7 @@ function drawMap(){
     myMap.setBounds(clusterer.getBounds(), {
         checkZoomRange: true
     });
-	function getColor(bk) {
+function getColor(bk) {
         var indexNum=filter.indexOf(bk);
 		if(colorsFilter.indexOf(bk) == -1){
 			colorsFilter.push(bk);
