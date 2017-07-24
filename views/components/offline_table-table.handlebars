@@ -1,0 +1,16 @@
+<thead>
+	<tr>
+		  <th>Букмекер</th>
+		  <th>{{yearFrom}}г.</th>
+		  <th>{{yearTo}}г.</th>
+		  <th>Изменение</th>
+	</tr>
+ </thead>
+ <tbody>
+	<tr>
+		<td>{{bk}} {{#if city}} - {{city}}{{/if}}</td>
+		<td id='yearFromVal' data-value={{yearFromQuantity}}>{{yearFromQuantity}}</td>
+		<td id='yearToVal' data-value={{yearToQuantity}}>{{yearToQuantity}}</td>
+		<td id='dynamics'></td>
+	</tr>
+ </tbody>

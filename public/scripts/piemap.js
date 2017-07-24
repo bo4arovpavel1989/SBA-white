@@ -1,7 +1,6 @@
 var filter=[];
 var points=[];
-var month;
-var year;
+
 ymaps.ready(function () {
 	addToFilter();
 	showOnMap();
@@ -60,7 +59,7 @@ function getPoints(bks, callback){
 	var counter = bks.length;
 	bks.forEach(function(bk){
 	$.ajax({
-		url: '/bkpps/'+year+'/'+month+'/ppscoordinates'+bk+'.json',
+		url: '/bkpps/ppscoordinates'+bk+'.json',
 		dataType: 'json',
 		success: function(data){
 			data.forEach(dat=>{

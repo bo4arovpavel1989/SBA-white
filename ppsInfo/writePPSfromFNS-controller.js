@@ -1,8 +1,10 @@
 let writePPSfromFNS=require('./writePPSfromFNS.js').writingPPSfromFNS;
+var bks=require('./../bklist.js').bkList_offline;
+const BKLIST_LENGTH=bks.length;
 
 function startCalling(i){
 	writePPSfromFNS(i, (reply)=>{
-		if(reply&&i<34){
+		if(reply&&i<BKLIST_LENGTH){
 			console.log('next bk');
 			i++;
 			startCalling(i);
