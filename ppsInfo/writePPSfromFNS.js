@@ -4,47 +4,46 @@ var bks=require('./../bklist.js').bkList_offline;
 
 
 module.exports.writingPPSfromFNS=function(k, callback){
-	let bk = bks[k];
-	let namesArray=[];
-	let i,j;
+	var bk = bks[k];
+	var namesArray=[];
 	namesArray=fs.readdirSync("ppsAddressesFromFNSXML/"+bk.bk+'/');
-	i=0;
-	j=0;
-	var control=0;
-	namesArray=namesArray.sort();
-	namesArray.forEach(filename=>{
-		let nameSplit=filename.split(' ');
-		let dateSplit=nameSplit[1].split('-');
-		let nextyear;
-		var year=dateSplit[0];
-		var month=dateSplit[1];
-		year=Number(year);
-		month=Number(month);
-		if(namesArray[j+1]!=undefined){
-			let nextnameSplit=namesArray[j+1].split(' ');
-			let nextdateSplit=nextnameSplit[1].split('-');
-			nextyear=nextdateSplit[0];
-			nextyear=Number(nextyear);
-		}
-		console.log(year);
-		console.log(nextyear);
-		console.log(year==nextyear);
-		if(nextyear!=year || namesArray[j+1]==undefined){
-			console.log(filename);
-			fs.readFile("ppsAddressesFromFNSXML/"+bk.bk+'/'+filename, 'utf8',(err, rep)=>{
-				rep = rep.split('\n');
-				control += rep.length;
-				rep.forEach(line=>{
-							console.log(line);
-							var bkPPS = new BkPPS({bk:bk.bk, name:bk.name, year:year, month:month, address: line}).save((err, reply)=>{
-								i++;
-								console.log(i);
-								if(i==control) callback(true);
-							});			   
-				});	
-			});		
-		}	
-		j++;
-	});	
-};
+	var control=namesArray.length;
+	
+	goReading(0)
+	
+	function goReading(i){
+		readOneFile(namesArray[i], bk, (reply)=>{
+			i++;
+			if(i<control)goReading(i);
+			else callback(true);
+		});
+	}
 		
+	function readOneFile(filename, bk, callbackJunior){
+		var path="ppsAddressesFromFNSXML/"+bk.bk+'/'+filename;
+		console.log(path);
+		fs.readFile(path, 'utf8',(err, rep)=>{
+					var j=0;
+					rep = rep.split('\n');
+					var control2=rep.length;		
+					let nameSplit=filename.split('_');
+					let dateBegin=nameSplit[1];
+					let dateEnd=nameSplit[2];
+					if(dateEnd=='.dat'||dateEnd=='.DAT'){
+						var today = new Date();
+						dateEnd=today.getFullYear()+'-'+(today.getMonth()+2)+'-01';
+					} 
+					console.log(dateBegin);
+					console.log(dateEnd);
+					console.log(filename);
+					rep.forEach(line=>{
+							var bkPPS = new BkPPS({bk:bk.bk, name:bk.name, begin:dateBegin, end:dateEnd, address: line}).save((err, reply)=>{
+								j++;
+								if(j==control2) callbackJunior(true);
+							});			   
+					});				
+				});	
+	}
+	
+};
+

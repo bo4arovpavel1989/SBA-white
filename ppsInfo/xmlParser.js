@@ -23,7 +23,7 @@ let options = {
 			headers:headers,
 			encoding:null	
 	}; 
-		
+	var counter=0;	
 	request(options, (err, res, body)=>{
 	  if(err){console.log(err);}
 	  else{ 
@@ -48,13 +48,25 @@ let options = {
 					var dateStraight=date.split('-');
 					var dateReverse=dateStraight.reverse();
 					var dateFormatted=dateReverse.join('-');
+					var dateEnd=blank.$.DATE_END;
+					var dateEndFormatted;
+					if(dateEnd){
+						dateEnd=dateEnd.replaceAll('.', '-');
+						var dateEndStraight=dateEnd.split('-');
+						var dateEndReverse=dateEndStraight.reverse();
+						dateEndFormatted=dateEndReverse.join('-');
+						dateEndFormatted='_'+dateEndFormatted;
+					} else dateEndFormatted='';
 					let addresses=blank.ADRES;
 					addresses.forEach(address=>{
 						console.log(address);
 						console.log(dateFormatted+' '+firmNameStandart+'.dat');
-						fs.appendFileSync('ppsAddressesFromFNSXML/'+firmNameStandart+'/'+firmNameStandart+' '+dateFormatted+'.dat', address+'\r\n', (err, rep)=>{
+						counter++;
+						console.log(counter);
+						fs.appendFileSync('ppsAddressesFromFNSXML/'+firmNameStandart+'/'+firmNameStandart+'_'+dateFormatted+dateEndFormatted+'_.dat', address+'\r\n', (err, rep)=>{
 							console.log(rep);
 							console.log(err);
+							
 						});
 					});
 				});			

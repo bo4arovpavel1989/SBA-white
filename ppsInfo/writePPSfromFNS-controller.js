@@ -4,7 +4,7 @@ const BKLIST_LENGTH=bks.length;
 
 function startCalling(i){
 	writePPSfromFNS(i, (reply)=>{
-		if(reply&&i<BKLIST_LENGTH){
+		if(reply&&i<BKLIST_LENGTH-1){
 			console.log('next bk');
 			i++;
 			startCalling(i);
