@@ -65,11 +65,11 @@
 				<option value='{{bk}}' data-name='{{name}}'>{{name}}</option>
 				{{/each}}
 			</select>
-			<input class="btn btn-primary" type="submit" value="Показать"></input>
+			<input class="btn btn-primary" id='showTable' type="submit" value="Показать"></input>
 			<a class="btn btn-danger" id='resetTable'>Сброс</a>
 		</div>
 	</form>	
-	
+	<div class="loader"></div>
 	<div class="table-responsive">
 			<table class="table table-striped" style='margin-top: 40px;'>
 				<thead>

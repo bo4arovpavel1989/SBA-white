@@ -1,5 +1,6 @@
 $(document).ready(function(){
 	addToFilterGraphHandler();
+	resetGraph();
 });
 
 var vizualizationData=[];
@@ -7,6 +8,11 @@ var vizualizationData=[];
 function addToFilterGraphHandler(){
 	$('#addToFilterGraph').on('submit', function(e){
 		e.preventDefault();
+		document.getElementById('showGraph').disabled = true;
+		$('.toDisable').each(function(){
+			$(this).hide();
+		});
+		$('.loader').addClass('loading');
 		var $that = $(this);
 		var formData = new FormData($that.get(0));
 		$.ajax({
@@ -16,8 +22,12 @@ function addToFilterGraphHandler(){
 				processData: false,
 				data: formData,
 				success: function(data){
-						vizualizationData.push(data);
-						drawGraph(vizualizationData);
+						if(data){
+							vizualizationData.push(data);
+							drawGraph(vizualizationData);
+						}else alert('Ошибка!');
+						$('.loader').removeClass('loading');
+						document.getElementById('showGraph').disabled = false;
 				}
 		});
 		
@@ -74,3 +84,14 @@ function drawGraph(data){
     }).dxChart("instance");
 
 };
+
+function resetGraph(){
+	$('#resetGraph').on('click', function(e){
+		e.preventDefault();
+		vizualizationData=[];
+		$('.toDisable').each(function(){
+			$(this).show();
+		});
+		alert("Данные сброшены. График обновится для следующей загрузки");
+	})
+}

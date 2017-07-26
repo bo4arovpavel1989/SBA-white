@@ -8,6 +8,8 @@ function addToFilterTableHandler(){
 		e.preventDefault();
 		var $that = $(this);
 		var formData = new FormData($that.get(0));
+		document.getElementById('showTable').disabled = true;
+		$('.loader').addClass('loading');
 		$.ajax({
 				url: $that.attr('action'),
 				type: $that.attr('method'),
@@ -15,6 +17,8 @@ function addToFilterTableHandler(){
 				processData: false,
 				data: formData,
 				success: function(html){
+						$('.loader').removeClass('loading');
+						document.getElementById('showTable').disabled = false;
 						$('#bk_table').append(html);
 						calculateDynamics();
 				}
@@ -31,8 +35,10 @@ function calculateDynamics(){
 		second=Number(second);
 		var diff = second - first;
 		var relation=0;
-		if(first>0) relation= (diff/first) * 100;
-		relation=relation.toFixed( 2 );
+		if(first>0) {
+			relation= (diff/first) * 100;
+			relation=relation.toFixed( 2 );
+		}else relation='n/a';	
 		var sign='';
 		var sign2='';
 		if (relation>0) sign='+';

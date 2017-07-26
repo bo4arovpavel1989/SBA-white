@@ -1,11 +1,11 @@
 var filter=[];
 var points=[];
-
-ymaps.ready(function () {
+$(document).ready(function(){
 	addToFilter();
 	showOnMap();
-	 resetMap();
-})
+	resetMap();
+});
+
 
 	
 function addToFilter(){
