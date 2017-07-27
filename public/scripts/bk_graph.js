@@ -9,9 +9,6 @@ function addToFilterGraphHandler(){
 	$('#addToFilterGraph').on('submit', function(e){
 		e.preventDefault();
 		document.getElementById('showGraph').disabled = true;
-		$('.toDisable').each(function(){
-			$(this).hide();
-		});
 		$('.loader').addClass('loading');
 		var $that = $(this);
 		var formData = new FormData($that.get(0));
@@ -25,6 +22,9 @@ function addToFilterGraphHandler(){
 						if(data){
 							vizualizationData.push(data);
 							drawGraph(vizualizationData);
+							$('.toDisable').each(function(){
+								$(this).hide();
+							});
 						}else alert('Ошибка!');
 						$('.loader').removeClass('loading');
 						document.getElementById('showGraph').disabled = false;

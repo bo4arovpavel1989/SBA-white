@@ -1,21 +1,23 @@
  <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
  <div id="divHeaderLine1" style='margin-top: 40px; margin-left:40px;'>Карта пунктов приема ставок</div>
-	<form class='form-horizontal' id='addToFilter' style=' margin-left:40px; margin-top: 40px; '>
-		 <div class="form-group row">
-			<select class="form-control" id='bkSelect' class='form-control'>
-				<label>Выберите БК</label>
-				<option value='leon'>Выберите БК</option>
-				{{#each bk}}
-				<option value='{{bk}}' data-name='{{name}}'>{{name}}</option>
-				{{/each}}
-			</select>
-			<input class="btn btn-default" type="submit" value="Добавить в фильтр"></input>
-		</div>
-	</form>	
-	
-	<ul id='bkFilterList' style='margin: 40px; margin-left:40px;'>
-	</ul>
-	<button class="btn btn-primary" id='showMap' style='margin-top: 40px; margin-left:40px;'>Показать на карте</button>
-	<button class="btn btn-danger" id='resetMap' style='margin-top: 40px; margin-left:40px;'>Сброс</button>
+ <div id='formToHide' style='display:none;'>
+		<form class='form-horizontal' id='addToFilter' style='margin-left:40px; margin-top: 40px; '>
+			 <div class="form-group row">
+				<select class="form-control" id='bkSelect' class='form-control'>
+					<label>Выберите БК</label>
+					<option value='leon'>Выберите БК</option>
+					{{#each bk}}
+					<option value='{{bk}}' data-name='{{name}}'>{{name}}</option>
+					{{/each}}
+				</select>
+				<input class="btn btn-default" type="submit" value="Добавить в фильтр"></input>
+			</div>
+		</form>	
+		<ul id='bkFilterList' style='height:45px; margin: 40px; margin-left:40px;'>
+		</ul>
+		<button class="btn btn-primary" id='showMap' style='margin-top: 40px; margin-left:40px;'>Показать на карте</button>
+		<button class="btn btn-danger" id='resetMap' style='margin-top: 40px; margin-left:40px;'>Сброс</button>
+	</div>
+	<div class="loader loading"></div>
     <div id="map" style='width: 1500px; height:700px; padding: 10px; margin: 30px;border: 1px solid green;'></div>
      <script src="/scripts/piemap.js" type="text/javascript"></script>

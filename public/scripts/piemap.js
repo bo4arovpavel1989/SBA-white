@@ -1,12 +1,30 @@
 var filter=[];
 var points=[];
 $(document).ready(function(){
+	var checkMapLoading = setInterval(function(){ checkingMap() }, 1000);
+
+	function checkingMap() {
+		try{
+		if(ymaps){
+			stopChecking();
+			startAll();	
+		}
+		}catch(e){}
+	}
+
+	function stopChecking() {
+		clearInterval(checkMapLoading);
+	}
+		
+});
+
+function startAll(){
+	$('.loader').removeClass('loading');
+	$('#formToHide').show(400);
 	addToFilter();
 	showOnMap();
 	resetMap();
-});
-
-
+}
 	
 function addToFilter(){
 	$('#addToFilter').on('submit', function(e){
