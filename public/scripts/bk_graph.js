@@ -41,6 +41,7 @@ function drawGraph(data){
 	for (var k=0;k<data.length;k++){
 		titleArray.push(data[k].bk);
 	}
+	console.log(titleArray);
 	var seriesArray=[];
 	for (var m=0;m<data.length;m++){
 		seriesArray.push({valueField:titleArray[m],name:titleArray[m]});
@@ -53,6 +54,7 @@ function drawGraph(data){
 			dataItem[titleArray[i]]=data[i].datas[j];
 		}	
 		dataToShow.push(dataItem);
+		console.log(dataToShow);
 	}
 	  var chart = $("#chart").dxChart({
         palette: "red",
