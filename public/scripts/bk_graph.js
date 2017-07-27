@@ -1,9 +1,11 @@
 $(document).ready(function(){
 	addToFilterGraphHandler();
 	resetGraph();
+	toggleTypeOfGraph();
 });
 
 var vizualizationData=[];
+var graphChosen='linegraph';
 
 function addToFilterGraphHandler(){
 	$('#addToFilterGraph').on('submit', function(e){
@@ -20,11 +22,19 @@ function addToFilterGraphHandler(){
 				data: formData,
 				success: function(data){
 						if(data){
-							vizualizationData.push(data);
-							drawGraph(vizualizationData);
-							$('.toDisable').each(function(){
-								$(this).hide();
-							});
+							if(graphChosen==='linegraph'){
+								vizualizationData.push(data);
+								drawLineGraph(vizualizationData);
+								$('.toDisable').each(function(){
+									$(this).hide();
+								});
+							} else {
+								vizualizationData.push(data);
+								drawPieGraph(vizualizationData);
+								$('.toDisable').each(function(){
+									$(this).hide();
+								});
+							}
 						}else alert('Ошибка!');
 						$('.loader').removeClass('loading');
 						document.getElementById('showGraph').disabled = false;
@@ -34,15 +44,35 @@ function addToFilterGraphHandler(){
 	});
 }
 
-function drawGraph(data){
+function toggleTypeOfGraph(){
+	$('#graphTypeChoose').on('change', function(){
+		var grType = $('#graphTypeChoose').val();
+		graphChosen=grType;
+		if(grType=='piegraph') {
+			$('#pie').show();
+			$('#chart').hide();
+			$('.secondDate').each(function(){
+				$(this).hide(400);
+			});
+		}else {
+			$('#pie').hide();
+			$('#chart').show();
+			$('.secondDate').each(function(){
+				$(this).show(400);
+			});
+		}
+	});
+}
+
+function drawLineGraph(data){
 	var dataToShow=[];
 	var title="Количество ППС";
 	var titleArray=[];
+	var seriesArray=[];
+	
 	for (var k=0;k<data.length;k++){
 		titleArray.push(data[k].bk);
 	}
-	console.log(titleArray);
-	var seriesArray=[];
 	for (var m=0;m<data.length;m++){
 		seriesArray.push({valueField:titleArray[m],name:titleArray[m]});
 	}
@@ -54,8 +84,9 @@ function drawGraph(data){
 			dataItem[titleArray[i]]=data[i].datas[j];
 		}	
 		dataToShow.push(dataItem);
-		console.log(dataToShow);
 	}
+	
+	
 	  var chart = $("#chart").dxChart({
         palette: "red",
         dataSource: dataToShow,
@@ -86,6 +117,55 @@ function drawGraph(data){
     }).dxChart("instance");
 
 };
+
+function drawPieGraph(dataSource){
+	var title;
+	if(dataSource[0].city!='')title="Соотношение ППС " + dataSource[0].date+' ('+dataSource[0].city+')';
+	else title="Соотношение ППС " + dataSource[0].date;
+	console.log(dataSource);
+	$("#pie").dxPieChart({
+        size: {
+            width: 1200
+        },
+        palette: "bright",
+        dataSource: dataSource,
+        series: [
+            {
+                argumentField: "bk",
+                valueField: "quantity",
+                label: {
+                    visible: true,
+                    connector: {
+                        visible: true,
+                        width: 1
+                    }
+                }
+            }
+        ],
+        title: title,
+        "export": {
+            enabled: true
+        },
+        onPointClick: function (e) {
+            var point = e.target;
+    
+            toggleVisibility(point);
+        },
+        onLegendClick: function (e) {
+            var arg = e.target;
+    
+            toggleVisibility(this.getAllSeries()[0].getPointsByArg(arg)[0]);
+        }
+    });
+    
+    function toggleVisibility(item) {
+        if(item.isVisible()) {
+            item.hide();
+        } else { 
+            item.show();
+        }
+    }
+}
 
 function resetGraph(){
 	$('#resetGraph').on('click', function(e){

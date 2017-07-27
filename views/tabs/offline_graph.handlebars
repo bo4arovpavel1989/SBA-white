@@ -27,8 +27,8 @@
 						<option value='2011'>2011</option>
 						<option value='2010'>2010</option>
 					</select>
-					<span><b>&nbsp; - &nbsp;</b></span>
-					<select class="form-control" name='monthTo' class='form-control'>
+					<span class="secondDate"><b>&nbsp; - &nbsp;</b></span>
+					<select class="form-control secondDate" name='monthTo' class='form-control'>
 						<option value='01'>Январь</option>
 						<option value='02'>Февраль</option>
 						<option value='03'>Март</option>
@@ -42,7 +42,7 @@
 						<option value='11'>Ноябрь</option>
 						<option value='12'>Декабрь</option>
 					</select>
-					<select class="form-control" name='yearTo' class='form-control'>
+					<select class="form-control  secondDate" name='yearTo' class='form-control'>
 						<option value='2017'>2017</option>
 						<option value='2016'>2016</option>
 						<option value='2015'>2015</option>
@@ -57,7 +57,7 @@
 		 <label>Населенный пункт</label>
 			<input type="text" name='city' placeholder='Выберите населенный пункт'></input>
 		<label>Тип графика</label>
-			<select class="form-control" class='toDisable' name='graph' class='form-control'>
+			<select class="form-control" class='toDisable' name='graph' id='graphTypeChoose' class='form-control'>
 				<option value='linegraph'>Линейный график</option>
 				<option value='piegraph'>Круговая диаграмма</option>
 			</select>
@@ -76,5 +76,7 @@
 	</form>	
 	<div class="loader"></div>
 	<div id='chart'>
+	</div>
+	<div id='pie'>
 	</div>
 	<script src="/scripts/bk_graph.js" type="text/javascript"></script>
