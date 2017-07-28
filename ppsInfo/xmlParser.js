@@ -9,6 +9,17 @@ String.prototype.replaceAll = function(search, replace){
   return this.split(search).join(replace);
 }
 
+
+var dirArray=fs.readdirSync("ppsAddressesFromFNSXML");
+dirArray.forEach(dir=>{
+	var fileArray=fs.readdirSync("ppsAddressesFromFNSXML/"+dir);
+	fileArray.forEach(file=>{
+		fs.unlinkSync("ppsAddressesFromFNSXML/"+dir+"/"+file);
+	});
+	fs.rmdirSync("ppsAddressesFromFNSXML/"+dir);
+});
+
+
 let headers = {
         'User-Agent':'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36',
 		'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
