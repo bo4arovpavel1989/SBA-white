@@ -1,6 +1,6 @@
 var request=require('request');
 var cheerio = require('cheerio');
-var CitiesInfo = require('/../lib/models/mongoModel.js').CitiesInfo;
+var CitiesInfo = require('./../lib/models/mongoModel.js').CitiesInfo;
 var fs=require('fs-extra');
 
 String.prototype.replaceAll = function(search, replace){
@@ -46,4 +46,4 @@ String.prototype.replaceAll = function(search, replace){
 	  }
 	});
 
-*/
+

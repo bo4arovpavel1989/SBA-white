@@ -91,24 +91,24 @@ function getPoints(bks, callback){
 }
 
 function drawMap(){
-		var filterView = document.getElementById("addToFilter");
-		filterView.scrollIntoView({block: "start", behavior: "smooth"});
-	  $('#bkFilterList').empty();
-	  var colorsFilter=[];
-	  var myMap = new ymaps.Map('map', {
-            center: [55.751574, 37.573856],
-            zoom: 9
-        }, {
-            searchControlProvider: 'yandex#search'
-        }),
-        // Значения цветов иконок.
-        placemarkColors = [
-            '#DB425A', '#4C4DA2', '#00DEAD', '#D73AD2',
-            '#F8CC4D', '#F88D00', '#AC646C', '#548FB7',
-			'#DB355A', '#4C32A2', '#03DEA3', '#D73AD2',
-            '#F8CC4D', '#F88D00', '#AC326C', '#548FB7',
-			'#Df259A', '#424DA2', '#0223AD', '#D73AD2',
-            '#F2693D', '#F86D00', '#AA646C', '#AC8F77'
+	var filterView = document.getElementById("addToFilter");
+	filterView.scrollIntoView({block: "start", behavior: "smooth"});
+	$('#bkFilterList').empty();
+	var colorsFilter=[];
+	var myMap = new ymaps.Map('map', {
+          center: [55.751574, 37.573856],
+          zoom: 9
+      }, {
+          searchControlProvider: 'yandex#search'
+      }),
+      // Значения цветов иконок.
+      placemarkColors = [
+        '#DB425A', '#4C4DA2', '#00DEAD', '#D73AD2',
+        '#F8CC4D', '#F88D00', '#AC646C', '#548FB7',
+		'#DB355A', '#4C32A2', '#03DEA3', '#D73AD2',
+        '#F8CC4D', '#F88D00', '#AC326C', '#548FB7',
+		'#Df259A', '#424DA2', '#0223AD', '#D73AD2',
+        '#F2693D', '#F86D00', '#AA646C', '#AC8F77'
         ],
         clusterer = new ymaps.Clusterer({
             // Макет метки кластера pieChart.
