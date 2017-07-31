@@ -3,7 +3,7 @@ var CitiesInfo = require('./../../lib/models/mongoModel.js').CitiesInfo;
 var BkPPS = require('./../../lib/models/mongoModel.js').BkPPS;
 var now=new Date();
 var nowString;
-if(now.getMonth()+1<10)nowString=now.getFullYear()+'-0'+(now.getMonth()+1)+'-01';
+if(now.getMonth()+1<10)nowString=now.getFullYear()+'-0'+(now.getMonth()+1)+'-01';//beginning of the current month
 else nowString=now.getFullYear()+'-'+(now.getMonth()+1)+'-01';
 console.log(nowString);
 
