@@ -1,0 +1,9 @@
+-xmlparser
+-writePPSfromFNS-controller
+
+-getModernPPSCoordinates(optional, can be done later)
+-writePPSToJSON (optional, can be done later)
+
+-wikiParserCityInfo (make it not more than once a month!!!!!)
+-citiesStats/getBkRelation (make it as many times as you want-fresh data put in wordstat catalogue)
+-citiesStats/getBkPopularity (make it as many times as you want-fresh data put in wordstat catalogue)

@@ -5,13 +5,19 @@ var now=new Date();
 var nowString;
 if(now.getMonth()+1<10)nowString=now.getFullYear()+'-0'+(now.getMonth()+1)+'-01';//beginning of the current month
 else nowString=now.getFullYear()+'-'+(now.getMonth()+1)+'-01';
-console.log(nowString);
+var nextMonth;
+if(now.getMonth()+2<10)nextMonth=now.getFullYear()+'-0'+(now.getMonth()+2)+'-01';//beginning of the nextt month
+else if(now.getMonth()+2<13)nextMonth=now.getFullYear()+'-'+(now.getMonth()+2)+'-01';
+else nextMonth=now.getFullYear()+1+'-01-01';
 
-CitiesInfo.find({date:{$gte:nowString}},(err, reps)=>{
+console.log(nowString);
+console.log(nextMonth);
+
+CitiesInfo.find({date:{$gte:nowString, $lte:nextMonth}},(err, reps)=>{
 	var i=0;
 	var control=reps.length;
 	reps.forEach(rep=>{
-			let regExpCity = new RegExp(rep.name, 'ui');
+			let regExpCity = new RegExp('\\s'+rep.name+',\\s', 'ui');
 			var population=rep.population;
 			BkPPS.find({address:{$regex:regExpCity}, end:{$gte:rep.date}},(err, ppses)=>{
 				var total=ppses.length;
@@ -28,11 +34,11 @@ CitiesInfo.find({date:{$gte:nowString}},(err, reps)=>{
 });
 
 function getDetailRelation(j){
-	CitiesInfo.find({date:{$gte:nowString}},(err, reps)=>{
+	CitiesInfo.find({date:{$gte:nowString,$lte:nextMonth}},(err, reps)=>{
 		var i=0;
 		var control=reps.length;
 		reps.forEach(rep=>{
-				let regExpCity = new RegExp(rep.name, 'ui');
+				let regExpCity = new RegExp('\\s'+rep.name+',\\s', 'ui');
 				var population=rep.population;
 				BkPPS.find({bk:bks[j].bk, address:{$regex:regExpCity}, end:{$gte:rep.date}},(err, ppses)=>{
 					var total=ppses.length;

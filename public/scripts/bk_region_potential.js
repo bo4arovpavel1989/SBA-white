@@ -1,5 +1,6 @@
 $(document).ready(function(){
 	addToFilterTableRPHandler();
+	resetTableRP();
 });
 
 function addToFilterTableRPHandler(){
@@ -27,8 +28,8 @@ function addToFilterTableRPHandler(){
 
 
 
-function resetTable(){
-	$('#resetTable').on('click', function(){
+function resetTableRP(){
+	$('#resetTableRP').on('click', function(){
 		$("#bk_table_rp").empty();
 	});
 }
