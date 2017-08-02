@@ -28,8 +28,16 @@
 					</select>
 		</div>
 		 <div class="form-group row">
-		 <label>Населенный пункт</label>
-			<input type="text" name='city' placeholder='Выберите населенный пункт' required></input>
+		 <label>Регион</label>
+				<select class="form-control" name='region' id='regionChoose' class='form-control'>
+						{{#each region}}
+							<option value='{{this}}'>{{this}}</option>
+						{{/each}}
+				</select>
+		 <label>Город</label>
+				<select class="form-control" name='city' id='cityChoose' class='form-control'>
+
+				</select>		
 		</div>
 		 <div class="form-group row">
 		 <label>Букмекерская контора</label>

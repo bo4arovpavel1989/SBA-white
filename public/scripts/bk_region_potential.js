@@ -1,6 +1,7 @@
 $(document).ready(function(){
 	addToFilterTableRPHandler();
 	resetTableRP();
+	getCitiesOfRegion();
 });
 
 function addToFilterTableRPHandler(){
@@ -31,5 +32,21 @@ function addToFilterTableRPHandler(){
 function resetTableRP(){
 	$('#resetTableRP').on('click', function(){
 		$("#bk_table_rp").empty();
+	});
+}
+
+function getCitiesOfRegion(){
+	$('#regionChoose').on('change',function(){
+		var region=$('#regionChoose').val();
+		console.log(region);
+		$.ajax({
+			url:'/getcitiesofregion?region='+encodeURIComponent(region),
+			dataType: 'html',
+			success:function(html){
+				console.log(html);
+				$('#cityChoose').empty();
+				$('#cityChoose').append(html);
+			}
+		});
 	});
 }
