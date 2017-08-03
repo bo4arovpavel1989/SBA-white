@@ -1,17 +1,17 @@
 var fs = require("fs-extra");
 var SalaryInfo = require('./../../lib/models/mongoModel.js').SalaryInfo;
-
+var now=new Date();
+var nowString;
+if(now.getMonth()+1<10)nowString=now.getFullYear()+'-0'+(now.getMonth()+1)+'-15';//middle of the current month
+else nowString=now.getFullYear()+'-'+(now.getMonth()+1)+'-15';
 
 fs.readFile('salary.csv','utf-8',(err, rep)=>{
 	rep=rep.split('\n');
-	rep.forEach(line=>{
-		//console.log(line);
-		var words=line.split(';');
-	});
-	console.log(rep[0]);
-	console.log(rep[1]);
-	console.log(rep[2]);
-	console.log(rep[3]);
-	console.log(rep[4]);
-	console.log(rep[5]);
+	for (let i=1;i<rep.length;i++){
+		var words=rep[i].split(';');
+		console.log(rep[i]);
+		let sakary=Number(words[1]);
+		SalaryInfo.update({region:words[0],salary:words[1],date:nowString},{},{upsert:true}).exec();
+	}
+
 });

@@ -38,9 +38,11 @@ function resetTableRP(){
 function getCitiesOfRegion(){
 	$('#regionChoose').on('change',function(){
 		var region=$('#regionChoose').val();
+		var month=$('#month').val();
+		var year=$('#year').val();
 		console.log(region);
 		$.ajax({
-			url:'/getcitiesofregion?region='+encodeURIComponent(region),
+			url:'/getcitiesofregion?region='+encodeURIComponent(region)+'&month='+encodeURIComponent(month)+'&year='+year,
 			dataType: 'html',
 			success:function(html){
 				console.log(html);
