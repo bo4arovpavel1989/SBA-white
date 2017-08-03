@@ -4,6 +4,6 @@
 -getModernPPSCoordinates(optional, can be done later)
 -writePPSToJSON (optional, can be done later)
 
--wikiParserCityInfo (make it not more than once a month!!!!!)
+-wikiParserCityInfo (make it not more than once a month!!!!! change system date if you want to add past data)
 -citiesStats/getBkRelation (make it as many times as you want-fresh data put in wordstat catalogue)
--citiesStats/getBkPopularity (make it as many times as you want-fresh data put in wordstat catalogue)
+-citiesStats/getBkPopularity (make it as many times as you want-fresh data put in wordstat catalogue-change system time and date if you want to add some past data)

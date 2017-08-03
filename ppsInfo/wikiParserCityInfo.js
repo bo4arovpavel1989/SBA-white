@@ -31,6 +31,7 @@ String.prototype.replaceAll = function(search, replace){
 			//console.log(line);
 			try {
 			let city=line.children[3].children[0].children[0].data;
+			let region=line.children[7].children[0].children[0].children[0].children[0].data;
 			//console.log(city.children[0].children[0].data);
 			if(city==undefined) city = line.children[3].children[0].children[0].children[0].data;
 			let population=line.children[15].children[0].data;
@@ -38,7 +39,7 @@ String.prototype.replaceAll = function(search, replace){
 			//population = Number(population);
 			console.log(population);
 			//fs.appendFile('citypopulation.dat', city + ' - ' + population + '\r\n');
-			if(population !== NaN) {var citiesInfo = new CitiesInfo({name: city, population: population}).save();}
+			if(population !== NaN) {var citiesInfo = new CitiesInfo({name: city, region:region, population: population}).save();}
 			
 			} catch(e) {console.log(e)}
 			
