@@ -2,20 +2,27 @@ var bks=require('./../../bklist.js').bkList_offline;
 var CitiesInfo = require('./../../lib/models/mongoModel.js').CitiesInfo;
 var BkPPS = require('./../../lib/models/mongoModel.js').BkPPS;
 var fs=require('fs-extra');
-var now=new Date();
-var nowString;
-if(now.getMonth()+1<10)nowString=now.getFullYear()+'-0'+(now.getMonth()+1)+'-01';//beginning of the current month
-else nowString=now.getFullYear()+'-'+(now.getMonth()+1)+'-01';
-var nextMonth;
-if(now.getMonth()+2<10)nextMonth=now.getFullYear()+'-0'+(now.getMonth()+1)+'-01';//beginning of the nextt month
-else if(now.getMonth()+2<13)nextMonth=now.getFullYear()+'-'+(now.getMonth()+1)+'-01';
-else nextMonth=now.getFullYear()+1+'-01-01';
-console.log(nowString);
+var firstDate;
+var secondDate;
+var date;
+
+var fileArray=fs.readdirSync('wordstat');
+
+fileArray.forEach(filename=>{
+	date=filename.split('_')[0];
+	firstDate=filename.split('_')[0]+'-01';
+	var year=filename.split('_')[0].split('-')[0];
+	var month=filename.split('_')[0].split('-')[1];
+	if(Number(month)<9)secondDate=year+'-0'+(Number(month)+1)+'-01';
+	else if(Number(month)<12&&Number(month)>=9)secondDate=year+'-'+(Number(month)+1)+'-01';
+	else secondDate=(Number(year)+1)+'-01-01';
+});
 
 
-fs.readFile('wordstat/allbookmakers.csv','utf8',(err, data)=>{
+
+fs.readFile('wordstat/'+date+'_allbookmakers.csv','utf8',(err, data)=>{
 		var lines=data.split('\n');
-		CitiesInfo.update({name:'Москва',date:{$gte:nowString}},{$set:{bkPopularity:[83]}}).exec();
+		CitiesInfo.update({name:'Москва',date:{$gte:firstDate,$lte:secondDate}},{$set:{bkPopularity:[83]}}).exec();
 		var i=0;
 		var control=lines.length;
 		lines.forEach(line=>{
@@ -25,7 +32,7 @@ fs.readFile('wordstat/allbookmakers.csv','utf8',(err, data)=>{
 			line[2]=line[2].replace('\r','');
 			line[2]=Number(line[2]);
 			console.log(line);
-			CitiesInfo.update({name:{$regex:cityName},date:{$gte:nowString}},{$set:{bkPopularity:[line[2]]}},{upsert:false}).exec((err, rep)=>{
+			CitiesInfo.update({name:{$regex:cityName},date:{$gte:firstDate,$lte:secondDate}},{$set:{bkPopularity:[line[2]]}},{upsert:false}).exec((err, rep)=>{
 				i++;
 				console.log(i);
 				console.log(control);
@@ -42,7 +49,7 @@ function getBkSpecialPopularity(){
 	
 	function getWordstatData(i){
 		console.log();
-		if(nameArray[i]!=='allbookmakers.csv'){
+		if(nameArray[i]!==date+'_allbookmakers.csv'){
 			fs.readFile('wordstat/'+nameArray[i],'utf-8',(err, rep)=>{
 				var bk=nameArray[i].split('.')[0];
 				var lines=rep.split('\n');
@@ -56,7 +63,7 @@ function getBkSpecialPopularity(){
 					line[2]=Number(line[2]);
 					console.log(line);
 					console.log(bk);
-					CitiesInfo.update({name:{$regex:cityName},date:{$gte:nowString}},{$push:{bkPopularity:{bk:bk,bkPopularity:line[2]}}},{upsert:false}).exec((err, reply)=>{
+					CitiesInfo.update({name:{$regex:cityName},date:{$gte:firstDate,$lte:secondDate}},{$push:{bkPopularity:{bk:bk,bkPopularity:line[2]}}},{upsert:false}).exec((err, reply)=>{
 						j++;
 						if(j==control) {
 							i++;

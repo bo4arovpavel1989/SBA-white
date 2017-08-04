@@ -5,5 +5,6 @@
 -writePPSToJSON (optional, can be done later)
 
 -wikiParserCityInfo (make it not more than once a month!!!!! change system date if you want to add past data)
--citiesStats/getBkRelation (make it as many times as you want-fresh data put in wordstat catalogue)
--citiesStats/getBkPopularity (make it as many times as you want-fresh data put in wordstat catalogue-change system time and date if you want to add some past data)
+-citiesStats/getBkRelation (make it as many times as you want)
+-citiesStats/getBkPopularity (make it as many times as you want-fresh data put in wordstat catalogue, name file as '2017-01_leon')
+-citiesStats/writeSalaryFromCSVtoDB(make it as many times you want-fresh data put in salarycatalogue, name file as '2017-01_salary')

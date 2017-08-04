@@ -64,7 +64,7 @@ function calculateCoefficient(){
 		var coefficient;
 		if(bkRelation=='-'){//for all bk
 			try{
-				coefficient=((Number(salary)/1000)+Number(sportPopularity))/(1+Number(allBkRelation));
+				coefficient=((Number(salary)/1000)*((Number(sportPopularity))/100))/(Number(allBkRelation));
 				coefficient=coefficient.toFixed(2);
 			}catch(e){coefficient='Ошибка!'}
 		}
