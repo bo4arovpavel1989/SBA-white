@@ -28,7 +28,7 @@ function addToFilterTableHandler(){
 }
 
 function calculateDynamics(){	
-	var lines=$('.dynamics').each(function(){
+	var lines=$('.uncalculated').each(function(){
 		var first=$(this).prev().prev().data('value');
 		var second=$(this).prev().data('value');
 		first=Number(first);
@@ -44,6 +44,7 @@ function calculateDynamics(){
 		if (relation>0) sign='+';
 		if(diff>0)sign2 = '+';
 		$(this).html(sign2+diff+' ('+sign+relation+'%)');
+		$(this).removeClass('uncalculated');
 	});
 }
 

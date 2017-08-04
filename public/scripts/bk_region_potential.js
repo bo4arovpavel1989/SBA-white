@@ -21,6 +21,7 @@ function addToFilterTableRPHandler(){
 						$('.loader').removeClass('loading');
 						document.getElementById('showTableRP').disabled = false;
 						$('#bk_table_rp').append(html);
+						calculateCoefficient();
 				}
 		});
 		
@@ -50,5 +51,24 @@ function getCitiesOfRegion(){
 				$('#cityChoose').append(html);
 			}
 		});
+	});
+}
+
+function calculateCoefficient(){
+	$('.uncalculated').each(function(){
+		var salary=$(this).data('salary');
+		var allBkRelation=$(this).data('allbkrelation');
+		var bkRelation=$(this).data('bkrelation');
+		var sportPopularity=$(this).data('sportpopularity');
+		var bkPopularity=$(this).data('bkpopopularity');
+		var coefficient;
+		if(bkRelation=='-'){//for all bk
+			try{
+				coefficient=((Number(salary)/1000)+Number(sportPopularity))/(1+Number(allBkRelation));
+				coefficient=coefficient.toFixed(2);
+			}catch(e){coefficient='Ошибка!'}
+		}
+		$(this).html(coefficient);
+		$(this).removeClass('uncalculated');
 	});
 }
