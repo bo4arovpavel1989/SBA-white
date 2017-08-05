@@ -1,5 +1,6 @@
-var Nightmare = require('nightmare');		
-var nightmare = Nightmare({ show: false });
+var Nightmare = require('nightmare');
+  
+var nightmare = Nightmare({ show: true });
 var cheerio = require('cheerio');
 var CitiesInfo = require('./../../lib/models/mongoModel.js').CitiesInfo;
 
@@ -19,6 +20,7 @@ CitiesInfo.find({date:{$gte:nowString, $lte:nextMonth}},(err, reps)=>{
 	if(reps)goGrabbing(reps, i);
 });
 
+  
 function goGrabbing(array, i){
 		console.log(array[i].name);
 		nightmare	
@@ -29,6 +31,10 @@ function goGrabbing(array, i){
 		  .click('.salary-search__search-form>span.input:nth-child(2)>span>input')
 		  .type('body','\u0008\u0008\u0008\u0008\u0008\u0008\u0008\u0008\u0008\u0008\u0008\u0008\u0008\u0008\u0008\u0008\u0008\u0008\u0008\u0008\u0008\u0008\u0008\u0008\u0008\u0008\u0008\u0008\u0008\u0008\u0008\u0008\u0008\u0008\u0008\u0008\u0008\u0008\u0008\u0008')
 		  .type('.salary-search__search-form>span.input:nth-child(2)>span>input', array[i].name)
+		  .wait(1000)
+		  .mousedown('body > div.popup > div > ul > li:nth-child(1)')
+		  .mouseover('body > div.popup > div > ul > li:nth-child(1)')
+		  .click('body > div.popup > div > ul > li:nth-child(1)')
 		  .click('.salary-search__search-form>button')
 		  .wait(2000)
 		  .evaluate(function () {
