@@ -1,6 +1,6 @@
 var Nightmare = require('nightmare');
   
-var nightmare = Nightmare({ show: true });
+var nightmare = Nightmare({ show: false });
 var cheerio = require('cheerio');
 var CitiesInfo = require('./../../lib/models/mongoModel.js').CitiesInfo;
 
@@ -23,9 +23,9 @@ CitiesInfo.find({date:{$gte:nowString, $lte:nextMonth}},(err, reps)=>{
   
 function goGrabbing(array, i){
 		console.log(array[i].name);
-		nightmare	
+		nightmare
+		  .useragent("Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.111 Safari/537.36")	
 		  .goto('https://rabota.yandex.ru/salary')
-		  .useragent("Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.111 Safari/537.36")
 		  .wait('.salary-search__search-form')
 		  .type('.salary-search__search-form>span.input:nth-child(2)>span>input', '1')
 		  .click('.salary-search__search-form>span.input:nth-child(2)>span>input')
