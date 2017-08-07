@@ -1,32 +1,11 @@
 <form id="editRate"  action="/admin/editRate" method="post" style="margin-left: 5%;">
 	<h3>Рейтинговые оценки БК</h3>
-	<div class="form-group row">
-		 <label>Период выборки</label>
-					<select class="form-control" name='month' id='month' class='form-control'>
-						<option value='01'>Январь</option>
-						<option value='02'>Февраль</option>
-						<option value='03'>Март</option>
-						<option value='04'>Апрель</option>
-						<option value='05'>Май</option>
-						<option value='06'>Июнь</option>
-						<option value='07'>Июль</option>
-						<option value='08'>Август</option>
-						<option value='09'>Сентябрь</option>
-						<option value='10'>Октябрь</option>
-						<option value='11'>Ноябрь</option>
-						<option value='12'>Декабрь</option>
-					</select>
-					<select class="form-control" name='year' id='year'class='form-control'>
-						<option value='2017'>2017</option>
-						<option value='2016'>2016</option>
-						<option value='2015'>2015</option>
-						<option value='2014'>2014</option>
-						<option value='2013'>2013</option>
-						<option value='2012'>2012</option>
-						<option value='2011'>2011</option>
-						<option value='2010'>2010</option>
-					</select>
+	<div class="form-group">
+		<div class="input-group">
+			<label for = "name">Дата</label>
+			<input type="text" class="form-control" name='date' value='{{date}}' readonly>
 		</div>
+	</div>
 	<div class="form-group">
 		<div class="input-group">
 			<label for = "name">Короткое название БК</label>
