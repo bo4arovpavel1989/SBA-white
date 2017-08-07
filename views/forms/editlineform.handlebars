@@ -1,5 +1,6 @@
 <form id="editLine"  action="/admin/editLine" method="post" style="margin-left: 5%;">
 	<h3>Линия букмекера {{name}}</h3>
+	<input type="text" class="form-control" style='display:none' name='id' value='{{_id}}' readonly>
 	<div class="form-group row">
 		 <label>Период выборки</label>
 					<select class="form-control" name='month' id='month' class='form-control'>
