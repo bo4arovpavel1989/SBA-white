@@ -1,0 +1,39 @@
+
+<div class='container'>
+    <div class="divPanel page-content">
+        <div class="breadcrumbs">
+                <a href="/">SBA</a> &nbsp;/&nbsp;  <a href="/bkpage/{{bk.bk}}">Страница букмекера</a> &nbsp;/&nbsp;<span>Линия</span>
+            </div> 
+        <div class="row-fluid">
+                <div class="span12">
+                    <h1>Линия букмекера {{bk.name}}</h1>
+                    <div id="gridArea" style="height: 1795px;">
+                        <ul id="tiles" style='list-style-type: none;'>
+                        <li>
+                            <p>Количество видов спорта:<span class='pull-right'>{{bk.reputation.totalFeedbacks}}</span></p>
+							<p>Количество событий:<span class='pull-right'>{{bk.reputation.positiveFeedbacks}}</span></p>
+							<p>Маржа прематч:<span class='pull-right'>{{bk.reputation.negativeFeedbacks}}</span></p>
+							<p>Маржа лайв:<span class='pull-right'>{{bk.reputation.neutralFeedbacks}}</span></p>
+                        </li>            
+                        <li>
+                            <h4><a href="#">Социальные сети</a></h4>
+                            <p><span class='pull-right'>Вид спорта /Маржa прематч / Маржа лайв </span></p>
+							{{#each bk.marja_by_sport}}
+							 <p>{{this.sport}} <span class='pull-right'>{{this.marja_prematch}} / {{this.marjs_live}}</span></p>
+							{{/each}}
+						</li>                
+                        </ul>
+                    </div>
+                </div>
+            </div>
+    </div>
+</div>
+<script>
+	$(document).ready(function(){
+		$('#onlineLink').addClass('active');
+		$("#menu-toggle").click(function(e) {
+			e.preventDefault();
+			$("#wrapper").toggleClass("toggled");
+		});
+	});
+ </script>
