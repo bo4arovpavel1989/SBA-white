@@ -1,0 +1,57 @@
+
+<div class='container'>
+    <div class="divPanel page-content">
+        <div class="breadcrumbs">
+                <a href="/">SBA</a> &nbsp;/&nbsp;  <a href="/bkpage/{{bk.bk}}">Страница букмекера</a> &nbsp;/&nbsp;<span>Социальные факторы</span>
+            </div> 
+        <div class="row-fluid">
+                <div class="span12">
+                      <div id="gridArea" style="height: 1795px;">
+                        <ul id="tiles" style='list-style-type: none;'>  
+                        <li><span>Вконтакте</span>
+							<p>Подписчики: {{vk.sbcrb}}</p>
+							<p>Лайки: {{vk.like}}</p>
+							<p>Шеры: {{vk.share}}</p>
+							<p>Комментарии: {{vk.comment}}</p>
+							<p>Просмотры: {{vk.view}}</p>
+							<p>Публикации: {{vk.publications}}</p>
+						</li> 
+						<li><span>Фейсбук</span>
+							<p>Подписчики: {{fb.sbcrb}}</p>
+							<p>Лайки: {{fb.like}}</p>
+							<p>Шеры: {{fb.share}}</p>
+							<p>Комментарии: {{fb.comment}}</p>
+							<p>Просмотры: {{fb.view}}</p>
+							<p>Публикации: {{fb.publications}}</p>
+						</li> 
+						<li><span>Ютуб</span>
+							<p>Подписчики: {{ytb.sbcrb}}</p>
+							<p>Лайки: {{ytb.like}}</p>
+							<p>Шеры: {{ytb.share}}</p>
+							<p>Комментарии: {{ytb.comment}}</p>
+							<p>Просмотры: {{ytb.view}}</p>
+							<p>Публикации: {{ytb.publications}}</p>
+						</li> 
+						<li><span>Инстаграмм</span>
+							<p>Подписчики: {{insta.sbcrb}}</p>
+							<p>Лайки: {{insta.like}}</p>
+							<p>Шеры: {{insta.share}}</p>
+							<p>Комментарии: {{insta.comment}}</p>
+							<p>Просмотры: {{insta.view}}</p>
+							<p>Публикации: {{insta.publications}}</p>
+						</li> 						
+                        </ul>
+                    </div>
+                </div>
+            </div>
+    </div>
+</div>
+<script>
+	$(document).ready(function(){
+		$('#onlineLink').addClass('active');
+		$("#menu-toggle").click(function(e) {
+			e.preventDefault();
+			$("#wrapper").toggleClass("toggled");
+		});
+	});
+ </script>

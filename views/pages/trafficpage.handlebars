@@ -1,0 +1,77 @@
+
+<div class='container'>
+    <div class="divPanel page-content">
+        <div class="breadcrumbs">
+                <a href="/">SBA</a> &nbsp;/&nbsp;  <a href="/bkpage/{{bk.bk}}">Страница букмекера</a> &nbsp;/&nbsp;<span>Траффик</span>
+            </div> 
+        <div class="row-fluid">
+		 <form class='form-horizontal' action="/getonline_traffic_data" method="post" style=' margin-left:40px; margin-top: 40px; ' enctype="multipart/form-data">
+		 <div class="form-group row">
+		 <label>Период выборки</label>
+					<select class="form-control" name='monthFrom' class='form-control'>
+						<option value='01'>Январь</option>
+						<option value='02'>Февраль</option>
+						<option value='03'>Март</option>
+						<option value='04'>Апрель</option>
+						<option value='05'>Май</option>
+						<option value='06'>Июнь</option>
+						<option value='07'>Июль</option>
+						<option value='08'>Август</option>
+						<option value='09'>Сентябрь</option>
+						<option value='10'>Октябрь</option>
+						<option value='11'>Ноябрь</option>
+						<option value='12'>Декабрь</option>
+					</select>
+					<select class="form-control" name='yearFrom' class='form-control'>
+						<option value='2017'>2017</option>
+					</select>
+					<span><b>&nbsp; - &nbsp;</b></span>
+					<select class="form-control" name='monthTo' class='form-control'>
+						<option value='01'>Январь</option>
+						<option value='02'>Февраль</option>
+						<option value='03'>Март</option>
+						<option value='04'>Апрель</option>
+						<option value='05'>Май</option>
+						<option value='06'>Июнь</option>
+						<option value='07'>Июль</option>
+						<option value='08'>Август</option>
+						<option value='09'>Сентябрь</option>
+						<option value='10'>Октябрь</option>
+						<option value='11'>Ноябрь</option>
+						<option value='12'>Декабрь</option>
+					</select>
+					<select class="form-control" name='yearTo' class='form-control'>
+						<option value='2017'>2017</option>
+					</select>
+		</div>
+		 <div class="form-group row">
+			<input class="btn btn-primary" id='showData' type="submit" value="Показать"></input>
+			<a class="btn btn-danger" id='resetData'>Сброс</a>
+		</div>
+	</form>	
+                <div class="span12">
+                      <div id="gridArea" style="height: 1795px;">
+                        <ul id="tiles" style='list-style-type: none;'>  
+                        <li>
+						</li> 
+						<li>
+						</li> 
+						<li>
+						</li> 
+						<li>
+						</li> 						
+                        </ul>
+                    </div>
+                </div>
+            </div>
+    </div>
+</div>
+<script>
+	$(document).ready(function(){
+		$('#onlineLink').addClass('active');
+		$("#menu-toggle").click(function(e) {
+			e.preventDefault();
+			$("#wrapper").toggleClass("toggled");
+		});
+	});
+ </script>

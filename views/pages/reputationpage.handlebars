@@ -2,7 +2,7 @@
 <div class='container'>
     <div class="divPanel page-content">
         <div class="breadcrumbs">
-                <a href="/">SBA</a> &nbsp;/&nbsp;  <a href="/bkpage/{{bk.bk}}">Страница букмекера</a> &nbsp;/&nbsp;<span>Линия</span>
+                <a href="/">SBA</a> &nbsp;/&nbsp;  <a href="/bkpage/{{bk.bk}}">Страница букмекера</a> &nbsp;/&nbsp;<span>Репутация</span>
             </div> 
         <div class="row-fluid">
                 <div class="span12">
@@ -35,7 +35,7 @@
 							</div>
                     <div id="gridArea" style="height: 1795px;">
                         <ul id="tiles" style='list-style-type: none;'>          
-                        <li class='pull-right'>
+                        <li>
                             <p>Последние отзывы</p>
 							{{#each lastComments}}
 							 <p>{{this.date}} - {{this.source}}: {{this.comment}}</p>
