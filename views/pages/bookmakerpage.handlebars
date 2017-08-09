@@ -51,10 +51,10 @@
 							<p>Оффшорный продукт:{{#gt bk.product.offshore '0'}}<span class='pull-right'>ДА</span>{{/gt}}</p>
                         </li>  
                         <li>
-                            <h4><a href="#">ППС</a></h4>
+                            <h4><a href="/offline">ППС</a></h4>
                             <p>Точек всего: <span class='pull-right'>{{bk.pps.totalQuantity}}</span></p>
                             <p>По сравнению с предыдущим месяцем: <span class='pull-right'>{{bk.pps.dynamics}}</span></p>
-							<br><a href="/pps/{{bk.bk}}" class="pull-right more_link">Подробнее...</a></li>
+							<br><a href="/offline" class="pull-right more_link">Подробнее...</a></li>
 						</li>
                         <li>
                             <h4><a href="/traffic/{{bk.bk}}">Трафик</a></h4>
@@ -66,13 +66,13 @@
                             <br><a href="/traffic/{{bk.bk}}" class="pull-right more_link">Подробнее...</a>
 						</li>
                         <li>
-                            <h4><a href="#">Вакансии</a></h4>
+                            <h4><a href="/vacancy/{{bk.bk}}">Вакансии</a></h4>
                             <p>Открыто вакансий: <span class='pull-right'>{{bk.vacancy.opened}}</span></p>
                             <p>За последние 3 месяца открыто:  <span class='pull-right'>{{bk.vacancy.lastopened}}</span></p></p>
 							<br><a href="/vacancy/{{bk.bk}}" class="pull-right more_link">Подробнее...</a>
 							</li>
                         <li>
-                            <h4><a href="#">Экспертные оценки</a></h4> 
+                            <h4><a href="/experts/{{bk.bk}}">Экспертные оценки</a></h4> 
 	                            <p>Качество линии прематч:<span class='pull-right'>{{bk.expert.prematch_line}}/10</span></p>
 								<p>Качество линии лайв: <span class='pull-right'>{{bk.expert.live_line}}/10</span></p>
 								<p>Качество продукта: <span class='pull-right'>{{bk.expert.product}}/10</span></p>
@@ -83,7 +83,7 @@
 								<p>Партнерская программа: <span class='pull-right'>{{bk.expert.partnership}}/10</span></p>
 								<p>Бонусы: <span class='pull-right'>{{bk.expert.bonuses}}/10</span></p>
 								<p>Маркетинг: <span class='pull-right'>{{bk.expert.marketing}}/10</span></p>
-								<br><a href="/expert/{{bk.bk}}" class="pull-right more_link">Подробнее...</a>
+								<br><a href="/experts/{{bk.bk}}" class="pull-right more_link">Подробнее...</a>
                         </li>
                         </ul>
                     </div>

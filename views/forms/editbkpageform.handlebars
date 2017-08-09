@@ -1,6 +1,10 @@
-<form id="editBkPage"  action="/admin/editBkPage" method="post" style="margin-left: 5%;">
+<form id="editBkPage"  action="/admin/editform?q=bkpage" method="post" style="margin-left: 5%;">
 	<h3>Страница букмекера {{name}}</h3>
+	{{#if _id}}
 	<input type="text" class="form-control" style='display:none' name='id' value='{{_id}}' readonly>
+	{{else}}
+	Страница не существует
+	{{/if}}
 	<div class="form-group">
 		<div class="input-group">
 			<label for = "name">Дата</label>
