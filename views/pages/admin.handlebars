@@ -9,12 +9,22 @@
 	<link rel="shortcut icon" href="/images/favicon.png" type="image/png">
 </head>
 <body>
-<form id="getEditRateForm"  class='editFormCall' action="/admin/getEditRateForm" method="post" style="margin-left: 5%;" enctype="multipart/form-data">
-		<h3>Рейтинговые оценки бк</h3>
+<form id="getEditPagesForm"  class='editFormCall' action="/admin/getEditPagesForm" method="post" style="margin-left: 5%;" enctype="multipart/form-data">
+		<h3>Редактирование страницы</h3>
 			<select name='bk' class='form-control'>
 				{{#each bk}}
 				<option value={{this}}>{{this.bk}}</option>
 				{{/each}}
+			</select>
+			<select name='formname' class='form-control'>
+				<option value='editrateform'>Рейтинговые оценки</option>
+				<option value='editbkpageform'>Страница букмекера</option>
+				<option value='editlineform'>Линия</option>
+				<option value='editsocialform'>Социальные факторы</option>
+				<option value='editreputationform'>Репутация</option>
+				<option value='editexpertsform'>Экспертные оценки</option>
+				<option value='edittrafficform'>Траффик</option>
+				<option value='editvacancyform'>Вакансии</option>
 			</select>
 		<div class="form-group">
 		 <label>Период выборки</label>
@@ -40,99 +50,7 @@
 		<input id='addProductButton' class="btn btn-primary" type="submit" value="Редактировать"></input>
 	</div>	
 </form>
-<form id="getEditBkPageForm"  class='editFormCall' action="/admin/geteditbkpageform" method="post" style="margin-left: 5%;" enctype="multipart/form-data" >
-		<h3>Страница букмекера</h3>
-			<select name='bk' class='form-control'>
-				{{#each bk}}
-				<option value={{this}}>{{this.bk}}</option>
-				{{/each}}
-			</select>
-		<div class="form-group">
-		 <label>Период выборки</label>
-					<select class="form-control" name='month'class='form-control'>
-						<option value='01'>Январь</option>
-						<option value='02'>Февраль</option>
-						<option value='03'>Март</option>
-						<option value='04'>Апрель</option>
-						<option value='05'>Май</option>
-						<option value='06'>Июнь</option>
-						<option value='07'>Июль</option>
-						<option value='08'>Август</option>
-						<option value='09'>Сентябрь</option>
-						<option value='10'>Октябрь</option>
-						<option value='11'>Ноябрь</option>
-						<option value='12'>Декабрь</option>
-					</select>
-					<select class="form-control" name='year' class='form-control'>
-						<option value='2017'>2017</option>
-					</select>
-		</div>
-    <div class="form-group">
-		<input id='addProductButton' class="btn btn-primary" type="submit" value="Редактировать"></input>
- </div>
-</form>
-<form id="getEditLineForm"  class='editFormCall' action="/admin/geteditlineform" method="post" style="margin-left: 5%;" enctype="multipart/form-data" >
-		<h3>Линия</h3>
-			<select name='bk' class='form-control'>
-				{{#each bk}}
-				<option value={{this}}>{{this.bk}}</option>
-				{{/each}}
-			</select>
-		<div class="form-group">
-		 <label>Период выборки</label>
-					<select class="form-control" name='month'class='form-control'>
-						<option value='01'>Январь</option>
-						<option value='02'>Февраль</option>
-						<option value='03'>Март</option>
-						<option value='04'>Апрель</option>
-						<option value='05'>Май</option>
-						<option value='06'>Июнь</option>
-						<option value='07'>Июль</option>
-						<option value='08'>Август</option>
-						<option value='09'>Сентябрь</option>
-						<option value='10'>Октябрь</option>
-						<option value='11'>Ноябрь</option>
-						<option value='12'>Декабрь</option>
-					</select>
-					<select class="form-control" name='year' class='form-control'>
-						<option value='2017'>2017</option>
-					</select>
-		</div>
-    <div class="form-group">
-		<input id='addProductButton' class="btn btn-primary" type="submit" value="Редактировать"></input>
- </div>
-</form>
-<form id="getEditSocialPageForm"  class='editFormCall' action="/admin/geteditsocialpageform" method="post" style="margin-left: 5%;" enctype="multipart/form-data" >
-		<h3>Социальные факторы</h3>
-			<select name='bk' class='form-control'>
-				{{#each bk}}
-				<option value={{this}}>{{this.bk}}</option>
-				{{/each}}
-			</select>
-		<div class="form-group">
-		 <label>Период выборки</label>
-					<select class="form-control" name='month'class='form-control'>
-						<option value='01'>Январь</option>
-						<option value='02'>Февраль</option>
-						<option value='03'>Март</option>
-						<option value='04'>Апрель</option>
-						<option value='05'>Май</option>
-						<option value='06'>Июнь</option>
-						<option value='07'>Июль</option>
-						<option value='08'>Август</option>
-						<option value='09'>Сентябрь</option>
-						<option value='10'>Октябрь</option>
-						<option value='11'>Ноябрь</option>
-						<option value='12'>Декабрь</option>
-					</select>
-					<select class="form-control" name='year' class='form-control'>
-						<option value='2017'>2017</option>
-					</select>
-		</div>
-    <div class="form-group">
-		<input id='addProductButton' class="btn btn-primary" type="submit" value="Редактировать"></input>
- </div>
-</form>
+
 <div id='load'>
 </div>
 </body>

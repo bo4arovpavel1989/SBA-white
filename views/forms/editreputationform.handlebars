@@ -1,0 +1,29 @@
+<form id="editLine"  action="/admin/editform?q=line" method="post" style="margin-left: 5%;">
+	<h3>Репутация букмекера {{name}}</h3>
+	{{#if _id}}
+	<input type="text" class="form-control" style='display:none' name='id' value='{{_id}}' readonly>
+	{{else}}
+	Страница не существует
+	{{/if}}
+	<div class="form-group">
+		<div class="input-group">
+			<label for = "name">Дата</label>
+			<input type="text" class="form-control" name='date' value='{{date}}' readonly>
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="input-group">
+			<label for = "name">Короткое название БК</label>
+			<input type="text" class="form-control" name='bk' value='{{bk}}' readonly>
+		</div>
+	</div>
+    <div class="form-group">
+		<div class="input-group">
+			<label for = "name">Полное название БК</label>
+			<input type="text" class="form-control" name='name' value='{{name}}'>
+		</div>
+	</div>
+    <div class="form-group">
+		<input class="btn btn-primary" type="submit" value="Сохранить"></input>
+ </div>
+</form>
