@@ -30,7 +30,7 @@ let headers = {
 	};
 
 let options = {
-			url:'https://www.nalog.ru/opendata/7707329152-reestrlicbookmaker/data-20170706-structure-20160308.xml',
+			url:'https://www.nalog.ru/opendata/7707329152-reestrlicbookmaker/data-20170802-structure-20160308.xml',
 			headers:headers,
 			encoding:null	
 	}; 
@@ -74,7 +74,7 @@ let options = {
 						console.log(dateFormatted+' '+firmNameStandart+'.dat');
 						counter++;
 						console.log(counter);
-						fs.appendFileSync('ppsAddressesFromFNSXML/'+firmNameStandart+'/'+firmNameStandart+'_'+dateFormatted+dateEndFormatted+'_.dat', address+'\r\n', (err, rep)=>{
+						fs.appendFileSync('ppsAddressesFromFNSXML/'+firmNameStandart+'/'+firmNameStandart+'_'+dateFormatted+dateEndFormatted+'_.dat', address._+'\r\n', (err, rep)=>{//fns changed structure of xml
 							console.log(rep);
 							console.log(err);
 							
