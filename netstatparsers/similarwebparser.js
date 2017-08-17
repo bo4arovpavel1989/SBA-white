@@ -3,7 +3,7 @@ var bkurl = require('./bkurl.js').bkurl;
 var cheerio = require('cheerio');
 var BkSitesStats = require('./../lib/models/mongoModel.js').BkSitesStats;
 var Nightmare = require('nightmare');		
-var nightmare = Nightmare({ show: false });
+var nightmare = Nightmare({ show: true });
 var storedCookies=[];
 
  nightmare
@@ -34,6 +34,8 @@ function parseSimilarweb(i){
   .then(function (body) {
     var $ = cheerio.load(body);
 	var data={};
+	var dateMS=Date.parse(new Date());
+	dateMS=dateMS-30*24*60*60*1000;
 	data.totalVisits = $('.engagementInfo-valueNumber.js-countValue').html();
 	data.visitTime = $('.engagementInfo-valueNumber.js-countValue').eq(1).html();
 	data.pagesPerVisit = $('.engagementInfo-valueNumber.js-countValue').eq(2).html();
@@ -46,12 +48,27 @@ function parseSimilarweb(i){
 	data.trafficSource.mail = $('.trafficSourcesChart-value').eq(4).html();
 	console.log(data);
 	var countries=$('#geo-countries-accordion').get();
+	data.countries=[];
 	countries[0].children.forEach(country=>{
 		try{
 		if(country.type=='tag'){
-			console.log(country.children[1].children[1])//this is class 'according-toggle'
+			//console.log(country.children[1].children[1])//this is class 'according-toggle'
+			let countryName=country.children[1].children[1].children[3].children[3].children[0].data;
+			let countryStat=country.children[1].children[1].children[1].children[1].children[0].data;
+			console.log(countryStat);
+			data.countries.push({counrty:countryName,stat:countryStat});
+			
 		}
 		}catch(e){console.log(e)}
+	});
+	var referrals=$('ul.websitePage-list').get();
+	referrals[0].children.forEach(referral=>{
+		try{
+		if(referral.type==='tag'){//this is li.websitePage-...
+			let siteName=referral;
+			console.log(siteName);
+		}
+		}catch(e){}
 	});
   })
   .catch(function (error) {
