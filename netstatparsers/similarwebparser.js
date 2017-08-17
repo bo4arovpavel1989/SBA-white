@@ -1,33 +1,16 @@
-//var customFunctions = require('./../lib/customfunctions.js');
+var customFunctions = require('./../lib/customfunctions.js');
 var bkurl = require('./bkurl.js').bkurl;
 var cheerio = require('cheerio');
-//var BkSitesStats = require('./../lib/models/mongoModel.js').BkSitesStats;
+var BkSitesStats = require('./../lib/models/mongoModel.js').BkSitesStats;
 var Nightmare = require('nightmare');		
-var nightmare = Nightmare({ show: true });
+var nightmare = Nightmare({ show: false });
 var storedCookies=[];
 
- nightmare
-  .useragent("Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.111 Safari/537.36")
-  .goto(bkurl.resources[0].url)
-  .wait(2000)
-  .cookies.get()
-  .then((cookies) => {
-		console.log(cookies)
-        storedCookies = cookies;
-		parseSimilarweb(0);
-    })
-	.catch(function (error) {
-		console.log(error)
-	});
+ 
 	
-
+parseSimilarweb(0);
 
 function parseSimilarweb(i){
-	storedCookies.forEach((cookiItem)=>{
-		nightmare.cookies.set(cookiItem.name, cookiItem.value)
-	});
-	
-   var that=this;
    nightmare
   .useragent("Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.111 Safari/537.36")
   .goto(bkurl.resources[i].url)
@@ -50,7 +33,6 @@ function parseSimilarweb(i){
 	data.trafficSource.search = $('.trafficSourcesChart-value').eq(2).html();
 	data.trafficSource.social = $('.trafficSourcesChart-value').eq(3).html();
 	data.trafficSource.mail = $('.trafficSourcesChart-value').eq(4).html();
-	console.log(data);
 	var countries=$('#geo-countries-accordion').get();
 	data.countries=[];
 	countries[0].children.forEach(country=>{
@@ -59,27 +41,59 @@ function parseSimilarweb(i){
 			//console.log(country.children[1].children[1])//this is class 'according-toggle'
 			let countryName=country.children[1].children[1].children[3].children[3].children[0].data;
 			let countryStat=country.children[1].children[1].children[1].children[1].children[0].data;
-			console.log(countryStat);
 			data.countries.push({counrty:countryName,stat:countryStat});
 			
 		}
 		}catch(e){console.log(e)}
 	});
 	var referrals=$('ul.websitePage-list').get();
+	data.referrals=[];
 	referrals[0].children.forEach(referral=>{
 		try{
 		if(referral.type==='tag'){//this is li.websitePage-...
 			let siteName=referral.children[1].children[3].children[0].data;
 			let siteStat=referral.children[3].children[0].data;
 			data.referrals.push({site:siteName,stat:siteStat});
-			console.log(siteName);
+			console.log(siteName+' '+siteStat);
 		}
-		}catch(e){}
+		}catch(e){console.log(e)}
+	});
+	var keyWords=$('ul.searchKeywords-list').get();
+	data.keyWords=[];
+	keyWords[0].children.forEach(line=>{
+		try{
+			if(line.type==='tag'){
+				let keyWord=line.children[3].children[1].children[1].children[0].data;
+				let keyWordStat=line.children[3].children[3].children[0].data;
+				data.keyWords.push({word:keyWord,stat:keyWordStat});
+			}
+		}catch(e){console.log(e)}
+	});
+	var social=$('ul.socialList').get();
+	data.social=[];
+	social[0].children.forEach(line=>{
+		try{
+			if(line.type==='tag'){
+				let socialNet=line.children[1].attribs['data-sitename'];
+				let socialStat=line.children[3].children[3].children[0].data;
+				data.social.push({site:socialNet,stat:socialStat});
+			}
+		}catch(e){console.log(e)}
+	});
+	console.log(data);
+	var bkStat=new BkSitesStats({bk:bkurl.resources[i].site, date:dateMS, stats:data}).save(()=>{
+		i++;
+		if(i<bkurl.resources.length) parseSimilarweb(i);
+		else {
+			console.log('done');
+			return nightmare.end();
+		}
 	});
   })
   .catch(function (error) {
+	console.log(error);  
 	i++;
-	if(i<bkurl.resources.length) that(i);
+	if(i<bkurl.resources.length) parseSimilarweb(i);
 	else {
 		console.log('done');
 		return nightmare.end();
