@@ -1,17 +1,18 @@
-var customFunctions = require('./../lib/customfunctions.js');
+//var customFunctions = require('./../lib/customfunctions.js');
 var bkurl = require('./bkurl.js').bkurl;
 var cheerio = require('cheerio');
-var BkSitesStats = require('./../lib/models/mongoModel.js').BkSitesStats;
+//var BkSitesStats = require('./../lib/models/mongoModel.js').BkSitesStats;
 var Nightmare = require('nightmare');		
 var nightmare = Nightmare({ show: true });
 var storedCookies=[];
 
  nightmare
-  .goto(bkurl.resources[0].url)
   .useragent("Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.111 Safari/537.36")
+  .goto(bkurl.resources[0].url)
   .wait(2000)
   .cookies.get()
   .then((cookies) => {
+		console.log(cookies)
         storedCookies = cookies;
 		parseSimilarweb(0);
     })
@@ -22,10 +23,13 @@ var storedCookies=[];
 
 
 function parseSimilarweb(i){
+	storedCookies.forEach((cookiItem)=>{
+		nightmare.cookies.set(cookiItem.name, cookiItem.value)
+	});
+	
    var that=this;
    nightmare
   .useragent("Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.111 Safari/537.36")
-  .cookies.set(storedCookies[0].name, storedCookies[0].value)
   .goto(bkurl.resources[i].url)
   .wait(2000)
   .evaluate(function () {
@@ -65,7 +69,9 @@ function parseSimilarweb(i){
 	referrals[0].children.forEach(referral=>{
 		try{
 		if(referral.type==='tag'){//this is li.websitePage-...
-			let siteName=referral;
+			let siteName=referral.children[1].children[3].children[0].data;
+			let siteStat=referral.children[3].children[0].data;
+			data.referrals.push({site:siteName,stat:siteStat});
 			console.log(siteName);
 		}
 		}catch(e){}
