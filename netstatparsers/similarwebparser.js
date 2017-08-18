@@ -1,9 +1,9 @@
-var customFunctions = require('./../lib/customfunctions.js');
 var bkurl = require('./bkurl.js').bkurl;
+var bkList=require('./../bklist.js').bkList;
 var cheerio = require('cheerio');
 var BkSitesStats = require('./../lib/models/mongoModel.js').BkSitesStats;
 var Nightmare = require('nightmare');		
-var nightmare = Nightmare({ show: false });
+var nightmare = Nightmare({ show: true });//need to type captcha at first gotourl
 var storedCookies=[];
 
  
@@ -14,7 +14,7 @@ function parseSimilarweb(i){
    nightmare
   .useragent("Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.111 Safari/537.36")
   .goto(bkurl.resources[i].url)
-  .wait(2000)
+  .wait('#geo-countries-accordion')
   .evaluate(function () {
 	return document.body.innerHTML;
   })
@@ -81,7 +81,11 @@ function parseSimilarweb(i){
 		}catch(e){console.log(e)}
 	});
 	console.log(data);
-	var bkStat=new BkSitesStats({bk:bkurl.resources[i].site, date:dateMS, stats:data}).save(()=>{
+	var name;
+	bkList.forEach(bkItem=>{
+		if (bkItem.bk===bkurl.resources[i].site)name=bkItem.name;
+	});
+	var bkStat=new BkSitesStats({bk:bkurl.resources[i].site, name:name,date:dateMS, stats:data}).save(()=>{
 		i++;
 		if(i<bkurl.resources.length) parseSimilarweb(i);
 		else {
@@ -114,3 +118,5 @@ setTimeout(()=>{
 		}catch(e){}
 	}
 }, 5*60*1000);
+
+

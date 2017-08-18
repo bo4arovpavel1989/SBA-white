@@ -23,6 +23,33 @@
 			<input type="text" class="form-control" name='name' value='{{name}}'>
 		</div>
 	</div>
+	 <div class="form-group">
+		<div class="input-group">
+			<label for = "name">Total visits</label>
+			<input type="text" class="form-control" name='stats.totalVisits' value='{{stats.TotalVisits}}'>
+			<label for = "name">Visit Time</label>
+			<input type="text" class="form-control" name='stats.visitTime' value='{{stats.visitTime}}'>
+			<label for = "name">Pages per visit</label>
+			<input type="text" class="form-control" name='stats.pagesPerVisit' value='{{stats.pagesPerVisit}}'>
+			<label for = "name">Bounce rate</label>
+			<input type="text" class="form-control" name='stats.bounceRate' value='{{stats.bounceRate}}'>
+		</div>
+	</div>
+	 <div class="form-group">
+		<p>Traffic Source</p>
+		<div class="input-group">
+			<label for = "name">Direct</label>
+			<input type="text" class="form-control" name='stats.trafficSource.direct' value='{{stats.trafficSource.direct}}'>
+			<label for = "name">Referrals</label>
+			<input type="text" class="form-control" name='stats.trafficSource.referrals' value='{{stats.trafficSource.referrals}}'>
+			<label for = "name">Search</label>
+			<input type="text" class="form-control" name='stats.trafficSource.search' value='{{stats.trafficSource.search}}'>
+			<label for = "name">Social</label>
+			<input type="text" class="form-control" name='stats.trafficSource.social' value='{{stats.trafficSource.social}}'>
+			<label for = "name">Mail</label>
+			<input type="text" class="form-control" name='stats.trafficSource.mail' value='{{stats.trafficSource.mail}}'>
+		</div>
+	</div>
     <div class="form-group">
 		<input class="btn btn-primary" type="submit" value="Сохранить"></input>
  </div>
