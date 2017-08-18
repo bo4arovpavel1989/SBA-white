@@ -1,11 +1,10 @@
-
 <div class='container'>
     <div class="divPanel page-content">
         <div class="breadcrumbs">
-                <a href="/">SBA</a> &nbsp;/&nbsp;  <a href="/bkpage/{{bk.bk}}">Страница букмекера</a> &nbsp;/&nbsp;<span>Траффик</span>
+                <a href="/">SBA</a> &nbsp;/&nbsp;  <a href="/bkpage/{{bk}}">Страница букмекера</a> &nbsp;/&nbsp;<span>Траффик букмекера {{name}}</span>
             </div> 
         <div class="row-fluid">
-		 <form class='form-horizontal' action="/getonline_traffic_data" method="post" style=' margin-left:40px; margin-top: 40px; ' enctype="multipart/form-data">
+		 <form class='form-horizontal' id='showTrafficData' action="/get_online_traffic_data" method="post" style=' margin-left:40px; margin-top: 40px; ' enctype="multipart/form-data">
 		 <div class="form-group row">
 		 <label>Период выборки</label>
 					<select class="form-control" name='monthFrom' class='form-control'>
@@ -44,11 +43,15 @@
 						<option value='2017'>2017</option>
 					</select>
 		</div>
+		<input name='bk' value='{{bk}}' style='display:none'></input>
 		 <div class="form-group row">
 			<input class="btn btn-primary" id='showData' type="submit" value="Показать"></input>
 			<a class="btn btn-danger" id='resetData'>Сброс</a>
 		</div>
 	</form>	
+	<div class="loader"></div>
+	<div id='trafficDataContainer'>
+	</div>
                 <div class="span12">
                       <div id="gridArea" style="height: 1795px;">
                         <ul id="tiles" style='list-style-type: none;'>  
@@ -66,6 +69,7 @@
             </div>
     </div>
 </div>
+<script src='/scripts/online_traffic.js'></script>
 <script>
 	$(document).ready(function(){
 		$('#onlineLink').addClass('active');
