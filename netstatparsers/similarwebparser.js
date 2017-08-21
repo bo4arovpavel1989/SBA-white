@@ -41,7 +41,7 @@ function parseSimilarweb(i){
 			//console.log(country.children[1].children[1])//this is class 'according-toggle'
 			let countryName=country.children[1].children[1].children[3].children[3].children[0].data;
 			let countryStat=country.children[1].children[1].children[1].children[1].children[0].data;
-			data.countries.push({counrty:countryName,stat:countryStat});
+			data.countries.push({country:countryName,stat:countryStat});
 			
 		}
 		}catch(e){console.log(e)}

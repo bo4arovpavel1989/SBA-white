@@ -1,12 +1,47 @@
 <div class="span12">
 <div id="gridArea" style="height: 1795px;">
 <ul id="tiles" style='list-style-type: none;'>  
-    <li>
-	<p></p>
+    <li><p>Статистика</p>
+	<p>Визиты<span class='now'>{{now.Totalvisits}}</span><span style='display:none'class='first'>{{first.Totalvisits}}</span><span class='dynamics'></span></p>
+	<p>Отказы<span class='now'>{{now.bounceRate}}</span><span style='display:none'class='first'>{{first.bounceRate}}}}</span><span class='dynamics'></span></p>
+	<p>Глубина просмотра<span class='now'>{{now.pagesPerVisit}}</span><span style='display:none'class='first'>{{first.pagesPerVisit}}</span><span class='dynamics'></span></p>
+	<p>Длина сессии<span class='now'>{{now.visitTime}}</span><span style='display:none'class='first'>{{first.visitTime}}</span><span class='dynamics'></span></p>	
 	</li> 
-	<li>
+	<li><p>Источники</p>
+	<p>Прямые заходы<span class='now'>{{now.trafficSource.direct}}</span><span style='display:none'class='first'>{{first.trafficSource.direct}}</span><span class='dynamics'></span></p>	
+	<p>Поисковый траффик<span class='now'>{{now.trafficSource.search}}</span><span style='display:none'class='first'>{{first.trafficSource.seacrh}}</span><span class='dynamics'></span></p>	
+	<p>Реферальный траффик<span class='now'>{{now.trafficSource.referrals}}</span><span style='display:none'class='first'>{{first.trafficSource.referrals}}</span><span class='dynamics'></span></p>	
+	<p>Социальные сети<span class='now'>{{now.trafficSource.social}}</span><span style='display:none'class='first'>{{first.trafficSource.social}}</span><span class='dynamics'></span></p>	
+	<p>Почтовые рассылки<span class='now'>{{now.trafficSource.mail}}</span><span style='display:none'class='first'>{{first.trafficSource.mail}}</span><span class='dynamics'></span></p>	
 	</li> 
-	<li>
+	<li><p>География визитов</p>
+	{{#each now.countries}}
+	<p>{{country}}<span class='now {{country}}' data-stat={{stat}}>{{stat}}</span><span class='countrydynamics' data-country={{country}}></span></p>		
+	{{/each}}
+	{{#each first.countries}}
+	<p style='display:none;'>{{country}}<span class='first {{country}}'  data-stat={{stat}}>{{stat}}</span></p>		
+	{{/each}}
+	</li> 
+	<li><p>Ссылающиеся сайты</p>
+	{{#each now.referrals}}
+	<p>{{site}}<span class='now {{site}}'data-stat={{stat}}>{{stat}}</span><span class='referralsdynamics' data-site={{site}}></span></p>		
+	{{/each}}
+	{{#each first.countries}}
+	<p style='display:none;'>{{site}}<span class='first {{site}}'data-stat={{stat}}>{{stat}}</span></p>		
+	{{/each}}
+	</li> 
+	<li><p>Поисковые фразы</p>
+	{{#each now.keyWords}}
+	<p>{{word}}<span class='now'>{{stat}}</span></p>		
+	{{/each}}
+	</li> 
+	<li><p>Социальные сети</p>
+	{{#each now.social}}
+	<p>{{site}}<span class='now {{site}}'data-stat={{stat}}>{{stat}}</span><span class='socialdynamics' data-site={{site}}></span></p>		
+	{{/each}}
+	{{#each first.social}}
+	<p style='display:none;'>{{site}}<span class='first {{site}}'data-stat={{stat}}>{{stat}}</span></p>		
+	{{/each}}
 	</li> 
 	<li>
 	</li> 						
