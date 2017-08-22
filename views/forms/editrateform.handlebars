@@ -1,16 +1,5 @@
-<form id="editRate"  action="/admin/editform?q=editrateform" method="post" style="margin-left: 5%;">
+<form id="editRate"  action="/admin/editbkrate" method="post" style="margin-left: 5%;">
 	<h3>Рейтинговые оценки БК</h3>
-	{{#if _id}}
-	<input type="text" class="form-control" style='display:none' name='id' value='{{_id}}' readonly>
-	{{else}}
-	Страница не существует
-	{{/if}}
-	<div class="form-group">
-		<div class="input-group">
-			<label for = "name">Дата</label>
-			<input type="text" class="form-control" name='date' value='{{date}}' readonly>
-		</div>
-	</div>
 	<div class="form-group">
 		<div class="input-group">
 			<label for = "name">Короткое название БК</label>

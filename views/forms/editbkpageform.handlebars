@@ -1,16 +1,10 @@
 <form id="editBkPage"  action="/admin/editform?q=editbkpageform" method="post" style="margin-left: 5%;">
 	<h3>Страница букмекера {{name}}</h3>
 	{{#if _id}}
-	<input type="text" class="form-control" style='display:none' name='id' value='{{_id}}' readonly>
+	<input type="text" class="form-control" style='display:none' name='_id' value='{{_id}}' readonly>
 	{{else}}
 	Страница не существует
 	{{/if}}
-	<div class="form-group">
-		<div class="input-group">
-			<label for = "name">Дата</label>
-			<input type="text" class="form-control" name='date' value='{{date}}' readonly>
-		</div>
-	</div>
 	<div class="form-group">
 		<div class="input-group">
 			<label for = "name">Короткое название БК</label>
@@ -162,23 +156,19 @@
 	 <h4>Трафик</h4>
 		<div class="input-group">
 			<label for = "name">Визиты</label>
-			<input type="number" class="form-control" name='traffic.visits' value='{{traffic.visits}}'>
+			<input type="text" class="form-control" name='traffic.visits' value='{{traffic.visits}}'>
 		</div>
 		<div class="input-group">
 			<label for = "name">Отказы</label>
-			<input type="number" class="form-control" name='traffic.bouncerate' value='{{traffic.bouncerate}}'>
+			<input type="text" class="form-control" name='traffic.bouncerate' value='{{traffic.bouncerate}}'>
 		</div>
 		<div class="input-group">
 			<label for = "name">Прямой</label>
-			<input type="number" class="form-control" name='traffic.direct' value='{{traffic.direct}}'>
-		</div>
-		<div class="input-group">
-			<label for = "name">Органический</label>
-			<input type="number" class="form-control" name='traffic.organic' value='{{traffic.organic}}'>
+			<input type="text" class="form-control" name='traffic.direct' value='{{traffic.direct}}'>
 		</div>
 		<div class="input-group">
 			<label for = "name">Реферральный</label>
-			<input type="number" class="form-control" name='traffic.referral' value='{{traffic.referral}}'>
+			<input type="text" class="form-control" name='traffic.referral' value='{{traffic.referral}}'>
 		</div>
 	</div>
 	 <div class="form-group">

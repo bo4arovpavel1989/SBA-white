@@ -1,16 +1,10 @@
 <form id="editSocial"  action="/admin/editform?q=editvacancyform" method="post" style="margin-left: 5%;">
 	<h3>Вакансии букмекера {{name}}</h3>
 	{{#if _id}}
-	<input type="text" class="form-control" style='display:none' name='id' value='{{_id}}' readonly>
+	<input type="text" class="form-control" style='display:none' name='_id' value='{{_id}}' readonly>
 	{{else}}
 	Страница не существует
 	{{/if}}
-	<div class="form-group">
-		<div class="input-group">
-			<label for = "name">Дата</label>
-			<input type="text" class="form-control" name='date' value='{{date}}' readonly>
-		</div>
-	</div>
 	<div class="form-group">
 		<div class="input-group">
 			<label for = "name">Короткое название БК</label>

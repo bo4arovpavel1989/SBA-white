@@ -103,7 +103,7 @@ function parseSimilarweb(i){
 		console.log(dates);
 		let bkPageData={visits:data.totalVisits,bouncerate:data.bounceRate,direct:data.trafficSource.direct,referral:data.trafficSource.referrals};
 		BookmakerPage.update({bk:bkurl.resources[i].site,date:{$gte:dates[0],$lte:dates[1]}},
-							{$set:{traffic:bkPageData}},
+							{$set:{traffic:bkPageData,date:dateMS}},
 							{upsert:true}).exec();
   })
   .catch(function (error) {

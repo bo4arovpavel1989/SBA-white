@@ -13,11 +13,10 @@
 		<h3>Редактирование страницы</h3>
 			<select name='bk' class='form-control'>
 				{{#each bk}}
-				<option value={{this}}>{{this.bk}}</option>
+				<option value={{this.bk}}>{{this.bk}}</option>
 				{{/each}}
 			</select>
 			<select name='formname' class='form-control'>
-				<option value='editrateform'>Рейтинговые оценки</option>
 				<option value='editbkpageform'>Страница букмекера</option>
 				<option value='editlineform'>Линия</option>
 				<option value='editsocialform'>Социальные факторы</option>
@@ -47,10 +46,20 @@
 					</select>
 		</div>
 	<div class="form-group">
-		<input id='addProductButton' class="btn btn-primary" type="submit" value="Редактировать"></input>
+		<input class="btn btn-primary" type="submit" value="Редактировать"></input>
 	</div>	
 </form>
-
+<form id="getCreateBKrateForm"  class='editFormCall' action="/admin/geteditbkrateform" method="post" style="margin-left: 5%;" enctype="multipart/form-data">
+		<h3>Редакитровать страницу рейтинга</h3>
+			<select name='bk' class='form-control'>
+				{{#each bk}}
+				<option value={{this.bk}}>{{this.bk}}</option>
+				{{/each}}
+			</select>
+	<div class="form-group">
+		<input class="btn btn-primary" type="submit" value="Редактировать"></input>
+	</div>	
+</form>
 <div id='load'>
 </div>
 </body>
