@@ -30,8 +30,8 @@ function calculateDynamics(){
 		var now=$(this).data('now');
 		var first=$(this).data('first');
 		if(isNaN(now)&&isNaN(first)){
-			now=now.replace('K','000').replace('К','000');
-			first=first.replace('K','000').replace('К','000');
+			now=now.replace('K','000').replace('M','000000');
+			first=first.replace('K','000').replace('M','000000');
 			now=now.match(/\d{1}/g).join('');
 			first=first.match(/\d{1}/g).join('');
 			now=parseInt(now);

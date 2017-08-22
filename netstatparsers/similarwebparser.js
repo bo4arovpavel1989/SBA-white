@@ -1,7 +1,9 @@
 var bkurl = require('./bkurl.js').bkurl;
 var bkList=require('./../bklist.js').bkList;
 var cheerio = require('cheerio');
+var customFunctions=require('./../lib/customfunctions.js');
 var BkSitesStats = require('./../lib/models/mongoModel.js').BkSitesStats;
+var BookmakerPage = require('./../lib/models/mongoModel.js').BookmakerPage;
 var Nightmare = require('nightmare');		
 var nightmare = Nightmare({ show: true });//need to type captcha at first gotourl
 var storedCookies=[];
@@ -22,7 +24,7 @@ function parseSimilarweb(i){
     var $ = cheerio.load(body);
 	var data={};
 	var dateMS=Date.parse(new Date());
-	dateMS=dateMS-30*24*60*60*1000;
+	dateMS=dateMS-27*24*60*60*1000;
 	data.totalVisits = $('.engagementInfo-valueNumber.js-countValue').html();
 	data.visitTime = $('.engagementInfo-valueNumber.js-countValue').eq(1).html();
 	data.pagesPerVisit = $('.engagementInfo-valueNumber.js-countValue').eq(2).html();
@@ -94,6 +96,15 @@ function parseSimilarweb(i){
 		}
 	});
 	//TODO - update and upsert BookmakerPage with traffic data
+		console.log(dateMS);
+		let month=new Date(dateMS).getMonth();
+		let year=new Date(dateMS).getFullYear();
+		let dates=customFunctions.getFullMonth(year,month+1);
+		console.log(dates);
+		let bkPageData={visits:data.totalVisits,bouncerate:data.bounceRate,direct:data.trafficSource.direct,referral:data.trafficSource.referrals};
+		BookmakerPage.update({bk:bkurl.resources[i].site,date:{$gte:dates[0],$lte:dates[1]}},
+							{$set:{traffic:bkPageData}},
+							{upsert:true}).exec();
   })
   .catch(function (error) {
 	console.log(error);  
