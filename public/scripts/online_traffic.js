@@ -19,7 +19,27 @@ function showTrafficDataHandler(){
 						$('.loader').removeClass('loading');
 						document.getElementById('showData').disabled = false;
 						$('#trafficDataContainer').html(html);
+						calculateDynamics();
 				}
 		});
+	});
+}
+
+function calculateDynamics(){
+	$('.dynamics').each(function(){
+		var now=$(this).data('now');
+		var first=$(this).data('first');
+		if(isNaN(now)&&isNaN(first)){
+			now=now.replace('K','000').replace('К','000');
+			first=first.replace('K','000').replace('К','000');
+			now=now.match(/\d{1}/g).join('');
+			first=first.match(/\d{1}/g).join('');
+			now=parseInt(now);
+			first=parseInt(first);
+		}
+		var dynamics=((now-first)/(first))*100;
+		var sign='';
+		if(dynamics>0)sign='+';
+		$(this).html(' ('+sign+dynamics+')');
 	});
 }

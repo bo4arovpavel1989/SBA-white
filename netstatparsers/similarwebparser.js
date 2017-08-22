@@ -93,6 +93,7 @@ function parseSimilarweb(i){
 			return nightmare.end();
 		}
 	});
+	//TODO - update and upsert BookmakerPage with traffic data
   })
   .catch(function (error) {
 	console.log(error);  
