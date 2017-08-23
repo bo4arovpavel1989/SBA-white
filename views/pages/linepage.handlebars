@@ -10,15 +10,15 @@
                     <div id="gridArea" style="height: 1795px;">
                         <ul id="tiles" style='list-style-type: none;'>
                         <li>
-                            <p>Количество видов спорта:<span class='pull-right'>{{bk.reputation.totalFeedbacks}}</span></p>
-							<p>Количество событий:<span class='pull-right'>{{bk.reputation.positiveFeedbacks}}</span></p>
-							<p>Маржа прематч:<span class='pull-right'>{{bk.reputation.negativeFeedbacks}}</span></p>
-							<p>Маржа лайв:<span class='pull-right'>{{bk.reputation.neutralFeedbacks}}</span></p>
+                            <p>Количество видов спорта:<span class='pull-right'>{{bk.sportQuantity}}</span></p>
+							<p>Количество событий:<span class='pull-right'>{{bk.eventQuantity}}</span></p>
+							<p>Маржа прематч:<span class='pull-right'>{{bk.marja_prematch}}</span></p>
+							<p>Маржа лайв:<span class='pull-right'>{{bk.marja_live}}</span></p>
                         </li>            
                         <li>
                             <p><span class='pull-right'>Вид спорта /Маржa прематч / Маржа лайв </span></p>
 							{{#each bk.marja_by_sport}}
-							 <p>{{this.sport}} <span class='pull-right'>{{this.marja_prematch}} / {{this.marjs_live}}</span></p>
+							 <p>{{this.sport}} <span class='pull-right'>{{this.marja_prematch}} / {{this.marja_live}}</span></p>
 							{{/each}}
 						</li>                
                         </ul>
