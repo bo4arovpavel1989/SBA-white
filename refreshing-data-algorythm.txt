@@ -1,3 +1,5 @@
+=============
+Monthly refreshing PPS info data for offline page
 -xmlparser
 -writePPSfromFNS-controller
 
@@ -8,3 +10,12 @@
 -citiesStats/getBkRelation (make it as many times as you want)
 -citiesStats/getBkPopularity (make it as many times as you want-fresh data put in wordstat catalogue, name file as '2017-01_leon')
 -citiesStats/writeSalaryFromCSVtoDB(make it as many times you want-fresh data put in salarycatalogue, name file as '2017-01_salary')
+
+==============
+Monthly refreshing data for onlline page
+-similarwebparser (once from 1 to 26 of every month) - get traffic data for previus month;
+-getLinePage (get average line data for previous month)
+-getMonthlyDataForBKPage (get pps info for previous month)
+=============
+Line parsers
+-parserController works all the time (not necessary to work continuosly, but it should work frequently)
