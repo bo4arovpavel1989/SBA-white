@@ -49,7 +49,7 @@ function doGrabbing(i){
 			 try{
 				 var isAdmin = comment.children[1].children[3].attribs.title;
 				 if(isAdmin !=='Администратор'&&isAdmin !=='Главный редактор'){
-					 let date = isAdmin;
+					 let date = new Date();
 					 let commentContent = comment.children[3].children[0].data.slice(7);
 					 commentContent=commentContent.replaceAll(/\t/, '');
 					 commentContent=commentContent.replaceAll(/\n/, '');

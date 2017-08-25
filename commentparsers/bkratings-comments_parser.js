@@ -44,6 +44,7 @@ function doGrabbing(i){
 		 var $ = cheerio.load(body);
 		 var bknumer = i;
 		 let comments = $('.comment').get();
+		 var date = new Date();
 		 console.log(comments.length)
 		 comments.forEach(comment=>{
 			 try{
@@ -54,7 +55,8 @@ function doGrabbing(i){
 						bk: bks_formatted[bknumer],
 						source: 'bookmaker-ratings.ru',
 						type: 'comment',
-						comment: commentText
+						comment: commentText,
+						date:date
 					}).save();		
 				 }
 				 

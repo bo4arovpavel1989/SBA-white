@@ -56,8 +56,7 @@ function doGrabbing(i){
 				 let rating=feedback.children[1].children[5].children[3].children[0].data;
 				 rating=Number(rating);
 				 let feedbackText=feedback.children[3].children[3].children[0].children[0].data;
-				 let date = feedback.children[5].children[1].children[0].data;
-				 date=date.replace('в', '');
+				 let date = new Date();
 				 if (rating == 3) {feedbackObject.isNeutral=true; feedbackObject.neutral = feedbackText;}
 				 else if (rating > 3) {feedbackObject.isPositive=true; feedbackObject.positive = feedbackText;}
 				 else if (rating < 3) {feedbackObject.isNegative=true; feedbackObject.negative = feedbackText;}	

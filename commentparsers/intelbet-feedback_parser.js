@@ -46,8 +46,7 @@ function doGrabbing(i){
 		 let feedbacks=$('.feedback').get();
 		 console.log(bks[i] + ' ' + feedbacks.length)
 		 feedbacks.forEach(feedback=>{
-		 var date = feedback.children[1].children[5].children[1].children[1].children[0].data;
-		 console.log(date);
+		 var date = new Date();
 		 let comments = feedback.children[3].children;
 		 comments.forEach(comment=>{
 			 let isPositive, isNegative, prosString, consString;

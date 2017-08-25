@@ -61,7 +61,7 @@ function doGrabbing(i){
 				 let complStatus = complaint.children[1].children[1].children[0].data;
 				 let complHead = complaint.children[3].children[1].children[0].data;
 				 let complText = complaint.children[3].children[3].attribs['data-text'];
-				 let date = complaint.children[5].children[1].children[3].children[3].children[0].data;
+				 let date = new Date();
 				 complText = complText.replaceAll(/\t/, '');
 				 complHead=complHead.replaceAll(/\t/, '');
 				 console.log(complStatus);

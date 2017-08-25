@@ -46,6 +46,7 @@ function doGrabbing(i){
 		 var $ = cheerio.load(body);
 		 var bknumer = i;
 		 let complaints = $('.block-content').get();
+		 var date = new Date();
 		 complaints.forEach(complaint=>{
 			 try {
 				 let complStatus = complaint.children[1].children[3].children[1].children[0].data;
@@ -71,7 +72,8 @@ function doGrabbing(i){
 					source: 'bookmaker-ratings.ru',
 					type: 'complaint',
 					complaint: complText,
-					status: complStatus
+					status: complStatus,
+					date:date
 				 }).save()
 				 
 			 }catch(e){console.log(e)}
