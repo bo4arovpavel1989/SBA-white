@@ -7,6 +7,53 @@
         <div class="row-fluid">
                 <div class="span12">
                     <h1>Репутация букмекера {{bk.name}}</h1>
+					 <form class='form-horizontal' id='showTrafficData' action="/get_online_traffic_data" method="post" style=' margin-left:40px; margin-top: 40px; ' enctype="multipart/form-data">
+					 <div class="form-group row">
+					 <label>Период выборки</label>
+								<select class="form-control" name='monthFrom' class='form-control'>
+									<option value='01'>Январь</option>
+									<option value='02'>Февраль</option>
+									<option value='03'>Март</option>
+									<option value='04'>Апрель</option>
+									<option value='05'>Май</option>
+									<option value='06'>Июнь</option>
+									<option value='07'>Июль</option>
+									<option value='08'>Август</option>
+									<option value='09'>Сентябрь</option>
+									<option value='10'>Октябрь</option>
+									<option value='11'>Ноябрь</option>
+									<option value='12'>Декабрь</option>
+								</select>
+								<select class="form-control" name='yearFrom' class='form-control'>
+									<option value='2017'>2017</option>
+								</select>
+								<span><b>&nbsp; - &nbsp;</b></span>
+								<select class="form-control" name='monthTo' class='form-control'>
+									<option value='01'>Январь</option>
+									<option value='02'>Февраль</option>
+									<option value='03'>Март</option>
+									<option value='04'>Апрель</option>
+									<option value='05'>Май</option>
+									<option value='06'>Июнь</option>
+									<option value='07'>Июль</option>
+									<option value='08'>Август</option>
+									<option value='09'>Сентябрь</option>
+									<option value='10'>Октябрь</option>
+									<option value='11'>Ноябрь</option>
+									<option value='12'>Декабрь</option>
+								</select>
+								<select class="form-control" name='yearTo' class='form-control'>
+									<option value='2017'>2017</option>
+								</select>
+					</div>
+					<input name='bk' value='{{bk}}' style='display:none'></input>
+					 <div class="form-group row">
+						<input class="btn btn-primary" id='showData' type="submit" value="Показать"></input>
+					</div>
+				</form>	
+				<div class="loader"></div>
+				<div id='reputationDataContainer'>
+				</div>
 					<div class="table-responsive">
 							<table class="table table-striped" >
 								<thead>
