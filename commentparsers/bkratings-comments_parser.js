@@ -40,7 +40,7 @@ function doGrabbing(i){
 						return document.body.innerHTML;
 					})
 	  .then(function (body) {
-		  console.log(2);
+		 console.log(2);
 		 var $ = cheerio.load(body);
 		 var bknumer = i;
 		 let comments = $('.comment').get();
