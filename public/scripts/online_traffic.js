@@ -18,6 +18,7 @@ function showTrafficDataHandler(){
 				success: function(html){
 						$('.loader').removeClass('loading');
 						document.getElementById('showData').disabled = false;
+						$('#trafficDataContainer').empty();
 						$('#trafficDataContainer').html(html);
 						calculateDynamics();
 				}
