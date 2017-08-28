@@ -1,0 +1,10 @@
+	<div id="gridArea" style="height: 1795px;">
+		<ul id="tiles" style='list-style-type: none;'>          
+			<li>
+				<p>Последние отзывы</p>
+				{{#each comments}}
+				 <p>{{source}}: "{{comment}}"</p>
+				{{/each}}
+			</li>                
+		</ul>
+	</div>
