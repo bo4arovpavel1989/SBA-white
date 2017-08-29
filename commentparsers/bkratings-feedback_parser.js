@@ -59,7 +59,8 @@ function doGrabbing(i){
 				 if (rating == 3) {feedbackObject.isNeutral=true; feedbackObject.neutral = feedbackText;}
 				 else if (rating > 3) {feedbackObject.isPositive=true; feedbackObject.positive = feedbackText;}
 				 else if (rating < 3) {feedbackObject.isNegative=true; feedbackObject.negative = feedbackText;}	
-				 feedbackObject.date=date;	
+				 feedbackObject.date=date;
+				 feedbackObject.feedbackText=feedbackText;
 				 let dataToWrite = new Feedback(feedbackObject).save();
 				 console.log(date)
 			 } catch(e){}

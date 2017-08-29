@@ -35,17 +35,18 @@ function getFeedback(i){
 				  });
 				  let rating=section.children[3].children[1].children[4].children[3].attribs['data-rating'];
 				  //console.log(rating)
-				  let feedBackText='';
+				  let feedbackText='';
 				  let feedBackTextArray=section.children[3].children[3].children;
 				  feedBackTextArray.forEach(tag=>{
-					  feedBackText +=tag.data;
+					  feedbackText +=tag.data;
 				  });
-				  //console.log(feedBackText)
+				  //console.log(feedbackText)
 				  rating=Number(rating);
-				 if (rating == 3) {feedbackObject.isNeutral=true; feedbackObject.neutral = feedBackText;}
-				 else if (rating > 3) {feedbackObject.isPositive=true; feedbackObject.positive = feedBackText;}
-				 else if (rating < 3) {feedbackObject.isNegative=true; feedbackObject.negative = feedBackText;}	
+				 if (rating == 3) {feedbackObject.isNeutral=true; feedbackObject.neutral = feedbackText;}
+				 else if (rating > 3) {feedbackObject.isPositive=true; feedbackObject.positive = feedbackText;}
+				 else if (rating < 3) {feedbackObject.isNegative=true; feedbackObject.negative = feedbackText;}	
 				 console.log(feedbackObject);
+				 feedbackObject.feedbackText=feedbackText;
 				 let dataToWrite = new Feedback(feedbackObject).save((err, rep)=>{
 					 control++;
 					 if(control==commentsections.length){

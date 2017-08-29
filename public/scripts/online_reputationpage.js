@@ -31,46 +31,27 @@ function calculateDynamics(data){
     var templateComment = Handlebars.compile( $('#lastComments').html() );
 	var commentHTML=templateComment(commentObject);
 	$('#lastCommentsContainer').append( commentHTML );
+	var feedbacks=data.feedback;
+	var stat={};
+	var sources=[];
+	feedbacks.forEach(function(feedback){
+		if(sources.indexOf(feedback.source)===-1) {
+			sources.push(feedback.source);
+			stat[feedback.source]={total:0,isPositive:0,isNegative:0,isNeutral:0}
+		}
+		if(feedback.isPositive)stat[feedback.source].isPositive++; 
+		if(feedback.isNegative)stat[feedback.source].isNegative++; 
+		if(feedback.isNeutral)stat[feedback.source].isNeutral++; 
+		stat[feedback.source].total++;
+	});
 	
-	var nowFeedback=data.to;
-	var firstFeedback=data.from;
-	var sourcesNow=[];
-	var sourcesFirst=[];
-	var nowStats={};
-	var firstStats={};
-	var dynamicsStat={};
-	nowFeedback.forEach(function(feedback){
-		if(sourcesNow.indexOf(feedback.source)===-1) {
-			sourcesNow.push(feedback.source);
-			nowStats[feedback.source]={isPositive:0,isNegative:0,isNeutral:0}
-		}
-		if(feedback.isPositive)nowStats[feedback.source].isPositive++; 
-		if(feedback.isNegative)nowStats[feedback.source].isNegative++; 
-		if(feedback.isNeutral)nowStats[feedback.source].isNeutral++; 
-	});
-	firstFeedback.forEach(function(feedback){
-		if(sourcesFirst.indexOf(feedback.source)===-1) {
-			sourcesFirst.push(feedback.source);
-			firstStats[feedback.source]={isPositive:0,isNegative:0,isNeutral:0}
-		}
-		if(feedback.isPositive)firstStats[feedback.source].isPositive++; 
-		if(feedback.isNegative)firstStats[feedback.source].isNegative++; 
-		if(feedback.isNeutral)firstStats[feedback.source].isNeutral++; 
-	});
-	for(var property in nowStats){
-		dynamicsStat[property]={};
-		firstStats[property] = firstStats[property] || {isPositive:0,isNegative:0,isNeutral:0};
-		dynamicsStat[property].isPositive=nowStats[property].isPositive - firstStats[property].isPositive;
-		dynamicsStat[property].isNegative=nowStats[property].isNegative - firstStats[property].isNegative;
-		dynamicsStat[property].isNeutral=nowStats[property].isNeutral - firstStats[property].isNeutral;
-	}
-	for (var source in dynamicsStat){
+	for (var source in stat){
 		var data={
 			source:source,
-			total:dynamicsStat[source].isPositive+dynamicsStat[source].isNeutral+dynamicsStat[source].isNegative,
-			positive:dynamicsStat[source].isPositive,
-			negative:dynamicsStat[source].isNegative,
-			neutral:dynamicsStat[source].isNeutral
+			total:stat[source].total,
+			positive:stat[source].isPositive,
+			negative:stat[source].isNegative,
+			neutral:stat[source].isNeutral
 			};
 		var templateFeedback = Handlebars.compile( $('#feedbackSources').html() );
 		var feedbackHTML=templateFeedback(data);

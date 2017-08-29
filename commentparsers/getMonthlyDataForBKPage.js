@@ -10,5 +10,5 @@ var dates=customFunctions.getFullMonth(year,month);
 getDataForBKPage(0);
 
 function getDataForBKPage(i){
-	Feedback.find({bk:bks[i].bk,date({})})
+	Feedback.find({bk:bks[i].bk})
 }
