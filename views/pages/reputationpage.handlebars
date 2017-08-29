@@ -52,6 +52,22 @@
 				</form>	
 				<div class="loader"></div>
 				<div id='reputationDataContainer'>
+				    <div class="table-responsive">
+					<table class="table table-striped" >
+						<thead>
+							<th></th>
+							<th></th>
+							<th>Всего</th>
+							<th>Полож.</th>
+							<th>Отриц.</th>
+							<th>Нейтр.</th>
+							<th>Оценка пользователей</th>
+						</thead>
+						<tbody id='reputationData'>
+							
+						</tbody>
+					</table>
+				</div>
 				</div>
 				<div id='lastCommentsContainer'>
 					</div>
@@ -70,32 +86,15 @@
 	});
  </script>
  <script id="feedbackSources" type="text/x-handlebars-template">
-    <div class="table-responsive">
-	<table class="table table-striped" >
-		<thead>
-			<th></th>
-			<th></th>
-			<th>Всего</th>
-			<th>Полож.</th>
-			<th>Отриц.</th>
-			<th>Нейтр.</th>
-			<th>Оценка пользователей</th>
-		</thead>
-		<tbody>
-		{{#each bk.comments}}
-			<tr>
-				<td></td>
-				<td>{{this.source}}</td>
-				<td>{{this.total}}</td>
-				<td>{{this.positive}}</td>
-				<td>{{this.negative}}</td>
-				<td>{{this.neutral}}</td>
-				<td>{{this.mark}}</td>
-			</tr>
-		{{/each}}
-		</tbody>
-	</table>
-</div>
+							<tr>
+								<td></td>
+								<td>\{{source}}</td>
+								<td>\{{total}}</td>
+								<td>\{{positive}}</td>
+								<td>\{{negative}}</td>
+								<td>\{{neutral}}</td>
+								<td>\{{mark}}</td>
+							</tr>
 </script>
 <script id="lastComments" type="text/x-handlebars-template">
 	<div id="gridArea" style="height: 1795px;">

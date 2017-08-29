@@ -1,7 +1,5 @@
-var bks = ['fon', 'bk-leon', '888', 'liga-stavok', '1xstavka', 'bk-olimp', 'winline', 'bk-betcity', 'bk-baltbet'];
-var bks_formatted=['fonbet', 'leon', 'bk888', 'ligastavok', 'bk1xbet', 'bkolimp', 'winline', 'betcity', 'baltbet']; //bk names as i use it in ither modules
-
-
+var bks = ['bk-leon', 'fon', '1xstavka', '888', 'winline', 'bk-olimp', 'liga-stavok', 'bk-betcity', 'bk-baltbet'];
+var bks_formatted=require('./../bklist.js').bkList;//bk names as i use it in ither modules
 var Nightmare = require('nightmare');		
 var nightmare = Nightmare({ show: false });
 var cheerio = require('cheerio');
@@ -62,7 +60,7 @@ function doGrabbing(i){
 					 prosString = comment.children[3].children[0].data.split('\n')[1].slice(20);//string starts from about 20 space symbols
 				 }
 				 let feedback = new Feedback({
-					 bk: bks_formatted[bknumer], 
+					 bk: bks_formatted[bknumer].bk, 
 					 source: 'intelbet.ru',
 					 type: 'feedback', 
 					 date: date, 

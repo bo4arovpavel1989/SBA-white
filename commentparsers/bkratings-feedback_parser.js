@@ -1,6 +1,5 @@
-var bks = ['fonbet', 'leonbets', '888sport', 'liga-stavok', '1h-stavka', 'olimp-kz', 'winlinebet', 'betcity', 'baltbet-tsupis'];
-var bks_formatted=['fonbet', 'leon', 'bk888', 'ligastavok', 'bk1xbet', 'olimp', 'winline', 'betcity', 'baltbet']; //bk names as i use it in ither modules
-
+var bks = ['leonbets', 'fonbet', '1h-stavka', '888sport', 'winlinebet', 'olimp-kz', 'liga-stavok', 'betcity', 'baltbet-tsupis'];
+var bks_formatted=require('./../bklist.js').bkList;//bk names as i use it in ither modules
 
 var Nightmare = require('nightmare');		
 var nightmare = Nightmare({ show: false });
@@ -49,7 +48,7 @@ function doGrabbing(i){
 			 try {
 				 let isNegative, isNeutral, isPositive;
 				 let feedbackObject=({
-					bk: bks_formatted[bknumer],
+					bk: bks_formatted[bknumer].bk,
 					source: 'bookmaker-ratings.ru',
 					type: 'feedback'
 				 });

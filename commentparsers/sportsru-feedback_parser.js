@@ -1,6 +1,5 @@
-var bks = ['fonbet', 'leon', '888', 'ligastavok', '1xstavka', 'olimp', 'winline', 'betcity', 'baltbet'];
-var bks_formatted=['fonbet', 'leon', 'bk888', 'ligastavok', 'bk1xbet', 'bkolimp', 'winline', 'betcity', 'baltbet']; //bk names as i use it in ither modules
-
+var bks = ['leon', 'fonbet', '1xstavka', '888', 'winline', 'olimp', 'ligastavok', 'betcity', 'baltbet'];
+var bks_formatted=require('./../bklist.js').bkList;//bk names as i use it in ither modules
 
 var Nightmare = require('nightmare');		
 var nightmare = Nightmare({ show: false });
@@ -29,7 +28,7 @@ function getFeedback(i){
 			  try{
 				  let isNegative, isNeutral, isPositive;
 				  let feedbackObject=({
-						bk: bks_formatted[bknumer],
+						bk: bks_formatted[bknumer].bk,
 						source: 'sports.ru',
 						type: 'feedback',
 						date:date
