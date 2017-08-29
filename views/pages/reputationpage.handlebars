@@ -52,24 +52,25 @@
 				</form>	
 				<div class="loader"></div>
 				<div id='reputationDataContainer'>
-				    <div class="table-responsive">
-					<table class="table table-striped" >
-						<thead>
-							<th></th>
-							<th></th>
-							<th>Всего</th>
-							<th>Полож.</th>
-							<th>Отриц.</th>
-							<th>Нейтр.</th>
-							<th>Оценка пользователей</th>
-						</thead>
-						<tbody id='reputationData'>
-							
-						</tbody>
-					</table>
-				</div>
-				</div>
-				<div id='lastCommentsContainer'>
+					<div id="gridArea" style="height: 1795px;">
+						<div class="table-responsive"  style='width:70%;'>
+							<table class="table table-striped" >
+								<thead>
+									<th></th>
+									<th></th>
+									<th>Всего</th>
+									<th>Полож.</th>
+									<th>Отриц.</th>
+									<th>Нейтр.</th>
+									<th>Оценка пользователей</th>
+								</thead>
+								<tbody id='reputationData'>
+									
+								</tbody>
+							</table>
+						</div>
+						<ul id="tiles" class='lastCommentsContainer' style='list-style-type: none;'>  
+						</ul>           
 					</div>
                 </div>
             </div>
@@ -96,15 +97,11 @@
 								<td>\{{mark}}</td>
 							</tr>
 </script>
-<script id="lastComments" type="text/x-handlebars-template">
-	<div id="gridArea" style="height: 1795px;">
-		<ul id="tiles" style='list-style-type: none;'>          
+<script id="lastComments" type="text/x-handlebars-template">        
 			<li>
 				<p>Последние отзывы</p>
 				\{{#each comments}}
 				 <p>\{{source}}: "\{{comment}}"</p>
 				\{{/each}}
-			</li>                
-		</ul>
-	</div>
+			</li>    
 </script>

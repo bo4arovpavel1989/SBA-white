@@ -18,7 +18,8 @@ function showReputationDataHandler(){
 				success: function(data){
 						$('.loader').removeClass('loading');
 						document.getElementById('showData').disabled = false;
-						$('#lastCommentsContainer').empty();
+						$('.lastCommentsContainer').empty();
+						$('#reputationData').empty();
 						calculateDynamics(data);
 				}
 		});
@@ -26,11 +27,11 @@ function showReputationDataHandler(){
 }
 
 function calculateDynamics(data){
-	
+	console.log(data);
 	var commentObject={comments:data.lastComments,example:'vvsvddv'};
     var templateComment = Handlebars.compile( $('#lastComments').html() );
 	var commentHTML=templateComment(commentObject);
-	$('#lastCommentsContainer').append( commentHTML );
+	$('.lastCommentsContainer').append( commentHTML );
 	var feedbacks=data.feedback;
 	var stat={};
 	var sources=[];
