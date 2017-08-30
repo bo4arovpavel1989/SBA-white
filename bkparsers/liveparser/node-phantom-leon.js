@@ -33,7 +33,7 @@ function getMarja(){
 				if(!isNaN(Number(draw)) && (Number(draw))!==0) marja += 100/Number(draw);
 				if(!isNaN(Number(away)) && (Number(away))!==0) marja += 100/Number(away);
 				marja = marja - 100;
-				if(marja>0&&marja!=NaN){
+				if(marja>0&&!isNaN(marja)){
 					console.log('liveevent coeffs: ' + sport + ' - ' + home + '-' + draw + '-' + away + '. Marja: ' + marja + '\n');
 					let now = Date.now();
 					sport=sportSpelling(sport);

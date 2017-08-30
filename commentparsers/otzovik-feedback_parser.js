@@ -54,7 +54,8 @@ function getFeedback(i){
 				 else if (rating > 3) {feedbackObject.isPositive=true; feedbackObject.positive = feedbackText;}
 				 else if (rating < 3) {feedbackObject.isNegative=true; feedbackObject.negative = feedbackText;}	
 				 console.log(feedbackObject);
-				 feedbackObject.feedbackText=feedbackText;
+				 feedbackObject.usermark=Number(userMark);
+				 feedbackObject.feedbackText=feedbackText.slice(0,200);
 				 let dataToWrite = new Feedback(feedbackObject).save((err, rep)=>{
 					 control++;
 					 if(control==commentSections.length){

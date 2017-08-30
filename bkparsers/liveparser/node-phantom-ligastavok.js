@@ -41,7 +41,7 @@ function getMarja(){
 				if(coeffs[1] != '-' && coeffs[1] != 0) marja += 100/parseFloat(coeffs[1]);
 				if(coeffs[2] != '-' && coeffs[2] != 0) marja += 100/parseFloat(coeffs[2]);
 				marja = marja -100;
-				if(marja>0&&marja!=NaN){
+				if(marja>0&&!isNaN(marja)){
 					console.log(sport + ': ' + coeffs[0] + ' - ' + coeffs[1] + ' - ' + coeffs[2] + '. Marja = ' + marja);
 					let now = Date.now();
 					sport=sportSpelling(sport);

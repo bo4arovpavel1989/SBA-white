@@ -36,7 +36,7 @@ nightmare
 				if(draw != '-' && draw != 0) marja += 100/parseFloat(draw);
 				if(away != '-' && away != 0) marja += 100/parseFloat(away);
 				marja = marja -100;
-				if(marja>0&&marja!=NaN){
+				if(marja>0&&!isNaN(marja)){
 					console.log(betType + ': ' + sportType + ': ' + win + ' - ' + draw + ' - ' + away + '. Marja = ' + marja);
 					let now = Date.now();
 					sportType=sportSpelling(sportType);

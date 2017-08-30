@@ -48,7 +48,7 @@ function goGrabbing(i){
 						 if(draw != '-' && draw != 0&& draw !=undefined) marja += 100/parseFloat(draw);
 						 if(away != '-' && away != 0&& away !=undefined) marja += 100/parseFloat(away);
 						 marja = marja -100;
-						 if(marja>0&&marja!=NaN){
+						 if(marja>0&&!isNaN(marja)){
 							 let now = Date.now();
 							 sport=sportSpelling(sport);
 							 console.log(sport + ': ' + win + ' - ' + draw + ' - ' + away + '. Marja = ' + marja);	

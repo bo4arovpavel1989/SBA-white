@@ -97,13 +97,15 @@ function parseSimilarweb(i){
 	});
 	//TODO - update and upsert BookmakerPage with traffic data
 		console.log(dateMS);
-		let month=new Date(dateMS).getMonth();
-		let year=new Date(dateMS).getFullYear();
-		let dates=customFunctions.getFullMonth(year,month+1);
+		var date=new Date();
+		var year=date.getFullYear();
+		var month=date.getMonth();
+		if (month == 0){year = year-1;month=12};//i get data of pervious month;
+		var dates=customFunctions.getFullMonth(year,month);
 		console.log(dates);
 		let bkPageData={visits:data.totalVisits,bouncerate:data.bounceRate,direct:data.trafficSource.direct,referral:data.trafficSource.referrals};
 		BookmakerPage.update({bk:bkurl.resources[i].site,date:{$gte:dates[0],$lte:dates[1]}},
-							{$set:{traffic:bkPageData,date:dateMS}},
+							{$set:{traffic:bkPageData,date:dates[2]}},
 							{upsert:true}).exec();
   })
   .catch(function (error) {

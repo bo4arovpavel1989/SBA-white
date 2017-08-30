@@ -64,7 +64,7 @@ function doGrabbing(i){
 					 source: 'intelbet.ru',
 					 type: 'feedback', 
 					 date: date, 
-					 feedbackText:prosString+' '+consString,
+					 feedbackText:(prosString+' '+consString).slice(0,200),
 					 isPositive: isPositive, 
 					 isNegative: isNegative,
 					 positive: prosString,

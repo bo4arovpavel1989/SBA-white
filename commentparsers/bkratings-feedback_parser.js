@@ -44,6 +44,9 @@ function doGrabbing(i){
 		 var bknumer = i;
 		 let feedbacks=$('.single').get();
 		 console.log(feedbacks.length);
+		 var usermark=$('span.rating-stars>span.cnt:nth-child(4) > span:nth-child(1)').get();
+		 usermark=usermark[0].children[0];
+		 console.log(usermark)/*
 		 feedbacks.forEach(feedback=>{
 			 try {
 				 let isNegative, isNeutral, isPositive;
@@ -60,11 +63,12 @@ function doGrabbing(i){
 				 else if (rating > 3) {feedbackObject.isPositive=true; feedbackObject.positive = feedbackText;}
 				 else if (rating < 3) {feedbackObject.isNegative=true; feedbackObject.negative = feedbackText;}	
 				 feedbackObject.date=date;
-				 feedbackObject.feedbackText=feedbackText;
+				 feedbackObject.usermark=Number(usermark)
+				 feedbackObject.feedbackText=feedbackText.slice(0,200);
 				 let dataToWrite = new Feedback(feedbackObject).save();
 				 console.log(date)
 			 } catch(e){}
-		 });
+		 });*/
 		 i++;
 		 if(i<bks.length)getFeedback(i); 
 	  })

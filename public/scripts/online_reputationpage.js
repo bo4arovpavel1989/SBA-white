@@ -38,7 +38,7 @@ function calculateDynamics(data){
 	feedbacks.forEach(function(feedback){
 		if(sources.indexOf(feedback.source)===-1) {
 			sources.push(feedback.source);
-			stat[feedback.source]={total:0,isPositive:0,isNegative:0,isNeutral:0}
+			stat[feedback.source]={total:0,isPositive:0,isNegative:0,isNeutral:0,usermark:feedback.usermark}
 		}
 		if(feedback.isPositive)stat[feedback.source].isPositive++; 
 		if(feedback.isNegative)stat[feedback.source].isNegative++; 
@@ -52,7 +52,8 @@ function calculateDynamics(data){
 			total:stat[source].total,
 			positive:stat[source].isPositive,
 			negative:stat[source].isNegative,
-			neutral:stat[source].isNeutral
+			neutral:stat[source].isNeutral,
+			usermark:stat[source].usermark
 			};
 		var templateFeedback = Handlebars.compile( $('#feedbackSources').html() );
 		var feedbackHTML=templateFeedback(data);
