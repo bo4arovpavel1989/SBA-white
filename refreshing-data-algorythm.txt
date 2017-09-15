@@ -1,7 +1,7 @@
 =============
 Monthly refreshing PPS info data for offline page
--xmlparser
--writePPSfromFNS-controller
+-xmlparser (https://www.nalog.ru/opendata/7707329152-reestrlicbookmaker/)
+-writePPSfromFNS-controller (end date for fns data will be start of the next month)
 
 -getModernPPSCoordinates(optional, can be done later)
 -writePPSToJSON (optional, can be done later)
@@ -9,14 +9,13 @@ Monthly refreshing PPS info data for offline page
 -wikiParserCityInfo (make it not more than once a month!!!!! change system date if you want to add past data. by default adds list for current month)
 -citiesStats/getBkRelation (make it as many times as you want)
 -citiesStats/getBkPopularity (make it as many times as you want-fresh data put in wordstat catalogue, name file as '2017-01_leon')
--citiesStats/writeSalaryFromCSVtoDB(make it as many times you want-fresh data put in salarycatalogue, name file as '2017-01_salary')
+-citiesStats/writeSalaryFromCSVtoDB(make it as many times you want-fresh data put in salarycatalogue, name file as '2017-01_salary') http://www.gks.ru/wps/wcm/connect/rosstat_main/rosstat/ru/statistics/wages/
 
 ==============
 Monthly refreshing data for onlline page
--netstatparsers/similarwebparser (once from 1 to 26 of every month) - get traffic data for previus month and creates BookmakerPage;
--bkparsers/getLinePage (get average line data for previous month)
--ppsInfo/getMonthlyDataForBKPage (get pps info for previous month)
--commentparser/getMonthlyDataForBKPage
+-similarwebparser (once from 1 to 26 of every month) - get traffic data for previus month;
+-getLinePage (get average line data for previous month)
+-getMonthlyDataForBKPage (get pps info for previous month)
 =============
 Line parsers
 -parserController works all the time (not necessary to work continuosly, but it should work frequently)
