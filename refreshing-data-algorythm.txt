@@ -13,9 +13,10 @@ Monthly refreshing PPS info data for offline page
 
 ==============
 Monthly refreshing data for onlline page
--similarwebparser (once from 1 to 26 of every month) - get traffic data for previus month;
--getLinePage (get average line data for previous month)
--getMonthlyDataForBKPage (get pps info for previous month)
+-netstatparsers/similarwebparser (once from 1 to 26 of every month) - get traffic data for previus month and creates BookmakerPage;
+-bkparsers/getLinePage (get average line data for previous month)
+-ppsInfo/getMonthlyDataForBKPage (get pps info for previous month)
+-commentparser/getMonthlyDataForBKPage
 =============
 Line parsers
 -parserController works all the time (not necessary to work continuosly, but it should work frequently)
