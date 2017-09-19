@@ -34,15 +34,16 @@ function calculateDynamics(data){
 	$('.lastCommentsContainer').append( commentHTML );
 	var feedbacks=data.feedback;
 	var stat={};
+	var summary={isPositive:0,isNegative:0,isNeutral:0};
 	var sources=[];
 	feedbacks.forEach(function(feedback){
 		if(sources.indexOf(feedback.source)===-1) {
 			sources.push(feedback.source);
 			stat[feedback.source]={total:0,isPositive:0,isNegative:0,isNeutral:0,usermark:feedback.usermark}
 		}
-		if(feedback.isPositive)stat[feedback.source].isPositive++; 
-		if(feedback.isNegative)stat[feedback.source].isNegative++; 
-		if(feedback.isNeutral)stat[feedback.source].isNeutral++; 
+		if(feedback.isPositive){stat[feedback.source].isPositive++;summary.isPositive++}
+		if(feedback.isNegative){stat[feedback.source].isNegative++;summary.isNegative++}
+		if(feedback.isNeutral){stat[feedback.source].isNeutral++;summary.isNeutral++} 
 		stat[feedback.source].total++;
 	});
 	
@@ -57,7 +58,63 @@ function calculateDynamics(data){
 			};
 		var templateFeedback = Handlebars.compile( $('#feedbackSources').html() );
 		var feedbackHTML=templateFeedback(data);
-		$('#reputationData').append( feedbackHTML );	
+		$('#reputationData').append( feedbackHTML );
+		drawPieGraph(summary);	
 		console.log(data)
 	}
+}
+
+function drawPieGraph(dataSource){
+	var title="соотношение отзывов";
+	console.log(dataSource);
+	var dataToVisualize=[];
+	for (var marking in dataSource){
+		var markingInRussian;
+		if (marking=='isPositive') markingInRussian='Положительные';
+		if (marking=='isNegative') markingInRussian='Отрицательные';
+		if (marking=='isNeutral') markingInRussian='Нейтральные';
+		dataToVisualize.push({marking:markingInRussian,value:dataSource[marking]});
+	}
+	$("#pie").dxPieChart({
+        size: {
+            width: 1200
+        },
+        palette: "bright",
+        dataSource: dataToVisualize,
+        series: [
+            {
+                argumentField: "marking",
+                valueField: "value",
+                label: {
+                    visible: true,
+                    connector: {
+                        visible: true,
+                        width: 1
+                    }
+                }
+            }
+        ],
+        title: title,
+        "export": {
+            enabled: true
+        },
+        onPointClick: function (e) {
+            var point = e.target;
+    
+            toggleVisibility(point);
+        },
+        onLegendClick: function (e) {
+            var arg = e.target;
+    
+            toggleVisibility(this.getAllSeries()[0].getPointsByArg(arg)[0]);
+        }
+    });
+    
+    function toggleVisibility(item) {
+        if(item.isVisible()) {
+            item.hide();
+        } else { 
+            item.show();
+        }
+    }
 }
