@@ -8,7 +8,6 @@ var Nightmare = require('nightmare');
 var nightmare = Nightmare({ show: true });//need to type captcha at first gotourl
 var storedCookies=[];
 
- 
 	
 parseSimilarweb(0);
 
@@ -104,7 +103,7 @@ function parseSimilarweb(i){
 		var dates=customFunctions.getFullMonth(year,month);
 		console.log(dates);
 		let bkPageData={visits:data.totalVisits,bouncerate:data.bounceRate,direct:data.trafficSource.direct,referral:data.trafficSource.referrals};
-		BookmakerPage.update({bk:bkurl.resources[i].site,date:{$gte:dates[0],$lte:dates[1]}},
+		BookmakerPage.update({bk:bkurl.resources[i].site,name:bkurl.resources[i].name,date:{$gte:dates[0],$lte:dates[1]}},
 							{$set:{traffic:bkPageData,date:dates[2]}},
 							{upsert:true}).exec();
   })
