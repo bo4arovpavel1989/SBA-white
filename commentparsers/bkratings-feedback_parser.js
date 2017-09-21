@@ -42,11 +42,14 @@ function doGrabbing(i){
 		  console.log(2);
 		 var $ = cheerio.load(body);
 		 var bknumer = i;
+		 var usermark;
 		 let feedbacks=$('.single').get();
 		 console.log(feedbacks.length);
-		 var usermark=$('span.rating-stars>span.cnt:nth-child(4) > span:nth-child(1)').get();
-		 usermark=usermark[0].children[0];
-		 console.log(usermark)/*
+		 try{
+			usermark=$('#all-feedbacks > div.block-content > div.top-block > div.rating > span > span.cnt > span').get();
+			console.log(usermark[0].children[0].data);
+			usermark=usermark[0].children[0].data;
+		 }catch(e){}
 		 feedbacks.forEach(feedback=>{
 			 try {
 				 let isNegative, isNeutral, isPositive;
@@ -63,12 +66,11 @@ function doGrabbing(i){
 				 else if (rating > 3) {feedbackObject.isPositive=true; feedbackObject.positive = feedbackText;}
 				 else if (rating < 3) {feedbackObject.isNegative=true; feedbackObject.negative = feedbackText;}	
 				 feedbackObject.date=date;
-				 feedbackObject.usermark=Number(usermark)
+				 if(!isNaN(Number(usermark)))feedbackObject.usermark=Number(usermark);
 				 feedbackObject.feedbackText=feedbackText.slice(0,200);
 				 let dataToWrite = new Feedback(feedbackObject).save();
-				 console.log(date)
 			 } catch(e){}
-		 });*/
+		 });
 		 i++;
 		 if(i<bks.length)getFeedback(i); 
 	  })
