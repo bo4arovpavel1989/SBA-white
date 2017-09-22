@@ -50,7 +50,7 @@ ul#contact-info {list-style:none;}
 /* Grid */
 
 #tiles li {
-width:240px !important;
+width:350px !important;
 background-color: #ffffff;
 border: 1px solid #dedede;
 -moz-border-radius: 2px;
