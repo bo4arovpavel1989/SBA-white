@@ -12,20 +12,21 @@ nightmare
   .end()
   .then(function (body) {
      var $ = cheerio.load(body);
-	let lines=$('.eh-all').get();
+	let lines=$('.match_short-main').get();
 	lines.forEach((line)=>{
 		try{
 		//console.log(line);
 		let win, draw, away;
-		let sport=line.children[0].children[0].children[0].children[0].attribs.title;
-		let coeffs = line.children[0].children[1].children[0];
+		let sport=line.parent.parent.children[0].children[1].data;
+		let coeffs = line.children[1].children[1].children;
 		//console.log(coeffs);
-		let winCell = coeffs.children[0];
-		let drawCell = coeffs.children[1];
-		let awayCell = coeffs.children[2];
-		if(winCell.children[0].children[0].data == 'П1 ') win=winCell.children[1].children[0].data;
-		if(drawCell.children[0].children[0].data == 'Х ') draw=drawCell.children[1].children[0].data; else if(drawCell.children[0].children[0].data == 'П2 '){draw = '-'; away=drawCell.children[1].children[0].data;}
-		if(awayCell.children[0].children[0].data == 'П2 ') away=awayCell.children[1].children[0].data;
+		console.log(sport);
+		let winCell = coeffs[0];
+		let drawCell = coeffs[1];
+		let awayCell = coeffs[2];
+		if(winCell.children[0].children[0].children[0].data == 'П1 ') win=winCell.children[1].children[0].data;
+		if(drawCell.children[0].children[0].children[0].data == 'Х ') draw=drawCell.children[1].children[0].data; else if(drawCell.children[0].children[0].children[0].data == 'П2 '){draw = '-'; away=drawCell.children[1].children[0].data;}
+		if(awayCell.children[0].children[0].children[0].data == 'П2 ') away=awayCell.children[1].children[0].data;
 			let marja = 0;
 				if(win != '-' && win != 0) marja += 100/parseFloat(win);
 				if(draw != '-' && draw != 0) marja += 100/parseFloat(draw);
@@ -37,7 +38,7 @@ nightmare
 					sport=sportSpelling(sport);
 					let coeff = new Coefficient({bk: 'bkolimp', betType:'live', averageType:'immediate', date: now, sport: sport, marja: marja, win: win, draw: draw, away: away}).save();
 				}
-		} catch(e){console.log(e)}
+		} catch(e){}
 	});
   })
   .catch(function (error) {
