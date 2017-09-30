@@ -74,8 +74,8 @@ function doGrabbing(i){
 	  .then(function (body) {
 		  var $ = cheerio.load(body);
 		  try{
-			  let sportSelector = $('.events-table-wrapper h1 nobr').get();
-			  var sport = sportSelector[0].children[0].children[0].data;
+			  let sportSelector = $('.events-table-wrapper > h2 > nobr > a').get();
+			  var sport = sportSelector[0].children[0].data;
 			  console.log(sport);
 			  let markets=$('td.sportEventCell').get();
 			  markets.forEach(market=>{
