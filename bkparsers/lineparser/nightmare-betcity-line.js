@@ -10,7 +10,7 @@ findLinks();
 
 function findLinks(){
 	nightmare
-	  .goto('https://betcity.ru/line/competions/ft=1;')
+	  .goto('https://betcity.ru/ru/line/competions/ft=1;')
 	  .useragent("Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.111 Safari/537.36")
 	  .wait('.competitions-content-table-item-text__title')
 	  .evaluate(function () {
@@ -19,13 +19,15 @@ function findLinks(){
 	  .then(function (body) {
 		  console.log('start parsing');
 		  var $ = cheerio.load(body);
-		  let linksToClick;
-		  linksToClick = $('.competitions-content-table-item-text__title').get();
-		   console.log(linksToClick);
-		  linksToClick.forEach(oneLink=>{
-			  console.log(oneLink.attribs.href);
-			  links.push(oneLink.attribs.href);
+		  let sportsToGrab=$('.competitions-content-table-item__title').get();
+		  sportsToGrab.forEach(sport=>{//i did 
+			  try{
+				  links.push(sport.next.children[1].attribs.href);
+				  links.push(sport.next.next.next.children[1].attribs.href);
+				  links.push(sport.next.next.next.next.next.children[1].attribs.href);
+			  }catch(e){console.log(e)}
 		  });
+		  console.log(links)
 		  checkLinks(0);
 	  })
 	  .catch(function (error) {
@@ -75,12 +77,12 @@ function doGrabbing(i){
 			  let markets=$('.live-list__championship-event').get();
 			  //console.log(markets[0]);
 			  let win, draw, away, marja;
-			  win=markets[0].children[4].children[0].children[0].children[0].data;
+			  win=markets[0].children[5].children[0].children[0].children[0].data;
 			  console.log(win)
-			  if(markets[0].children[5].children[0].children[0]!=undefined)
-			  draw=markets[0].children[5].children[0].children[0].children[0].data;
+			  if(markets[0].children[6].children[0].children[0]!=undefined)
+			  draw=markets[0].children[6].children[0].children[0].children[0].data;
 		      else draw='-';
-			  away=markets[0].children[6].children[0].children[0].children[0].data;
+			  away=markets[0].children[7].children[0].children[0].children[0].data;
 			  marja=0;
 			 if(win != '-' && win != 0) marja += 100/parseFloat(win);
 			 if(draw != '-' && draw != 0) marja += 100/parseFloat(draw);

@@ -7,9 +7,10 @@ var sportSpelling=require('./../../lib/customfunctions.js').sportSpelling;
 console.log('betcity-parser');
 
 nightmare
-  .goto('https://betcity.ru/')
+  .goto('https://betcity.ru/ru/')
   .useragent("Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.111 Safari/537.36")
-  .wait(5000)
+  .wait('.live-list__championship-event')
+  .wait(2000)
   .evaluate(function () {
 	return document.body.innerHTML;
   })
@@ -25,10 +26,10 @@ nightmare
 		sport=line.parent.children[0].children[2].children[0].children[0].data;
 		sport=sport.split('. ')[0];
 		//console.log(sport);
-		win = line.children[5].children[0].children[0].attribs['data-k'];
-		if(line.children[6].children[0].children[0]==undefined) draw='-';
-		else draw = line.children[6].children[0].children[0].attribs['data-k'];
-		away = line.children[7].children[0].children[0].attribs['data-k'];
+		win = line.children[6].children[0].children[0].attribs['data-k'];
+		if(line.children[7].children[0].children[0]==undefined) draw='-';
+		else draw = line.children[7].children[0].children[0].attribs['data-k'];
+		away = line.children[8].children[0].children[0].attribs['data-k'];
 		marja = 0;
 				if(win != '-' && win != 0) marja += 100/parseFloat(win);
 				if(draw != '-' && draw != 0) marja += 100/parseFloat(draw);
