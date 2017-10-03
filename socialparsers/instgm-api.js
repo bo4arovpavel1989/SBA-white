@@ -45,7 +45,7 @@ function getINSTAData(i){
 		obj.shares='N/A';
 		console.log(obj);
 		BookmakerPage.update({bk:bks_formatted[i].bk,date:{$gte:dates[0],$lte:dates[1]}},{$set:{'social.insta':obj}},{upsert:true}).exec((err, rep)=>{	
-			Social.update({bk:bks_formatted[i].bk,date:stringDate},{$set:{dayOfWeek:dayOfWeek,insta:obj}},{upsert:true}).exec();
+			Social.update({bk:bks_formatted[i].bk,date:stringDate},{$set:{dayOfWeek:dayOfWeek,instgm:obj}},{upsert:true}).exec();
 			i++;
 			if(i<bks.length)getINSTAData(i);
 			else console.log('done');
