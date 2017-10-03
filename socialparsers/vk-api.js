@@ -40,7 +40,7 @@ function getVKData(i){
 		console.log(bks[i]);
 		console.log(objectToWrite);
 		BookmakerPage.update({bk:bks_formatted[i].bk,date:{$gte:dates[0],$lte:dates[1]}},{$set:{'social.vk':objectToWrite}},{upsert:true}).exec((err, rep)=>{	
-			Social.update({bk:bks_formatted[i].bk,date:stringDate},{$set:{dayOfWeek:dayOfWeek,vk:objectToWrite}},{upsert:true}).exec();
+			Social.update({bk:bks_formatted[i].bk,date:stringDate},{$set:{dayOfWeek:dayOfWeek,vk:objectToWrite}},{upsert:true}).exec((err,rep2)=>{console.log(rep2)});
 			i++;
 			if(i<bks.length)getVKData(i);
 			else console.log('done');
