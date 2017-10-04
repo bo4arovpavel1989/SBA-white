@@ -21,6 +21,7 @@ function showTrafficDataHandler(){
 						$('#trafficDataContainer').empty();
 						$('#trafficDataContainer').html(html);
 						calculateDynamics();
+						drawGraph(graphData);
 				}
 		});
 	});
@@ -43,4 +44,44 @@ function calculateDynamics(){
 		if(dynamics>0)sign='+';
 		$(this).html(' ('+sign+dynamics+')');
 	});
+}
+
+function drawGraph(data){
+	var dataToShow=[];
+	var title="Посещаемость сайта конторы";
+	var titleArray=[];
+	var seriesArray=[];
+	
+	for (var m=0;m<data.length;m++){
+		seriesArray.push({valueField:data[m],name:data[m]});
+	}
+	
+	  var chart = $("#chart").dxChart({
+        palette: "red",
+        dataSource: data,
+        commonSeriesSettings: {
+            type: "spline",
+            argumentField: "date"
+        },
+        commonAxisSettings: {
+            grid: {
+                visible: true
+            }
+        },
+        margin: {
+            bottom: 20
+        },
+        series: seriesArray,
+        tooltip:{
+            enabled: true
+        },
+        legend: {
+            verticalAlignment: "top",
+            horizontalAlignment: "right"
+        },
+        "export": {
+            enabled: true
+        },
+        title: title
+    }).dxChart("instance");
 }
