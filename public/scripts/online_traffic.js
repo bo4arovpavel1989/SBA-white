@@ -47,15 +47,36 @@ function calculateDynamics(){
 }
 
 function drawGraph(data){
-	var dataToShow=[];
-	var title="Посещаемость сайта конторы";
-	var titleArray=[];
-	var seriesArray=[];
-	
-	for (var m=0;m<data.length;m++){
-		seriesArray.push({valueField:data[m],name:data[m]});
+	$('#chartTitle').show();
+	for (var i=0;i<data.length;i++){
+		try{
+			data[i].data=data[i].data.replace('K','000').replace('M','000000');
+			data[i].data=data[i].data.match(/\d{1}/g).join('');
+			data[i].data=parseInt(data[i].data);
+		}catch(e){}
 	}
 	
+	
+	 $("#chart").dxChart({
+        dataSource: data, 
+        series: {
+            argumentField: "date",
+            valueField: "data",
+            name: "Посещаемость",
+            type: "bar",
+            color: '#1DF7AA'
+        }
+    });
+	
+	/*
+	var title="Посещаемость сайта конторы";
+	for (var i=0;i<data.length;i++){
+		try{
+			data[i].data=data[i].data.replace('K','000').replace('M','000000');
+			data[i].data=data[i].data.match(/\d{1}/g).join('');
+			data[i].data=parseInt(data[i].data);
+		}catch(e){}
+	}
 	  var chart = $("#chart").dxChart({
         palette: "red",
         dataSource: data,
@@ -65,13 +86,13 @@ function drawGraph(data){
         },
         commonAxisSettings: {
             grid: {
-                visible: true
+                visible: false
             }
         },
         margin: {
             bottom: 20
         },
-        series: seriesArray,
+        series: {valueField:'data',name:'visits'},
         tooltip:{
             enabled: true
         },
@@ -83,5 +104,6 @@ function drawGraph(data){
             enabled: true
         },
         title: title
-    }).dxChart("instance");
+    }).dxChart("instance");*/
+
 }
