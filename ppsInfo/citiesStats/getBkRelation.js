@@ -11,7 +11,7 @@ CitiesInfo.find({},(err, reps)=>{
 			if(rep.bkRelation.length==0){  //searching only new data
 				let regExpCity = new RegExp('\\s'+rep.name+',\\s', 'ui');
 				var population=rep.population;
-				BkPPS.find({address:{$regex:regExpCity}, end:{$gte:rep.date}},(err, ppses)=>{
+				BkPPS.find({address:{$regex:regExpCity}, end:{$gte:rep.date}, begin:{$lte:rep.date}},(err, ppses)=>{
 					var total=ppses.length;
 					var relation=Number(total)/Number(population);
 					var bkRelation=[1000*relation];
@@ -37,7 +37,7 @@ function getDetailRelation(j){
 				if(rep.bkRelation.length<=bks.length+1){  //searching only new data
 					let regExpCity = new RegExp('\\s'+rep.name+',\\s', 'ui');
 					var population=rep.population;
-					BkPPS.find({bk:bks[j].bk, address:{$regex:regExpCity}, end:{$gte:rep.date}},(err, ppses)=>{
+					BkPPS.find({bk:bks[j].bk, address:{$regex:regExpCity}, end:{$gte:rep.date}, begin:{$lte:rep.date}},(err, ppses)=>{
 						var total=ppses.length;
 						var relation=Number(total)/Number(population);
 						var bkRelation={bk:bks[j].bk,relation:1000*relation}
