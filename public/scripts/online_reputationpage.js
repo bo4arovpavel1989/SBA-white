@@ -65,7 +65,7 @@ function calculateDynamics(data){
 }
 
 function drawPieGraph(dataSource){
-	var title="соотношение отзывов";
+	$('#chartTitle').show();
 	console.log(dataSource);
 	var dataToVisualize=[];
 	for (var marking in dataSource){
@@ -94,7 +94,7 @@ function drawPieGraph(dataSource){
                 }
             }
         ],
-        title: title,
+        title: '',
         "export": {
             enabled: true
         },

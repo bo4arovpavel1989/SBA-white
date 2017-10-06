@@ -1,23 +1,23 @@
-<div id='chartTitle' class='text-center' style='margin:auto;text-align:center:display:none;'><h3>Посещаемость сайта {{now.name}}</h3></div>
+<div id='chartTitle' style='text-align:center;display:none;'><h3 style='font-weight:bolder'>посещаемость сайта {{now.name}}</h3></div>
 <div id='chart'>
 </div>
 <div class="span12">
 <div id="gridArea" style="height: 1795px;">
 <ul id="tiles" style='list-style-type: none;'>  
-    <li><p>Статистика</p>
+    <li><h4>Статистика</h4>
 	<p>Визиты: <span class='now'>{{now.stats.totalVisits}}</span> <span data-now={{now.stats.totalVisits}} data-first={{first.stats.totalVisits}} class='dynamics'></span></p>
 	<p>Отказы: <span class='now'>{{now.stats.bounceRate}}</span> <span data-now={{now.stats.bounceRate}} data-first={{first.stats.bounceRate}} class='dynamics'></span></p>
 	<p>Глубина просмотра: <span class='now'>{{now.stats.pagesPerVisit}}</span> <span data-now={{now.stats.pagesPerVisit}} data-first={{first.stats.pagesPerVisit}} class='dynamics'></span></p>
 	<p>Длина сессии: <span class='now'>{{now.stats.visitTime}}</span> <span data-now={{now.stats.visitTime}} data-first={{first.stats.visitTime}} class='dynamics'></span></p>	
 	</li> 
-	<li><p>Источники</p>
+	<li><h4>Источники</h4>
 	<p>Прямые заходы: <span class='now'>{{now.stats.trafficSource.direct}}</span> <span data-now={{now.stats.trafficSource.direct}} data-first={{first.stats.trafficSource.direct}} class='dynamics'></span></p>	
 	<p>Поисковый траффик: <span class='now'>{{now.stats.trafficSource.search}}</span> <span data-now={{now.stats.trafficSource.search}} data-first={{first.stats.trafficSource.search}} class='dynamics'></span></p>	
 	<p>Реферальный траффик: <span class='now'>{{now.stats.trafficSource.referrals}}</span> <span data-now={{now.stats.trafficSource.referrals}} data-first={{first.stats.trafficSource.referrals}} class='dynamics'></span></p>	
 	<p>Социальные сети: <span class='now'>{{now.stats.trafficSource.social}}</span> <span data-now={{now.stats.trafficSource.social}} data-first={{first.stats.trafficSource.social}} class='dynamics'></span></p>	
 	<p>Почтовые рассылки: <span class='now'>{{now.stats.trafficSource.mail}}</span> <span data-now={{now.stats.trafficSource.mail}} data-first={{first.stats.trafficSource.mail}} class='dynamics'></span></p>	
 	</li> 
-	<li><p>География визитов</p>
+	<li><h4>География визитов</h4>
 	{{#each now.stats.countries}}
 	<p>{{country}}: <span class='now {{country}}' data-stat={{stat}}>{{stat}}</span><span class='countrydynamics' data-country={{country}}></span></p>		
 	{{/each}}
@@ -25,7 +25,7 @@
 	<p style='display:none;'>{{country}}<span class='first {{country}}'  data-stat={{stat}}>{{stat}}</span></p>		
 	{{/each}}
 	</li> 
-	<li><p>Ссылающиеся сайты</p>
+	<li><h4>Ссылающиеся сайты</h4>
 	{{#each now.stats.referrals}}
 	<p>{{site}}: <span class='now {{site}}'data-stat={{stat}}>{{stat}}</span><span class='referralsdynamics' data-site={{site}}></span></p>		
 	{{/each}}
@@ -33,12 +33,12 @@
 	<p style='display:none;'>{{site}}<span class='first {{site}}'data-stat={{stat}}>{{stat}}</span></p>		
 	{{/each}}
 	</li> 
-	<li><p>Поисковые фразы</p>
+	<li><h4>Поисковые фразы</h4>
 	{{#each now.stats.keyWords}}
 	<p>{{word}}: <span class='now'>{{stat}}</span></p>		
 	{{/each}}
 	</li> 
-	<li><p>Социальные сети</p>
+	<li><h4>Социальные сети</h4>
 	{{#each now.stats.social}}
 	<p>{{site}}: <span class='now {{site}}'data-stat={{stat}}>{{stat}}</span><span class='socialdynamics' data-site={{site}}></span></p>		
 	{{/each}}
