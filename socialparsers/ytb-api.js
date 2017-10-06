@@ -25,7 +25,7 @@ function getYTBData(i){
 	getData(i,objectToWrite,(err, rep)=>{
 		if(rep==null)for (var prop in objectToWrite){objectToWrite[prop]='N/A'}
 		BookmakerPage.update({bk:bks_formatted[i].bk,date:{$gte:dates[0],$lte:dates[1]}},{$set:{'social.ytb':objectToWrite}},{upsert:true}).exec((err, rep)=>{	
-			Social.update({bk:bks_formatted[i].bk,date:stringDate},{$set:{dayOfWeek:dayOfWeek,ytb:objectToWrite}},{upsert:true}).exec();
+			Social.update({bk:bks_formatted[i].bk,name:bks_formatted[i].name,date:stringDate},{$set:{dayOfWeek:dayOfWeek,ytb:objectToWrite}},{upsert:true}).exec();
 			i++;
 			if(i<bks.length)getYTBData(i);
 			else console.log('done');

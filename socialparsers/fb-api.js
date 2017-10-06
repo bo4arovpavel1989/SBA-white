@@ -51,7 +51,7 @@ function getFBData(i){
 		obj.posts='N/A';
 		obj.shares='N/A';
 		BookmakerPage.update({bk:bks_formatted[i].bk,date:{$gte:dates[0],$lte:dates[1]}},{$set:{'social.fb':obj}},{upsert:true}).exec((err, rep)=>{	
-			Social.update({bk:bks_formatted[i].bk,date:stringDate},{$set:{dayOfWeek:dayOfWeek,fb:obj}},{upsert:true}).exec();
+			Social.update({bk:bks_formatted[i].bk,name:bks_formatted[i].name,date:stringDate},{$set:{dayOfWeek:dayOfWeek,fb:obj}},{upsert:true}).exec();
 			i++;
 			if(i<bks.length)getFBData(i);
 			else console.log('done');
