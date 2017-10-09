@@ -66,7 +66,6 @@ let grabEvent = function (link, callback){
   
 };
 
-grabEvent('https://1xstavka.ru/live/Football/1362177-Bangladesh-Ligue-2/141906781-Fakirapool-Young-Mens-Victoria-Sporting-Club/',(err, rep)=>{})
 
 module.exports.grabEvent = grabEvent;
 

@@ -73,7 +73,6 @@ let grabEvent = function (id, callback){
 
 };
 
-grabEvent('#addl2451130',(err, rep)=>{});
 
 module.exports.grabEvent = grabEvent;
 

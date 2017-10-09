@@ -63,7 +63,6 @@ let grabEvent = function(link, callback){
   
 };
 
-grabEvent('https://betcity.ru/ru/live/ev/id=4431934;',(err, rep)=>{});
 
 module.exports.grabEvent=grabEvent;
 

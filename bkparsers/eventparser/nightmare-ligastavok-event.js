@@ -35,12 +35,12 @@ let grabEvent = function(link, callback){
 		if(win != '-' && win != 0) marja += 100/parseFloat(win);
 		if(draw != '-' && draw != 0) marja += 100/parseFloat(draw);
 		if(away != '-' && away != 0) marja += 100/parseFloat(away);
-		marja = marja -100;
-		console.log(win + ' - ' + draw + ' - ' + away + ". Marja: " + marja);	
+		marja = marja -100;	
 		objectToReturn.win = win;
 		objectToReturn.draw = draw;
 		objectToReturn.away = away;
 		objectToReturn.marja = marja;
+		console.log(objectToReturn);
 		callback(null, objectToReturn);
 	  })
 	  .catch(function (error) {
@@ -63,5 +63,6 @@ let grabEvent = function(link, callback){
 		}
 	}, 3*60*1000);
 };
+
 
 module.exports.grabEvent=grabEvent;

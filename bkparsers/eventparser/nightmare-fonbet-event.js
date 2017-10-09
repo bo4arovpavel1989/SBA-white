@@ -20,9 +20,9 @@ let grabEvent=function(event, marketType, callback){
 		  console.log('start parsing');
 		 var $ = cheerio.load(body);
 		 let allEvents=$('td.table__col._size_long').get();
-		 console.log(event)
 		 allEvents.forEach(singlEvent=>{
 			 try{
+				 console.log(singlEvent.children[0].children[1].children[0].data)
 				if(singlEvent.children[0].children[1].children[0].data.indexOf(event)!=-1){
 					let win, draw, away, marja;
 					if(marketType=='1x2'){
@@ -39,13 +39,13 @@ let grabEvent=function(event, marketType, callback){
 					if(draw != '-' && draw != 0) marja += 100/parseFloat(draw);
 					if(away != '-' && away != 0) marja += 100/parseFloat(away);
 					marja = marja -100;
-					console.log(win + ' - ' + draw + ' - ' + away + ". Marja: " + marja);	
 					objectToReturn.win = win;
 					objectToReturn.draw = draw;
 					objectToReturn.away = away;
 					objectToReturn.marja = marja;
+					console.log(objectToReturn);	
 				}
-			 }catch(e){}
+			 }catch(e){console.log(e)}
 		 });
 		callback(null, objectToReturn);
 	  })
@@ -53,7 +53,6 @@ let grabEvent=function(event, marketType, callback){
 		console.log(error);
 		callback(error, null)
 	  });
-
 
 	setTimeout(()=>{
 		console.log('timeout stop');
