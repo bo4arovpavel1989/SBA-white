@@ -7,9 +7,8 @@ var grabWinline=require('./eventparser/nightmare-winline-event.js').grabEvent;
 var grabBkolimp=require('./eventparser/nightmare-bkolimp-event.js').grabEvent;
 var grabBaltbet=require('./eventparser/nightmare-baltbet-event.js').grabEvent;
 var grabBetcity=require('./eventparser/nightmare-betcity-event.js').grabEvent;
+var EventToGrab = require('./../lib/models/mongoModel.js').EventToGrab;
 var async=require('async');
-var redis = require('redis');
-var redisClient = redis.createClient();
 
 function parseEvents(objectToGet){
 	var objectToWrite={};
@@ -96,10 +95,10 @@ function startEventGrabbing(){
 	var eventObject={};
 	async.series([
 		(callback)=>{
-			redisClient.hgetall('eventToGrab', (err, rep)=>{
-			eventObject=rep;
-			console.log(eventObject)
-			callback();
+			EventToGrab.find({}).sort({date:-1}).exec((err, rep)=>{
+				eventObject=rep[0];
+				console.log(eventObject)
+				callback();
 			});
 		}
 		], 

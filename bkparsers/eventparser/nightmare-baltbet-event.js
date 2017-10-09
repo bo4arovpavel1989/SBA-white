@@ -47,6 +47,7 @@ let grabEvent = function (id, callback){
 					objectToReturn.marja = marja;
 				}
 			}catch(e){}
+			console.log(objectToReturn)
 			console.log('done');
 			callback(null, objectToReturn);
 	  })
@@ -71,6 +72,8 @@ let grabEvent = function (id, callback){
 	}, 3*60*1000);
 
 };
+
+grabEvent('#addl2451130',(err, rep)=>{});
 
 module.exports.grabEvent = grabEvent;
 

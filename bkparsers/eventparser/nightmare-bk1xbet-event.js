@@ -21,27 +21,29 @@ let grabEvent = function (link, callback){
 	  .then(function (body) {
 		 var $ = cheerio.load(body);
 		 //console.log($.html());
-		let lines=$('div.bets').get();
+		let lines=$('div.bet_group>div.bets').get();
 		let market1x2=lines[0];
+		console.log(market1x2);
 		let win, draw, away, marja;
-		win = market1x2.children[8].attribs['data-coef'];
-		if (market1x2.children[30] != undefined) {
-			draw = market1x2.children[19].attribs['data-coef'];
-			away= market1x2.children[30].attribs['data-coef'];
+		win = market1x2.children[0].children[2].children[0].children[0].data;//.attribs['data-coef'];
+		console.log(win)
+		if (market1x2.children[2] != undefined) {
+			draw = market1x2.children[1].children[2].children[0].children[0].data
+			away= market1x2.children[2].children[2].children[0].children[0].data
 		} else {
 			draw = '-';
-			away = market1x2.children[19].attribs['data-coef'];
+			away = market1x2.children[1].children[2].children[0].children[0].data
 		}
 		marja = 0;
 		if(win != '-' && win != 0) marja += 100/parseFloat(win);
 		if(draw != '-' && draw != 0) marja += 100/parseFloat(draw);
 		if(away != '-' && away != 0) marja += 100/parseFloat(away);
-		marja = marja -100;
-		console.log(win + ' - ' + draw + ' - ' + away + ". Marja: " + marja);	
+		marja = marja -100;	
 		objectToReturn.win = win;
 		objectToReturn.draw = draw;
 		objectToReturn.away = away;
 		objectToReturn.marja = marja;
+		console.log(objectToReturn);
 		callback(null, objectToReturn);
 	  })
 	  .catch(function (error) {
@@ -63,6 +65,8 @@ let grabEvent = function (link, callback){
 	  }, 3*60*1000);
   
 };
+
+grabEvent('https://1xstavka.ru/live/Football/1362177-Bangladesh-Ligue-2/141906781-Fakirapool-Young-Mens-Victoria-Sporting-Club/',(err, rep)=>{})
 
 module.exports.grabEvent = grabEvent;
 
