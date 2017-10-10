@@ -3,6 +3,7 @@ var cheerio = require('cheerio');
 console.log('fonbet-parser');
 
 let grabEvent=function(event, marketType, callback){
+	console.log(event, marketType);
 	var Nightmare = require('nightmare');		
 	var nightmare = Nightmare({ show: false });
 

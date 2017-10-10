@@ -7,7 +7,7 @@ let grabEvent = function (link, callback){
 	var Nightmare = require('nightmare');		
 	var nightmare = Nightmare({ show: false });
 	var objectToReturn = {
-		bk: '1xstavka'
+		bk: 'bk1xbet'
 	};
 
 	 nightmare
