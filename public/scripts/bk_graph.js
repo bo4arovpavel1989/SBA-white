@@ -69,7 +69,6 @@ function drawLineGraph(data){
 	var title="Количество ППС";
 	var titleArray=[];
 	var seriesArray=[];
-	console.log(data);
 	for (var k=0;k<data.length;k++){
 		titleArray.push(data[k].bk);
 	}
@@ -85,7 +84,8 @@ function drawLineGraph(data){
 		}	
 		dataToShow.push(dataItem);
 	}
-	
+	console.log(dataToShow);
+	console.log(seriesArray);
 	  var chart = $("#chart").dxChart({
         palette: "red",
         dataSource: dataToShow,

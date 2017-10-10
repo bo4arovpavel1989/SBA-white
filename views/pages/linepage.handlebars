@@ -1,4 +1,4 @@
-
+<script src="https://cdn3.devexpress.com/jslib/17.1.4/js/dx.all.js"></script>
 <div class='container'>
     <div class="divPanel page-content">
         <div class="breadcrumbs">
@@ -7,6 +7,7 @@
         <div class="row-fluid">
                 <div class="span12">
                     <div id="divHeaderLine1">Линия букмекера {{bk.name}}</div>
+					<div id='chart'></div>
                     <div id="gridArea" style="height: 1795px;">
                         <ul id="tiles" style='list-style-type: none;'>
                         <li>
@@ -36,3 +37,7 @@
 		});
 	});
  </script>
+ <script>
+ var eventData={{{event}}};
+ </script>
+ <script src='/scripts/online_line.js'></script>
