@@ -16,8 +16,8 @@ function getDataForBKPage(i){
 	async.parallel([
 	(callback)=>{
 		//total
-		Vacancy.count({bk:bkList[i].bk},function(err, rep){
-			data.totalVacancies=rep;
+		Feedback.count({bk:bkList[i].bk},function(err, rep){
+			data.totalFeedbacks=rep;
 			callback();
 		});
 	},
@@ -54,3 +54,4 @@ function getDataForBKPage(i){
 	});
 	
 }
+
