@@ -1,4 +1,4 @@
-var Feedback = require('./../lib/models/mongoModel.js').Feedback;
+var Vacancy = require('./../lib/models/mongoModel.js').Vacancy;
 var BookmakerPage = require('./../lib/models/mongoModel.js').BookmakerPage;
 var customFunctions = require('./../lib/customfunctions');
 var bkList=require('./../bklist.js').bkList;
@@ -17,28 +17,14 @@ function getDataForBKPage(i){
 	(callback)=>{
 		//total
 		Vacancy.count({bk:bkList[i].bk},function(err, rep){
-			data.totalVacancies=rep;
+			data.opened=rep;
 			callback();
 		});
 	},
 	(callback)=>{
-		//negative
-		Feedback.count({bk:bkList[i].bk,isNegative:true},function(err, rep){
-			data.negativeFeedbacks=rep;
-			callback();
-		});
-	},
-	(callback)=>{
-		//positive
-		Feedback.count({bk:bkList[i].bk,isPositive:true},function(err, rep){
-			data.positiveFeedbacks=rep;
-			callback();
-		});
-	},
-	(callback)=>{
-		//neutral
-		Feedback.count({bk:bkList[i].bk,isNeutral:true},function(err, rep){
-			data.neutralFeedbacks=rep;
+		//last month
+		Vacancy.count({bk:bkList[i].bk,created_at:{$gte:dates[0],$lte:dates[1]}},function(err, rep){
+			data.lastopened=rep;
 			callback();
 		});
 	}
@@ -46,7 +32,7 @@ function getDataForBKPage(i){
 	(err)=>{
 		console.log(err)
 		console.log(dates);
-		BookmakerPage.update({bk:bkList[i].bk,date:{$gte:dates[0],$lte:dates[1]}},{$set:{reputation:data}},{upsert:true}).exec((err, rep)=>{
+		BookmakerPage.update({bk:bkList[i].bk,date:{$gte:dates[0],$lte:dates[1]}},{$set:{vacancy:data}},{upsert:true}).exec((err, rep)=>{
 			i++;
 			if(i<bkList.length) getDataForBKPage(i);
 			else console.log('done');

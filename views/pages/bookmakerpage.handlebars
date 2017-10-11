@@ -6,6 +6,7 @@
         <div class="row-fluid">
                 <div class="span12">
                     <div id="divHeaderLine1">Страница букмекера {{bk.name}}</div>
+					<span class='pull-right'>{{year}} - {{month}}</span>
                     <div id="gridArea" style="height: 1795px;">
                         <ul id="tiles" style='list-style-type: none;'>
                         <li>
@@ -66,7 +67,7 @@
                         <li>
                             <h4><a href="/vacancy/{{bk.bk}}">Вакансии</a></h4>
                             <p>Открыто вакансий: <span class='pull-right'>{{bk.vacancy.opened}}</span></p>
-                            <p>За последние 3 месяца открыто:  <span class='pull-right'>{{bk.vacancy.lastopened}}</span></p></p>
+                            <p>За последний месяц открыто:  <span class='pull-right'>{{bk.vacancy.lastopened}}</span></p></p>
 							<br><a href="/vacancy/{{bk.bk}}" class="pull-right more_link">Подробнее...</a>
 							</li>
                         <li>
