@@ -498,6 +498,7 @@ h6,.page-content h6 a {font-weight: normal; font-style: normal; font-family: 'So
 
 td,th {
 	text-align:center !important;
+	vertical-align: middle!important;
 }
 .help {
 	cursor:help;
