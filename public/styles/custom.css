@@ -51,7 +51,7 @@ ul#contact-info {list-style:none;}
 
 #tiles li {
 width:350px !important;
-background-color: #ffffff;
+background: linear-gradient(to bottom right, #f0fff0 0%, #ffffff 100%);
 border: 1px solid #dedede;
 -moz-border-radius: 2px;
 -webkit-border-radius: 2px;
