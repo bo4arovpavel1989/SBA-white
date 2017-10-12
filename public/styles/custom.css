@@ -496,3 +496,9 @@ h6,.page-content h6 a {font-weight: normal; font-style: normal; font-family: 'So
 	display: block;
 }
 
+td,th {
+	text-align:center !important;
+}
+.help {
+	cursor:help;
+}

@@ -1,5 +1,5 @@
-﻿module.exports.bkList=[{bk:'leon', name:'БК Леон'},{bk:'fonbet',name:'Фонбет'},{bk:'bk1xbet',name:"1хСтавка"},{bk:'bk888',name:"888"},{bk:'winline',name:"Winline"},
-{bk:'bkolimp',name:"БК Олимп"},{bk:'ligastavok',name:"Лига Ставок"},{bk:'betcity',name:"Betcity"},{bk:'baltbet',name:"Балтбет"}];
+﻿module.exports.bkList=[{bk:'leon', name:'БК Леон',url:'leon.ru'},{bk:'fonbet',name:'Фонбет',url:'fonbet.ru'},{bk:'bk1xbet',name:"1хСтавка",url:'1xbet.ru'},{bk:'bk888',name:"888",url:'888.ru'},{bk:'winline',name:"Winline",url:'winline.ru'},
+{bk:'bkolimp',name:"БК Олимп",url:'olimp.bet'},{bk:'ligastavok',name:"Лига Ставок",url:'ligastavok.ru'},{bk:'betcity',name:"Betcity",url:'betcity.ru'},{bk:'baltbet',name:"Балтбет",url:'baltbet.ru'}];
 
 module.exports.bkList_offline=[{bk:'leon', name:'БК Леон'},{bk:'fonbet',name:'Фонбет'},{bk:'bk1xbet',name:"1хСтавка"},{bk:'bk888',name:"888"},{bk:'winline',name:"Winline"},
 {bk:'bkolimp',name:"БК Олимп"},{bk:'ligastavok',name:"Лига Ставок"},{bk:'betcity',name:"Betcity"},{bk:'baltbet',name:"Балтбет"},
