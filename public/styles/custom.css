@@ -59,7 +59,6 @@ border-radius: 2px;
 padding: 10px !important;
 margin-right:7px;margin-bottom:7px;float:left;
 }
-
 #tiles li img {margin-bottom:10px;}
 
 #tiles li div.meta {color:#999;text-transform:uppercase;font-size:10px;margin:0;}
@@ -479,6 +478,8 @@ h6,.page-content h6 a {font-weight: normal; font-style: normal; font-family: 'So
 
 }
 
+ /*my styles*/
+ 
 .loader {
     border: 16px solid #f3f3f3; /* Light grey */
     border-top: 16px solid #00e80c; /* Blue */
@@ -502,4 +503,9 @@ td,th {
 }
 .help {
 	cursor:help;
+}
+
+#tiles li:hover {
+opacity: 0.8 !important;
+border: 1px solid grey !important;
 }
