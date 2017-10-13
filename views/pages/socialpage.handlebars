@@ -9,37 +9,41 @@
                 <div class="span12">
                       <div id="gridArea" style="height: 1795px;">
                         <ul id="tiles" style='list-style-type: none;'>  
-                        <li><h4>Вконтакте</h4>
+                        <li><h4>Вконтакте сообщество</h4>
 							<p>Подписчики: {{vk.sbcrb}}</p>
 							<p>Лайки: {{vk.likes}}</p>
 							<p>Шеры: {{vk.shares}}</p>
 							<p>Комментарии: {{vk.comments}}</p>
 							<p>Просмотры: {{vk.views}}</p>
 							<p>Публикации: {{vk.posts}}</p>
+							<br>{{#if vk.link}}<a href={{vk.link}} class="pull-right more_link">Ссылка...</a>{{else}}<a href='#' class="pull-right more_link">Не существует...</a>{{/if}}
 						</li> 
-						<li><h4>Фейсбук</h4>
+						<li><h4>Фейсбук сообщество</h4>
 							<p>Подписчики: {{fb.sbcrb}}</p>
 							<p>Лайки: {{fb.likes}}</p>
 							<p>Шеры: {{fb.shares}}</p>
 							<p>Комментарии: {{fb.comments}}</p>
 							<p>Просмотры: {{fb.views}}</p>
 							<p>Публикации: {{fb.posts}}</p>
+							<br>{{#if fb.link}}<a href={{fb.link}} class="pull-right more_link">Ссылка...</a>{{else}}<a href='#' class="pull-right more_link">Не существует...</a>{{/if}}
 						</li> 
-						<li><h4>Ютуб</h4>
+						<li><h4>Ютуб канал</h4>
 							<p>Подписчики: {{ytb.sbcrb}}</p>
 							<p>Лайки: {{ytb.likes}}</p>
 							<p>Шеры: {{ytb.shares}}</p>
 							<p>Комментарии: {{ytb.comments}}</p>
 							<p>Просмотры: {{ytb.views}}</p>
 							<p>Публикации: {{ytb.posts}}</p>
+							<br>{{#if ytb.link}}<a href={{ytb.link}} class="pull-right more_link">Ссылка...</a>{{else}}<a href='#' class="pull-right more_link">Не существует...</a>{{/if}}
 						</li> 
-						<li><h4>Инстаграмм</h4>
+						<li><h4>Инстаграмм страница</h4>
 							<p>Подписчики: {{instgm.sbcrb}}</p>
 							<p>Лайки: {{instgm.likes}}</p>
 							<p>Шеры: {{instgm.shares}}</p>
 							<p>Комментарии: {{instgm.comments}}</p>
 							<p>Просмотры: {{instgm.views}}</p>
 							<p>Публикации: {{instgm.posts}}</p>
+							<br>{{#if instgm.link}}<a href={{instgm.link}} class="pull-right more_link">Ссылка...</a>{{else}}<a href='#' class="pull-right more_link">Не существует...</a>{{/if}}
 						</li> 						
                         </ul>
                     </div>

@@ -24,6 +24,7 @@ function getYTBData(i){
 	var objectToWrite={sbcrb:0,shares:0,likes:0,comments:0};
 	getData(i,objectToWrite,(err, rep)=>{
 		if(rep==null)for (var prop in objectToWrite){objectToWrite[prop]='N/A'}
+		else objectToWrite.link='https://youtube.com/channel/'+bks[i];
 		BookmakerPage.update({bk:bks_formatted[i].bk,date:{$gte:dates[0],$lte:dates[1]}},{$set:{'social.ytb':objectToWrite}},{upsert:true}).exec((err, rep)=>{	
 			Social.update({bk:bks_formatted[i].bk,name:bks_formatted[i].name,date:stringDate},{$set:{dayOfWeek:dayOfWeek,ytb:objectToWrite}},{upsert:true}).exec();
 			i++;

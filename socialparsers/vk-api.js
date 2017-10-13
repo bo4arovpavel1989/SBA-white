@@ -25,13 +25,15 @@ function getVKData(i){
 	async.series([
 		(callback)=>{
 			getWall(i, objectToWrite, (err, rep)=>{
-				if(err)for(var prop in objectToWrite){objectToWrite[prop]='N/A'}
+				if(err)for(var prop in objectToWrite){objectToWrite[prop]='N/A'; objectToWrite.link=undefined;}
+				else objectToWrite.link='https://vk.com/'+bks[i];
 				callback();
 			});
 		},
 		(callback)=>{
 			getGroup(i, objectToWrite, (err, rep)=>{
-				if(err)for(var prop in objectToWrite){objectToWrite[prop]='N/A'}
+				if(err)for(var prop in objectToWrite){objectToWrite[prop]='N/A';objectToWrite.link=undefined;}
+				else objectToWrite.link='https://vk.com/'+bks[i];
 				callback();
 			});
 		}
