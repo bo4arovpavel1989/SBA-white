@@ -21,13 +21,9 @@ function drawGraph(data){
 			}
 			let dataItem={time:data.data[i].time};
 			if(data.data[i].data.win)dataItem.win = parseFloat(data.data[i].data.win);
-			else dataItem.win=0;
 			if(data.data[i].data.away)dataItem.away = parseFloat(data.data[i].data.away);
-			else dataItem.away=0;
 			if(data.data[i].data.draw)dataItem.draw = parseFloat(data.data[i].data.draw);
-			else dataItem.draw=0;
 			if(data.data[i].data.marja)dataItem['marja'] = parseFloat(data.data[i].data.marja);
-			else dataItem.marja=0;
 			dataSource.push(dataItem);
 		}
 	}

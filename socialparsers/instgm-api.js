@@ -38,6 +38,7 @@ function getINSTAData(i){
 		try{
 			obj.posts=$('#react-root > section > main > article > header > div._o6mpc > ul > li:nth-child(1) > span > span').get()[0].children[0].data;
 			obj.sbcrb=$('#react-root > section > main > article > header > div._o6mpc > ul > li:nth-child(2) > span > span').get()[0].attribs.title;
+			obj.link='https://www.instagram.com/'+bks[i];
 		}catch(e){obj.posts='N/A';obj.sbcrb='N/A'}
 		obj.comments='N/A';
 		obj.views='N/A';

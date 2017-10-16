@@ -53,6 +53,7 @@ function drawGraph(data){
 			data[i].data=data[i].data.replace('K','000').replace('M','000000');
 			data[i].data=data[i].data.match(/\d{1}/g).join('');
 			data[i].data=parseInt(data[i].data);
+			data[i].data=(data[i].data)/1000;
 		}catch(e){}
 	}
 	
@@ -62,48 +63,10 @@ function drawGraph(data){
         series: {
             argumentField: "date",
             valueField: "data",
-            name: "Посещаемость",
+            name: "Посещаемость (тыс. визитов)",
             type: "bar",
             color: '#1DF7AA'
         }
     });
 	
-	/*
-	var title="Посещаемость сайта конторы";
-	for (var i=0;i<data.length;i++){
-		try{
-			data[i].data=data[i].data.replace('K','000').replace('M','000000');
-			data[i].data=data[i].data.match(/\d{1}/g).join('');
-			data[i].data=parseInt(data[i].data);
-		}catch(e){}
-	}
-	  var chart = $("#chart").dxChart({
-        palette: "red",
-        dataSource: data,
-        commonSeriesSettings: {
-            type: "spline",
-            argumentField: "date"
-        },
-        commonAxisSettings: {
-            grid: {
-                visible: false
-            }
-        },
-        margin: {
-            bottom: 20
-        },
-        series: {valueField:'data',name:'visits'},
-        tooltip:{
-            enabled: true
-        },
-        legend: {
-            verticalAlignment: "top",
-            horizontalAlignment: "right"
-        },
-        "export": {
-            enabled: true
-        },
-        title: title
-    }).dxChart("instance");*/
-
 }

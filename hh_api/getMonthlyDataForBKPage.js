@@ -16,7 +16,7 @@ function getDataForBKPage(i){
 	async.parallel([
 	(callback)=>{
 		//total
-		Vacancy.count({bk:bkList[i].bk},function(err, rep){
+		Vacancy.count({bk:bkList[i].bk,date:{$gte:dates[0],$lte:dates[1]}}},function(err, rep){
 			data.opened=rep;
 			callback();
 		});

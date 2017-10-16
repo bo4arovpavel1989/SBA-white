@@ -44,6 +44,7 @@ function getFBData(i){
 			obj.likes=Number(obj.likes);
 			obj.sbcrb=$('div#pages_side_column>div> div > div:nth-child(2) > div > div:nth-child(1) > div:nth-child(3) > div > div._4bl9 > div').get()[0].children[0].data.replaceAll(/\D/,'');
 			obj.sbcrb=Number(obj.sbcrb);
+			obj.link='https://www.facebook.com/'+bks[i];
 		}catch(e){obj.likes='N/A';obj.sbcrb='N/A'}
 		console.log(obj)
 		obj.comments='N/A';

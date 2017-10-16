@@ -1,0 +1,82 @@
+<form id="editRate"  class="form-inline" action="/admin/editbkratetotaltable" method="post" style="margin-left: 5%;">
+	<h3>Рейтинговые оценки БК</h3>
+	<label for = "name">Короткое название БК</label>|
+			<label for = "name">Полное название БК</label>|
+			<label for = "url">Адрес сайта</label>|
+			<label for = "name">Итоговый рейтинг</label>|
+			<label for = "name">Репутация</label>|
+			<label for = "name">Отзывы игроков</label>|
+			<label for = "name">Доля онлайн</label>|
+			<label for = "name">Доля оффлайн</label>|
+			<label for = "name">Доля итого</label>|
+			<label for = "name">Выручка</label>|
+			<label for = "name">Оценка эксперта</label>|
+			<label for = "name">Маржа</label>|
+			<label for = "name">Маржа-лайв</label>|
+			<label for = "name">Поисковый траффик</label>|
+			<label for = "name">Прямой траффик</label>|
+			<label for = "name">СМИ</label>|
+			<label for = "name">Соцсети</label>|
+			<label for = "name">Продукт</label>
+	{{#each bks}}
+	<div class="row">
+		<div class="input-group">
+			<input type="text" title='Короткое название БК' class="form-control totaltable" name='{{bk}}.bk' value='{{bk}}' readonly>
+		</div>
+		<div class="input-group">
+			<input type="text" title='Полное название БК' class="form-control totaltable" name='{{bk}}.name' value='{{name}}'>
+		</div>
+		<div class="input-group">
+			<input type="text" title='Адрес сайта' class="form-control totaltable" name='{{bk}}.url' value='{{url}}'>
+		</div>
+		<div class="input-group">
+			<input type="number" title='Итоговый рейтинг' class="form-control totaltable" name='{{bk}}.totalRate' value='{{totalRate}}'>
+		</div>
+		<div class="input-group">
+			<input type="number" title='Репутация' class="form-control totaltable" name='{{bk}}.reputation' value='{{reputation}}'>
+		</div>
+		<div class="input-group">
+			<input type="number"title='Отзывы игроков'  class="form-control totaltable" name='{{bk}}.playerFeedbackRate' value='{{playerFeedbackRate}}'>
+		</div>
+		<div class="input-group">
+			<input type="number" title='Доля онлайн' class="form-control totaltable" name='{{bk}}.onlineShareRate' value='{{onlineShareRate}}'>
+		</div>
+		<div class="input-group">
+			<input type="number" title='Доля оффлайн' class="form-control totaltable" name='{{bk}}.offlineShareRate' value='{{offlineShareRate}}'>
+		</div>
+		<div class="input-group">
+			<input type="number"title='Доля итого'  class="form-control totaltable" name='{{bk}}.totalShareRate' value='{{totalShareRate}}'>
+		</div>
+		<div class="input-group">
+			<input type="number" title='Выручка' class="form-control totaltable" name='{{bk}}.profit' value='{{profit}}'>
+		</div>
+		<div class="input-group">
+			<input type="number" title='Оценка эксперта' class="form-control totaltable" name='{{bk}}.expertsMark' value='{{expertsMark}}'>
+		</div>
+		<div class="input-group">
+			<input type="number"title='Маржа'  class="form-control totaltable" name='{{bk}}.marja' value='{{marja}}'>
+		</div>
+		<div class="input-group">
+			<input type="number" title='Маржа-лайв' class="form-control totaltable" name='{{bk}}.marja_live' value='{{marja_live}}'>
+		</div>
+		<div class="input-group">
+			<input type="number" title='Поисковый траффик'  class="form-control totaltable" name='{{bk}}.searchTraffic' value='{{searchTraffic}}'>
+		</div>
+		<div class="input-group">
+			<input type="number" title='Прямой траффик' class="form-control totaltable" name='{{bk}}.directTraffic' value='{{directTraffic}}'>
+		</div>
+		<div class="input-group">
+			<input type="number" title='СМИ' class="form-control totaltable" name='{{bk}}.massMedia' value='{{massMedia}}'>
+		</div>
+		<div class="input-group">
+			<input type="number"  title='Соцсети' class="form-control totaltable" name='{{bk}}.social' value='{{social}}'>
+		</div>
+			<div class="input-group">
+				<input type="number"  title='Продукт' class="form-control totaltable" name='{{bk}}.product' value='{{product}}'>
+			</div>
+	</div>
+	{{/each}}
+    <div class="form-group">
+		<input class="btn btn-primary" type="submit" value="Изменить"></input>
+	</div>
+</form>
