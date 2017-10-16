@@ -4,7 +4,7 @@ var BookmakerPage = require('./../lib/models/mongoModel.js').BookmakerPage;
 var Social = require('./../lib/models/mongoModel.js').Social;
 var secret=require('./../credentials.js').secret;
 var token=secret.ytbapi.access_token;
-var bks = ['UCWXFqzABGvk0O0xKmCSe4qw', 'fonbet', 'bk1xstavka', 'three888', 'winlinebetru', 'olimp_bk_rus', 'ligastavok1x', 'betcityofficial', 'rubaltbet'];
+var bks = ['UCWXFqzABGvk0O0xKmCSe4qw', 'fonbet', '1xbettv', 'three888', 'winlinebetru', 'olimp_bk_rus', 'ligastavok1x', 'betcityofficial', 'rubaltbet'];
 var bks_formatted=require('./../bklist.js').bkList;//bk names as i use it in ither modules
 var async=require('async');
 
