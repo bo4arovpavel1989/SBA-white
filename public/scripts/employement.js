@@ -18,6 +18,8 @@ function submitHandler(){
 				success: function(data){
 						if(data){
 							console.log(data);
+							$('#tiles').empty();
+							showVacancies(data);
 						}else alert('Ошибка!');
 						$('.loader').removeClass('loading');
 						document.getElementById('showGraph').disabled = false;
@@ -27,3 +29,9 @@ function submitHandler(){
 	});
 }
 
+function showVacancies(data){
+	var dataObject={dataItem:data};
+    var template = Handlebars.compile( $('#vacanciesList').html() );
+	var HTML=template(dataObject);
+	$('#tiles').append(HTML);
+};

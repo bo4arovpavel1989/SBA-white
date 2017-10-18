@@ -20,3 +20,7 @@ Monthly refreshing data for onlline page
 =============
 Line parsers
 -parserController works all the time (not necessary to work continuosly, but it should work frequently)
+====================
+HH-api
+-use hh_api.js FIRST!!!!!!!!!!!!!!!!!
+then use hh-api_all_vacancies
