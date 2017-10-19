@@ -56,8 +56,7 @@ function drawGraph(data){
 			data[i].data=(data[i].data)/1000;
 		}catch(e){}
 	}
-	
-	
+	console.log(data);
 	 $("#chart").dxChart({
         dataSource: data, 
         series: {
