@@ -53,6 +53,7 @@ function getMarja(){
 			try{
 				_page.close();
 				_ph.exit();
+				process.exit();
 			}catch(e){}
 		}, 3*60*1000);
 	}).catch(e => {
@@ -61,6 +62,7 @@ function getMarja(){
 				try{
 					_page.close();
 					_ph.exit();
+					process.exit();
 				}catch(e){}
 			}, 3*60*1000);
 		});

@@ -7,20 +7,18 @@ var liveParsers=fs.readdirSync('liveparser');
 
 var lineParsers=fs.readdirSync('lineparser');
 
+var spawn=require('child_process').spawn;
+
 
 var callLiveParsers = function(){
 	console.log('live parsing starting...');
 	var liveInterval = setInterval(()=>{
 		if(i==liveParsers.length) {
 			i=0;
-			setTimeout(()=>{
-				liveParsers.forEach(parser=>{
-					delete require.cache[require.resolve('./liveparser/' + parser)];
-				});
-			}, 6*60*1000);
 			clearInterval(liveInterval);
 		} else{
-			require('./liveparser/' + liveParsers[i]);
+			let lp=spawn('node',['liveparser/' + liveParsers[i]]);
+			console.log('spawned ' +  liveParsers[i]);
 			i++;
 		}
 	}, 60*1000);
@@ -33,14 +31,10 @@ var callLineParsers = function(){
 	var lineInterval=setInterval(()=>{
 		if(j==lineParsers.length) {
 			j=0;
-			setTimeout(()=>{
-				lineParsers.forEach(parser=>{
-					delete require.cache[require.resolve('./lineparser/' + parser)];
-				});
-			}, 6*60*1000);
 			clearInterval(lineInterval);
 		} else{
-			require('./lineparser/' + lineParsers[j]);
+			let lp=spawn('node',['lineparser/' + lineParsers[i]]);
+			console.log('spawned ' +  lineParsers[i]);
 			j++;
 		}
 	}, 60*1000)

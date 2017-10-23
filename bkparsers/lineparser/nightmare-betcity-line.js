@@ -114,4 +114,5 @@ setTimeout(()=>{
 		nightmare = null;
 		}catch(e){}
 	}
+	process.exit();
 }, 5*60*1000);
