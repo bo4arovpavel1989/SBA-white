@@ -1,7 +1,7 @@
 var https=require('https');
 var Vacancy = require('./../lib/models/mongoModel.js').Vacancy;
 var bks = ['leon', 1066298, 1206335, 2757107, 991318, 1860203, 223129, 91449, 782901,'atlantik-m',1795968,'betru',1968591, 
-'favorit',3051080,'investcompcentr', 'investgarant','johnygame',53796,'matchbet',"melofon",'panorama','rosbet','rosippodrom','rusteletot','Sportbet',
+'favorit',3051080,'investcompcentr', 'investgarant','johnygame',853796,'matchbet',"melofon",'panorama','rosbet','rosippodrom','rusteletot','Sportbet',
 2707907,'williamhill', 'aphrodita','evromir', 'metelitsa', 'mlb','pyatigorskiippodrom', 'rostovskiippodrom'];
 var bks_formatted=require('./../bklist.js').bkList_offline;//bk names as i use it in ither modules
 
