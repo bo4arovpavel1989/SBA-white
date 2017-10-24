@@ -9,7 +9,6 @@ var lineParsers=fs.readdirSync('lineparser');
 
 var spawn=require('child_process').spawn;
 
-
 var callLiveParsers = function(){
 	console.log('live parsing starting...');
 	var liveInterval = setInterval(()=>{
@@ -19,6 +18,9 @@ var callLiveParsers = function(){
 		} else{
 			let lp=spawn('node',['liveparser/' + liveParsers[i]]);
 			console.log('spawned ' +  liveParsers[i]);
+			lp.stdout.on('data',(data)=>{
+				console.log(data.toString());
+			});
 			i++;
 		}
 	}, 60*1000);
@@ -35,6 +37,9 @@ var callLineParsers = function(){
 		} else{
 			let lp=spawn('node',['lineparser/' + lineParsers[i]]);
 			console.log('spawned ' +  lineParsers[i]);
+			lp.stdout.on('data',(data)=>{
+				console.log(data.toString());
+			});
 			j++;
 		}
 	}, 60*1000)
