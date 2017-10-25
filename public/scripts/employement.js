@@ -40,7 +40,16 @@ function showVacancies(data){
 }
 
 function cityAutocomplete(){
-	var ac = $('#cityChoose').autocomplete({ source: [ "c++", "java", "php", "coldfusion", "javascript", "asp", "ruby" ]});
+	$.ajax({
+			url: '/autocomplete/city',	
+			dataType: 'json',
+			success: function(data){
+					var ac = $('#cityChoose').autocomplete({ source: data.cities});
+			},
+			error:function(data){
+				console.log(data);
+			}
+		});
 }
 
 function drawGraph(data,title){
