@@ -1,5 +1,6 @@
 $(document).ready(function(){
 	submitHandler();
+	cityAutocomplete();
 });
 
 function submitHandler(){
@@ -36,6 +37,10 @@ function showVacancies(data){
     var template = Handlebars.compile( $('#vacanciesList').html() );
 	var HTML=template(dataObject);
 	$('#tiles').append(HTML);
+}
+
+function cityAutocomplete(){
+	var ac = $('#cityChoose').autocomplete({ source: [ "c++", "java", "php", "coldfusion", "javascript", "asp", "ruby" ]});
 }
 
 function drawGraph(data,title){
