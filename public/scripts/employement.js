@@ -7,8 +7,7 @@ function submitHandler(){
 		e.preventDefault();
 		document.getElementById('showGraph').disabled = true;
 		$('.loader').addClass('loading');
-		var city=document.getElementById('cityChoose').value();
-		console.log(city);
+		var city=document.getElementById('cityChoose').value;
 		var $that = $(this);
 		var formData = new FormData($that.get(0));
 		$.ajax({
@@ -42,7 +41,7 @@ function showVacancies(data){
 function drawGraph(data,title){
 	
 	$('#chartTitle').show();
-	$('#city').text(title.city);
+	if(title.city.length>0)$('#city').text(' ('+title.city+')');
 	
 	 var dataArray=[
 		 {salary:'<30K rub',vacancies:0},
