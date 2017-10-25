@@ -18,8 +18,8 @@ function getVacancies(i){
 				};
 
 				let req = https.request(options, function(res) {
-					console.log("statusCode: ", res.statusCode);
-					console.log("headers: ", res.headers);
+					//console.log("statusCode: ", res.statusCode);
+					//console.log("headers: ", res.headers);
 					var data='';
 					res.on('data', function(d) {
 						//process.stdout.write(d);
@@ -48,12 +48,12 @@ function getVacancies(i){
 												description: vacancy.snippet.responsibility,
 												created_at:vacancy.created_at
 											};
-											console.log(objectToWrite);
-										let vacancyToWrite=new Vacancy(objectToWrite).save((err, rep)=>{
-											i++;
-											if(i<bks.length)getVacancies(i);
-											else console.log('done');
-										});
+											//console.log(objectToWrite);
+											writeOrUpdate(objectToWrite,()=>{
+												i++;
+												if(i<bks.length)getVacancies(i);
+												else console.log('done');
+											});
 										} catch(e){}
 									});
 						else {console.log(bks[i]);}			
@@ -69,3 +69,12 @@ function getVacancies(i){
 				else console.log('done');
 			}
 }			
+
+function writeOrUpdate(data, callback){
+	let vacancyToWrite = new Vacancy(data).save((err, rep)=>{
+		//console.log(data);
+		//console.log(err);
+		if(err) Vacancy.update({link:data.link},{$set:{bk:data.bk}}).exec((err,rep)=>{console.log(rep);callback();}); //if vacancy already exists i only attouch it to certaion BK
+		else callback();
+	});
+};
