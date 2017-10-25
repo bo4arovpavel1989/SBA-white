@@ -41,7 +41,7 @@
 		 <label>Населенный пункт</label>
 			<input type="text" name='city' placeholder='Выберите населенный пункт'></input>
 		<label>Букмекерская контора</label>
-			<select class="form-control" name='bk'>
+			<select class="form-control" name='bk' id='cityChoose'>
 				<label>Выберите БК</label>
 				<option value=''>Все конторы</option>
 				{{#each bk}}
@@ -52,7 +52,7 @@
 			<a class="btn btn-danger" id='resetGraph'>Сброс</a>
 	</form>	
 	<div class="loader"></div>
-	<div id='chartTitle' style='text-align:center;display:none;'><h3 style='font-weight:bolder'>распределение вакансий по размеру заработной платы</h3></div>
+	<div id='chartTitle' style='text-align:center;display:none;'><h3 style='font-weight:bolder'>распределение вакансий по размеру заработной платы <span id='city'></span><span id='bkname'></span></h3></div>
 	<div id='chart'>
 	</div>
 	<div id='dataToLoad'>

@@ -23,4 +23,4 @@ Line parsers
 ====================
 HH-api
 -use hh_api.js FIRST!!!!!!!!!!!!!!!!!
-then use hh-api_all_vacancies
+then use hh-api_all_vacancies (now u can run it in any order)

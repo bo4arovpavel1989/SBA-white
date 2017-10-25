@@ -7,6 +7,8 @@ function submitHandler(){
 		e.preventDefault();
 		document.getElementById('showGraph').disabled = true;
 		$('.loader').addClass('loading');
+		var city=document.getElementById('cityChoose').value();
+		console.log(city);
 		var $that = $(this);
 		var formData = new FormData($that.get(0));
 		$.ajax({
@@ -19,7 +21,8 @@ function submitHandler(){
 						if(data){
 							$('#tiles').empty();
 							showVacancies(data);
-							drawGraph(data);
+							var title={city:city};
+							drawGraph(data,title);
 						}else alert('Ошибка!');
 						$('.loader').removeClass('loading');
 						document.getElementById('showGraph').disabled = false;
@@ -36,9 +39,10 @@ function showVacancies(data){
 	$('#tiles').append(HTML);
 }
 
-function drawGraph(data){
+function drawGraph(data,title){
 	
 	$('#chartTitle').show();
+	$('#city').text(title.city);
 	
 	 var dataArray=[
 		 {salary:'<30K rub',vacancies:0},
