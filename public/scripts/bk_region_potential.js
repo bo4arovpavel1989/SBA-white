@@ -60,11 +60,16 @@ function calculateCoefficient(){
 		var allBkRelation=$(this).data('allbkrelation');
 		var bkRelation=$(this).data('bkrelation');
 		var sportPopularity=$(this).data('sportpopularity');
-		var bkPopularity=$(this).data('bkpopopularity');
+		var bkPopularity=$(this).data('bkpopularity');
 		var coefficient;
 		if(bkRelation=='-'){//for all bk
 			try{
 				coefficient=((Number(salary)/1000)*((Number(sportPopularity))/100))/(Number(allBkRelation));
+				coefficient=coefficient.toFixed(2);
+			}catch(e){coefficient='Ошибка!'}
+		}else{
+			try{
+				coefficient=((Number(salary)/1000)*((Number(bkPopularity))/100))/(Number(bkRelation));
 				coefficient=coefficient.toFixed(2);
 			}catch(e){coefficient='Ошибка!'}
 		}
