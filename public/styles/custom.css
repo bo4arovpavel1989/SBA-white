@@ -509,3 +509,18 @@ td,th {
 opacity: 0.8 !important;
 border: 1px solid grey !important;
 }
+
+.ui-autocomplete {
+	z-index:999!important;
+	background-color:white!important;
+	list-style-type: none;
+	width:20%;
+	opacity:0.99;
+}
+
+.ui-autocomplete >li{
+	cursor:pointer;
+}
+.ui-autocomplete >li:hover{
+	background-color:#e6ffe6!important;
+}

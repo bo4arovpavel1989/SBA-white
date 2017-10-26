@@ -39,19 +39,6 @@ function showVacancies(data){
 	$('#tiles').append(HTML);
 }
 
-function cityAutocomplete(){
-	$.ajax({
-			url: '/autocomplete/city',	
-			dataType: 'json',
-			success: function(data){
-					var ac = $('#cityChoose').autocomplete({ source: data.cities});
-			},
-			error:function(data){
-				console.log(data);
-			}
-		});
-}
-
 function drawGraph(data,title){
 	
 	$('#chartTitle').show();

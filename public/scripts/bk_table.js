@@ -1,6 +1,7 @@
 $(document).ready(function(){
 	addToFilterTableHandler();
 	resetTable();
+	cityAutocomplete();
 });
 
 function addToFilterTableHandler(){

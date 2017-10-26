@@ -2,6 +2,7 @@ $(document).ready(function(){
 	addToFilterGraphHandler();
 	resetGraph();
 	toggleTypeOfGraph();
+	cityAutocomplete();
 });
 
 var vizualizationData=[];
