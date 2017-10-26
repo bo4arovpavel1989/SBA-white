@@ -51,7 +51,7 @@ function getBkSpecialPopularity(){
 		console.log();
 		if(nameArray[i]!==date+'_allbookmakers.csv'){
 			fs.readFile('wordstat/'+nameArray[i],'utf-8',(err, rep)=>{
-				var bk=nameArray[i].split('.')[0];
+				var bk=nameArray[i].split('.')[0].split('_')[1];
 				var lines=rep.split('\n');
 				var j=0;
 				var control=lines.length;
