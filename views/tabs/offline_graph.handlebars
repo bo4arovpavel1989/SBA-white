@@ -2,7 +2,7 @@
  <div id="divHeaderLine1" style='margin-top: 40px;'>График - количество ППС букмекерских контор</div>
  <form class='form-horizontal' id='addToFilterGraph' action="/getoffline_graph" method="post" style=' margin-left:40px; margin-top: 40px; ' enctype="multipart/form-data">
 		 <div class="form-group row toDisable">
-		 <label>Период выборки</label>
+		 <label>Период выборки <span class='help' title='Временной интервал не должен превышать 1 год; первая дата не должна быть больше второй; в противном случае, сервис вернет ошибку!'><b>[?]</b></span></label>
 					<select class="form-control" name='monthFrom' class='form-control'>
 						<option value='01'>Январь</option>
 						<option value='02'>Февраль</option>
