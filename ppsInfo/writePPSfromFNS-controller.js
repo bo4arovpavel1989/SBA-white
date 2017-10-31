@@ -9,6 +9,8 @@ BkPPS.remove({},(err, rep)=>{
 });
 
 function startCalling(i){
+	var queriseList=[];
+	
 	writePPSfromFNS(i, (reply)=>{
 		if(reply&&i<BKLIST_LENGTH-1){
 			console.log('next bk');
