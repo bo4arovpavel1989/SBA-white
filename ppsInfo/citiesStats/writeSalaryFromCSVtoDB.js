@@ -13,8 +13,8 @@ salaryArray.forEach(filename=>{
 		for (let i=1;i<rep.length;i++){
 			var words=rep[i].split(';');
 			console.log(rep[i]);
-			let salary=words[1];
-			SalaryInfo.update({region:words[0],salary:salary,date:date},{},{upsert:true}).exec();
+			let salary=Number(words[1]);
+			if(!isNaN(salary))SalaryInfo.update({region:words[0],salary:salary,date:date},{},{upsert:true}).exec();
 		}
 	});
 });
