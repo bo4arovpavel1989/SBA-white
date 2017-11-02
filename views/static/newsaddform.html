@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SBA - adding news</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<script src="api/jquery2.js"></script>
+	<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" />
+</head>
+<body>
+	<form id="addNews"  action="/addnews" method="post" style="margin-left: 5%;">
+	<div class="form-group">
+		<div class="input-group">
+			<input type="text" class="form-control" name='title' placeholder="Заголовок" required>
+		</div>
+	</div>
+    <div class="form-group">
+		<div class="input-group">
+			<textarea rows="5" cols="45" name="text" placeholder='Текст новости'></textarea>
+		</div>
+	</div>
+	<div class="form-group">
+			<label>Изображение</label>
+			<input type="file" class="btn" name="upload" accept="image/jpeg"><br>
+	</div>
+    <div class="form-group">
+		<input id='addNewsButton' class="btn btn-primary" type="submit" value="Добавить"></input>
+ </div>
+</form>
+<script>
+$('#addNews').on('submit', function(e){
+		e.preventDefault();
+		document.getElementById('addNewsButton').disabled = true;
+		var $that = $(this);
+		var formData = new FormData($that.get(0));
+		console.log(formData);
+		$.ajax({
+				url: $that.attr('action'),
+				type: $that.attr('method'),
+				contentType: false,
+				processData: false,
+				data: formData,
+				success: function()
+						alert('Новость добавлена');
+				}
+		});
+		
+});
+</script>
+</body>
+</html>
