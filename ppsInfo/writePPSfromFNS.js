@@ -38,7 +38,7 @@ module.exports.writingPPSfromFNS=function(k, majorCallback){
 			}
 			
 			rep.forEach(line=>{
-				queriesArray.push(function(callback3)=>{
+				queriesArray.push(function(callback3){
 					var bkPPS = new BkPPS({bk:bk.bk, name:bk.name, begin:dateBegin, end:dateEnd, address: line}).save((err, reply)=>{
 						callback3()
 					});	
