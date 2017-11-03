@@ -39,8 +39,12 @@ $('#addNews').on('submit', function(e){
 				contentType: false,
 				processData: false,
 				data: formData,
-				success: function()
+				success: function(){
 						alert('Новость добавлена');
+						document.getElementById('addNewsButton').disabled = false;
+				},
+				error:function(e){
+					alert('Ощибка добавления новости');
 				}
 		});
 		
