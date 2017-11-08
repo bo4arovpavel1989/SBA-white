@@ -45,10 +45,14 @@ function calculateDynamics(){
 				now=parseInt(now);
 				first=parseInt(first);
 			}
-			var dynamics=((now-first)/(first))*100;
+			var dynamics=(((now-first)/(first))*100).toFixed(2);
 			var sign='';
-			if(dynamics>0)sign='+';
-			$(this).html(' ('+sign+dynamics+')');
+			if(dynamics>0){
+				sign='+';
+				$(this).addClass('positiveDynamics');
+			} 
+			else if(dynamics<0) $(this).addClass('negativeDynamics');
+			$(this).html(' ('+sign+dynamics+'%)');
 		});
 	}catch(e){
 		alert('Данные за вторую дату выборки отсутствуют')

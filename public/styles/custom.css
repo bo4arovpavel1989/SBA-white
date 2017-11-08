@@ -524,3 +524,9 @@ border: 1px solid grey !important;
 .ui-autocomplete >li:hover{
 	background-color:#e6ffe6!important;
 }
+.positiveDynamics{
+	color:green;
+}
+.negativeDynamics{
+	color:red;
+}
