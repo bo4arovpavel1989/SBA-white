@@ -2,7 +2,7 @@
 <div id="divHeaderLine1" style='margin-bottom: 40px;'>Пульс рынка</div>
 	<div id='dataToLoad'>
 		 <div class="span12">
-                    <div id="gridArea" style="height: 1795px;">
+                    <div id="gridArea">
                         <ul id="tiles" style='list-style-type: none;'>
 						{{#each news}}
 							<li style='background-image: url({{image}});background-size:contain;background-repeat: no-repeat;'>
@@ -11,15 +11,16 @@
 							</li>
 						{{/each}}
                          </ul>
-						 <div style='text-align:center'>
-							<a href='#' class='btn btn-default' id='moreNews'>Еще</a>
-						 </div>
                     </div>
 		</div>	
+		<div style='text-align:center'>
+			<a href='#' class='btn btn-lg' id='moreNews'>Еще</a>
+		 </div>
 		<div class="loader"></div>		
 	</div>
 </div>
 	<script src="/scripts/marketpulse.js" type="text/javascript"></script>
+	<script>
 		$(document).ready(function(){
 			$('#marketLink').addClass('active');
 		});
