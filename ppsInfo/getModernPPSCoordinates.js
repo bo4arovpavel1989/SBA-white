@@ -29,7 +29,7 @@ var year=actualDate.getFullYear();
 
 actualStringDate=actualDate.getFullYear()+'-'+(actualDate.getMonth()+2)+'-01'; //dates to find latest pps in database
 if((actualDate.getMonth()+2)<10) actualStringDate=actualDate.getFullYear()+'-0'+(actualDate.getMonth()+2)+'-01'; 
-if((actualDate.getMonth()+2)==12) actualStringDate=actualDate.getFullYear()+1+'-01-01';
+if((actualDate.getMonth()+2)==13) actualStringDate=actualDate.getFullYear()+1+'-01-01';
 var actualDate2=Date.parse(actualStringDate);
 
 actualDate2=actualDate2-(4*60*60*1000); //i have to make two dates to find date between them becoz Mongo server is on UTC time zone and i cant compare times properly

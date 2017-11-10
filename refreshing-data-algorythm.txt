@@ -5,6 +5,7 @@ Monthly refreshing PPS info data for offline page
 
 -getModernPPSCoordinates(optional, can be done later)
 -writePPSToJSON (optional, can be done later)
+-!!previous actual ppscoordinates copy to historical folder!!. copy new JSON to the folder of actual pps coordinates. 
 
 -wikiParserCityInfo (make it not more than once a month!!!!! change system date if you want to add past data. by default adds list for current month)
 -citiesStats/getBkRelation (make it as many times as you want)
