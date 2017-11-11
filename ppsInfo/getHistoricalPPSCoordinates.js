@@ -1,5 +1,6 @@
 var https = require('https');
 var fs=require('fs-extra');
+var async=require('async');
 var customFunctions=require('./../lib/customfunctions.js')
 let secret = 'AIzaSyBkhoB5RgaYw19-QWiFDoUc2AtTO-Sc2P0';
 var BkPPS = require('./../lib/models/mongoModel.js').BkPPS;
@@ -16,56 +17,79 @@ provider.getText = function (point) {
     return text;
 };
 
-BkPPSCoordinates.remove({},(err, rep)=>{
-	console.log(rep);
-	getCoordinates(0);
-});
 
 var actualDate=new Date();
-var date1='2013-05-15';
-var date2=actualDate.getFullYear()+'-'+(actualDate.getMonth()+1)+'-15'; 
-if((actualDate.getMonth()+2)<10) date2=actualDate.getFullYear()+'-0'+(actualDate.getMonth()+1)+'-15'; 
+var date1='2013-11-15';//start from here coz i got coords of previous time
+var date2=actualDate.getFullYear()+'-'+actualDate.getMonth()+'-15'; //date of previous month
+if(actualDate.getMonth()<10) date2=actualDate.getFullYear()+'-0'+actualDate.getMonth()+'-15'; 
+if(actualDate.getMonth()==0)  date2=actualDate.getFullYear()-1+'12-15';
 
-var dateArray=customFunctions.calculateMiddleMonthes(date1,date2);
+	
+var dateArray=customFunctions.calculateMiddleMonthes(date1,date2,{unlimited:true});
 
+getHistoricalCoordinates(dateArray);
 
-
-
-function getCoordinates(j){
-	BkPPS.find({bk:bks[j].bk, name:bks[j].name, end:actualStringDate}, (err, rep)=>{
-		if(rep.length!=0){
-			geocoder.geocode(rep).then(res=>{
-				let i=0;
-				console.log(j);
-				console.log('working on ' + bks[j].name);
-				var shortname = bks[j].bk;
-				var bkname = bks[j].name;
-				try{
-					res.result.features.forEach(point=>{
-						let bkPPS = new BkPPSCoordinates({bk:shortname, name:bkname, data: point}).save((err, rep2)=>{
-							console.log(i + ' ' + bkname);
-							i++;
-							if(i==res.result.features.length) {
-								j++;
-								if(j<bks.length) getCoordinates(j);
-								else console.log('done')
-							}
-						});
-					});
-				}catch(e){
-					console.log('an error occured while accessing to geocoder');
-					console.log(i + ' ' + bkname);
-					j++;
-					if(j<bks.length) getCoordinates(j);
-					else console.log('done')
-				}	
+function getHistoricalCoordinates(a){
+	console.log(a)
+	let queries=[];
+	a.forEach(date=>{
+		queries.push(function(callback){
+			getCoordinates(0,date,()=>{
+				callback();
 			});
-		} else {
-			console.log(j);
-			console.log('no bk found for tha date');
-			j++;
-			if(j<bks.length) getCoordinates(j);
-			else console.log('done'); 
-		}
+		});
 	});
+	async.series(queries,(err)=>{
+		console.log('done');
+	});
+}
+
+function getCoordinates(j,date,callback){
+	
+	var actualDate=new Date(date);//dates to write in pps coordinates db
+	var actualStringDate,actualStringDate2;
+	var month=actualDate.getMonth()+1;
+	var year=actualDate.getFullYear();
+	
+	recursion(j,date);
+	
+	function recursion(j,date){
+		BkPPS.find({bk:bks[j].bk, name:bks[j].name,  begin:{$lte:date},end:{$gte:date}}, (err, rep)=>{
+			if(rep.length!=0){
+				geocoder.geocode(rep).then(res=>{
+					let i=0;
+					console.log(j);
+					console.log('working on ' + bks[j].name);
+					var shortname = bks[j].bk;
+					var bkname = bks[j].name;
+					try{
+						res.result.features.forEach(point=>{
+							let bkPPS = new BkPPSCoordinates({bk:shortname, name:bkname, data: point,month:month,year:year}).save((err, rep2)=>{
+								console.log(date);
+								console.log(i + ' ' + bkname);
+								i++;
+								if(i==res.result.features.length) {
+									j++;
+									if(j<bks.length) recursion(j,date);
+									else callback();
+								}
+							});
+						});
+					}catch(e){
+						console.log('an error occured while accessing to geocoder');
+						console.log(i + ' ' + bkname);
+						j++;
+						if(j<bks.length) recursion(j,date);
+						else callback();
+					}	
+				});
+			} else {
+				console.log(bks[j].bk);
+				console.log('no pps of bk found for tha date: '+date);
+				j++;
+				if(j<bks.length) recursion(j,date);
+				else callback(); 
+			}
+		});
+	}
 }
