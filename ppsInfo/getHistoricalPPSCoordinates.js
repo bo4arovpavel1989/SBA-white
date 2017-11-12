@@ -19,7 +19,7 @@ provider.getText = function (point) {
 
 
 var actualDate=new Date();
-var date1='2013-11-15';//start from here coz i got coords of previous time
+var date1='2014-04-15';//start from here coz i got coords of previous time
 var date2=actualDate.getFullYear()+'-'+actualDate.getMonth()+'-15'; //date of previous month
 if(actualDate.getMonth()<10) date2=actualDate.getFullYear()+'-0'+actualDate.getMonth()+'-15'; 
 if(actualDate.getMonth()==0)  date2=actualDate.getFullYear()-1+'12-15';
@@ -56,10 +56,15 @@ function getCoordinates(j,date,callback){
 	function recursion(j,date){
 		BkPPS.find({bk:bks[j].bk, name:bks[j].name,  begin:{$lte:date},end:{$gte:date}}, (err, rep)=>{
 			if(rep.length!=0){
+				console.log('making geocode request for '+bks[j].bk);
+				let timerId = setTimeout(()=>{recursion(j,date)}, 15*60*60*1000);//if geocoder doesnt response make next try
 				geocoder.geocode(rep).then(res=>{
+					clearTimeout(timerId);
 					let i=0;
 					console.log(j);
 					console.log('working on ' + bks[j].name);
+					console.log(res);
+					console.log(res.result.features.length);
 					var shortname = bks[j].bk;
 					var bkname = bks[j].name;
 					try{
