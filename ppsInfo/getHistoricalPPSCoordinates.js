@@ -19,7 +19,7 @@ provider.getText = function (point) {
 
 
 var actualDate=new Date();
-var date1='2014-04-15';//start from here coz i got coords of previous time
+var date1='2014-08-15';//start from here coz i got coords of previous time
 var date2=actualDate.getFullYear()+'-'+actualDate.getMonth()+'-15'; //date of previous month
 if(actualDate.getMonth()<10) date2=actualDate.getFullYear()+'-0'+actualDate.getMonth()+'-15'; 
 if(actualDate.getMonth()==0)  date2=actualDate.getFullYear()-1+'12-15';
@@ -69,7 +69,7 @@ function getCoordinates(j,date,callback){
 					var bkname = bks[j].name;
 					try{
 						res.errors.forEach(errorItem=>{
-							if(errorItem.reason=='Too many requests'){
+							if(errorItem.reason=='Too Many Requests'){
 								console.log('TOO MANY REQUESTS');
 								setTimeout(()=>{recursion(j,date)}, 3*60*60*60*1000);
 								return;
