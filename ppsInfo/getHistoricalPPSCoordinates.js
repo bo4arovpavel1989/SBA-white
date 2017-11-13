@@ -57,7 +57,7 @@ function getCoordinates(j,date,callback){
 		BkPPS.find({bk:bks[j].bk, name:bks[j].name,  begin:{$lte:date},end:{$gte:date}}, (err, rep)=>{
 			if(rep.length!=0){
 				console.log('making geocode request for '+bks[j].bk);
-				let timerId = setTimeout(()=>{recursion(j,date)}, 15*60*60*1000);//if geocoder doesnt response make next try
+				let timerId = setTimeout(()=>{recursion(j,date);return;}, 15*60*60*1000);//if geocoder doesnt response make next try
 				geocoder.geocode(rep).then(res=>{
 					clearTimeout(timerId);
 					let i=0;
@@ -67,6 +67,16 @@ function getCoordinates(j,date,callback){
 					console.log(res.result.features.length);
 					var shortname = bks[j].bk;
 					var bkname = bks[j].name;
+					try{
+						res.errors.forEach(errorItem=>{
+							if(errorItem.reason=='Too many requests'){
+								console.log('TOO MANY REQUESTS');
+								setTimeout(()=>{recursion(j,date)}, 3*60*60*60*1000);
+								return;
+							}
+						});
+					}
+					catch(e){}
 					try{
 						res.result.features.forEach(point=>{
 							let bkPPS = new BkPPSCoordinates({bk:shortname, name:bkname, data: point,month:month,year:year}).save((err, rep2)=>{
