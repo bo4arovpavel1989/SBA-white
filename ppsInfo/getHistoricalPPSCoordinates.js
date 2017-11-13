@@ -19,7 +19,7 @@ provider.getText = function (point) {
 
 
 var actualDate=new Date();
-var date1='2014-09-15';//start from here coz i got coords of previous time
+var date1='2015-01-15';//start from here coz i got coords of previous time
 var date2=actualDate.getFullYear()+'-'+actualDate.getMonth()+'-15'; //date of previous month
 if(actualDate.getMonth()<10) date2=actualDate.getFullYear()+'-0'+actualDate.getMonth()+'-15'; 
 if(actualDate.getMonth()==0)  date2=actualDate.getFullYear()-1+'12-15';
@@ -57,7 +57,7 @@ function getCoordinates(j,date,callback){
 		BkPPS.find({bk:bks[j].bk, name:bks[j].name,  begin:{$lte:date},end:{$gte:date}}, (err, rep)=>{
 			if(rep.length!=0){
 				console.log('making geocode request for '+bks[j].bk);
-				let timerId = setTimeout(()=>{recursion(j,date);return;}, 15*60*60*1000);//if geocoder doesnt response make next try
+				let timerId = setTimeout(()=>{recursion(j,date);return;}, 15*60*1000);//if geocoder doesnt response make next try
 				geocoder.geocode(rep).then(res=>{
 					clearTimeout(timerId);
 					let i=0;
@@ -71,7 +71,7 @@ function getCoordinates(j,date,callback){
 						res.errors.forEach(errorItem=>{
 							if(errorItem.reason=='Too Many Requests'){
 								console.log('TOO MANY REQUESTS');
-								setTimeout(()=>{recursion(j,date)}, 3*60*60*60*1000);
+								setTimeout(()=>{recursion(j,date)}, 3*60*60*1000);
 								return;
 							}
 						});
