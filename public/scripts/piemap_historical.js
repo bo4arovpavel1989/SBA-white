@@ -20,5 +20,35 @@ $(document).ready(function(){
 
 function startAll(){
 	$('.loader').removeClass('loading');
-	$('#chooseBkAndTime').show(400);
+	$('#formToHide').show(400);
+	getHistoricalData();
+}
+
+function getHistoricalData(){
+	$('#chooseBkAndTime').on('submit',function(e){
+		e.preventDefault();
+		var $that = $(this);
+		var formData = new FormData($that.get(0));
+		document.getElementById('showData').disabled = true;
+		$('.loader').addClass('loading');
+		$.ajax({
+				url: $that.attr('action'),
+				type: $that.attr('method'),
+				contentType: false,
+				processData: false,
+				data: formData,
+				success: function(data){
+						$('.loader').removeClass('loading');
+						drawHistoricalMap(data);
+				},
+				error:function(e){
+					$('.loader').removeClass('loading');
+					if(e)alert('Ошибка!');
+				}
+		});
+	});
+}
+
+function drawHistoricalMap(data){
+	console.log(data);
 }

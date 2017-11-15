@@ -1,6 +1,7 @@
  <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
  <div id="divHeaderLine1" style='margin-top: 40px; margin-left:40px;'>Карта изменения количества ППС букмекерских контор</div>
- <form class='form-horizontal' id='chooseBkAndTime' style='display:none; margin: 0 0 100px;padding: 50px;' action="/gethistorical_data" method="post" enctype="multipart/form-data">
+ <div id='formToHide' style='display:none;'>
+ <form class='form-horizontal' id='chooseBkAndTime' style='margin-left:40px; margin-top: 40px;' action="/gethistorical_data" method="post" enctype="multipart/form-data">
 								 <div class="form-group row">
 								 <label>Период выборки</label>
 											<select class="form-control" name='monthFrom' class='form-control'>
@@ -62,9 +63,10 @@
 										<option value='{{bk}}' data-name='{{name}}'>{{name}}</option>
 										{{/each}}
 									</select>
-									<input class="btn btn-primary" id='showTable' type="submit" value="Начать просмотр"></input>
+									<input class="btn btn-primary" id='showData' type="submit" value="Начать просмотр"></input>
 								</div>
 							</form>	
+	</div>						
 	<div class="loader loading"></div>
     <div id="map" style='width: 1500px; height:700px; padding: 10px; margin: 30px;border: 1px solid green;'></div>
     <script src="/scripts/piemap_historical.js" type="text/javascript"></script>
