@@ -1,5 +1,6 @@
 var filter=[];
 var points=[];
+var prevPoints=[];
 var myMap, myPlacemark;
 $(document).ready(function(){
 	var checkMapLoading = setInterval(function(){ checkingMap() }, 1000);
@@ -26,8 +27,8 @@ function startAll(){
 
     function init(){     
         myMap = new ymaps.Map("map", {
-            center: [55.76, 37.64],
-            zoom: 4
+            center: [55.76, 77.64],
+            zoom: 3.3
         });
 	}	
 	getHistoricalData();
@@ -68,6 +69,7 @@ function drawHistoricalMap(data){
 function getDataForDate(date,i,bk){
 	var year=date[i].split('-')[0];
 	var month=date[i].split('-')[1];
+	prevPoints=prevPoints.concat(points);
 	points=[];
 	$.ajax({
 		url: '/bkpps_historical/'+year+'/'+month+'/ppscoordinates'+bk+'.json',
@@ -75,7 +77,11 @@ function getDataForDate(date,i,bk){
 		success: function(data){
 			console.log(data);
 			data.forEach(function(dat){
-				points.push({bk: dat.bk, coords:dat.data.geometry.coordinates, description: dat.data.properties.description});
+				var isNewPoint=true;
+				for (var i=0;i<prevPoints.length;i++){
+					if(dat.data.geometry.coordinates==prevPoint[i].coords){isNewPoint=false;break;}
+				}
+				if(isNewPoint)points.push({bk: dat.bk, coords:dat.data.geometry.coordinates});
 			});
 			drawMapForDate(date[i],function(){
 				i++;
