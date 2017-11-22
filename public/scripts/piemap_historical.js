@@ -76,10 +76,11 @@ function getDataForDate(date,i,bk){
 		dataType: 'json',
 		success: function(data){
 			console.log(data);
+			console.log(prevPoints);
 			data.forEach(function(dat){
 				var isNewPoint=true;
 				for (var i=0;i<prevPoints.length;i++){
-					if(dat.data.geometry.coordinates==prevPoint[i].coords){isNewPoint=false;break;}
+					if(dat.data.geometry.coordinates[0]==prevPoints[i].coords[0]&&dat.data.geometry.coordinates[1]==prevPoints[i].coords[1]){isNewPoint=false;break;}
 				}
 				if(isNewPoint)points.push({bk: dat.bk, coords:dat.data.geometry.coordinates});
 			});
@@ -92,14 +93,25 @@ function getDataForDate(date,i,bk){
 }
 
 function drawMapForDate(date,callback){
-	alert(date);
-	console.log(points);
-	var filterView = document.getElementById("showData");
+	setTimeout(cssDateShow(date),1000);
+	var filterView = document.getElementById("divHeaderLine1");
 	filterView.scrollIntoView({block: "start", behavior: "smooth"});
 	points.forEach(function(point){
-		console.log(point.coords);
         myPlacemark = new ymaps.Placemark(point.coords);
         myMap.geoObjects.add(myPlacemark);
 	});
 	setTimeout(function(){callback();},5000);
+}
+
+function cssDateShow(str){
+	var month=str.split('-')[1];
+	var year=str.split('-')[0];
+	$('.dateshow').text(year+' - '+month);
+	$('.dateshow').removeClass('hidden');
+	$('.dateshow').addClass('spread');
+	setTimeout(function(){
+		$('.dateshow').addClass('hidden');
+		$('.dateshow').removeClass('spread');	
+		$('.dateshow').empty();
+	},3000)
 }
