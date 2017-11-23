@@ -37,7 +37,6 @@ function startAll(){
 
 function createHeatMap(callback){
 	ymaps.modules.require(['Heatmap'], function (Heatmap) {
-		alert(1);
 		var data = [],
 		   gradients = [{
                     0.1: 'rgba(128, 255, 0, 0.7)',
