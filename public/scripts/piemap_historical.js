@@ -1,7 +1,4 @@
-var filter=[];
-var points=[];
-var prevPoints=[];
-var myMap, myPlacemark;
+var myMap, myPlacemark, heatMap;
 $(document).ready(function(){
 	var checkMapLoading = setInterval(function(){ checkingMap() }, 1000);
 
@@ -9,7 +6,7 @@ $(document).ready(function(){
 		try{
 		if(ymaps){
 			stopChecking();
-			startAll();	
+			setTimeout(startAll(),1000);
 		}
 		}catch(e){}
 	}
@@ -28,11 +25,44 @@ function startAll(){
     function init(){     
         myMap = new ymaps.Map("map", {
             center: [55.76, 77.64],
-            zoom: 3.3
+            controls: ['zoomControl', 'typeSelector',  'fullscreenControl'],
+            zoom: 3.45
         });
+		createHeatMap(function(rep){
+			heatMap=rep;
+			getHistoricalData();
+		});
 	}	
-	getHistoricalData();
 }
+
+function createHeatMap(callback){
+	ymaps.modules.require(['Heatmap'], function (Heatmap) {
+		alert(1);
+		var data = [],
+		   gradients = [{
+                    0.1: 'rgba(128, 255, 0, 0.7)',
+                    0.2: 'rgba(255, 255, 0, 0.8)',
+                    0.7: 'rgba(234, 72, 58, 0.9)',
+                    1.0: 'rgba(162, 36, 25, 1)'
+                }, {
+                    0.1: 'rgba(162, 36, 25, 0.7)',
+                    0.2: 'rgba(234, 72, 58, 0.8)',
+                    0.7: 'rgba(255, 255, 0, 0.9)',
+                    1.0: 'rgba(128, 255, 0, 1)'
+                }],
+                radiuses = [5, 10, 20, 30],
+                opacities = [0.4, 0.6, 0.8, 1];
+			heatmap = new Heatmap(data,{
+				gradient: gradients[0],
+                radius: radiuses[1],
+                opacity: opacities[2]
+			});
+		console.log(data);	
+		heatmap.setMap(myMap);
+		callback(heatmap);
+	});
+}
+
 
 function getHistoricalData(){
 	$('#chooseBkAndTime').on('submit',function(e){
@@ -69,22 +99,15 @@ function drawHistoricalMap(data){
 function getDataForDate(date,i,bk){
 	var year=date[i].split('-')[0];
 	var month=date[i].split('-')[1];
-	prevPoints=prevPoints.concat(points);
-	points=[];
+	var points=[];
 	$.ajax({
 		url: '/bkpps_historical/'+year+'/'+month+'/ppscoordinates'+bk+'.json',
 		dataType: 'json',
 		success: function(data){
-			console.log(data);
-			console.log(prevPoints);
 			data.forEach(function(dat){
-				var isNewPoint=true;
-				for (var i=0;i<prevPoints.length;i++){
-					if(dat.data.geometry.coordinates[0]==prevPoints[i].coords[0]&&dat.data.geometry.coordinates[1]==prevPoints[i].coords[1]){isNewPoint=false;break;}
-				}
-				if(isNewPoint)points.push({bk: dat.bk, coords:dat.data.geometry.coordinates});
-			});
-			drawMapForDate(date[i],function(){
+				points.push(dat.data.geometry.coordinates);
+			});		
+			drawMapForDate(points, date[i],function(){
 				i++;
 				if(i<date.length)getDataForDate(date,i,bk);
 			});
@@ -92,14 +115,11 @@ function getDataForDate(date,i,bk){
 	});
 }
 
-function drawMapForDate(date,callback){
+function drawMapForDate(points, date,callback){
 	setTimeout(cssDateShow(date),1000);
 	var filterView = document.getElementById("divHeaderLine1");
 	filterView.scrollIntoView({block: "start", behavior: "smooth"});
-	points.forEach(function(point){
-        myPlacemark = new ymaps.Placemark(point.coords);
-        myMap.geoObjects.add(myPlacemark);
-	});
+	heatMap.setData(points);
 	setTimeout(function(){callback();},5000);
 }
 
