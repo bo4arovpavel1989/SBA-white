@@ -77,12 +77,12 @@ function doGrabbing(i){
 			  let markets=$('.live-list__championship-event').get();
 			  //console.log(markets[0]);
 			  let win, draw, away, marja;
-			  win=markets[0].children[5].children[0].children[0].children[0].data;
+			  win=markets[0].children[4].children[0].children[0].children[0].data;
 			  console.log(win)
-			  if(markets[0].children[6].children[0].children[0]!=undefined)
-			  draw=markets[0].children[6].children[0].children[0].children[0].data;
+			  if(markets[0].children[5].children[0].children[0]!=undefined)
+			  draw=markets[0].children[5].children[0].children[0].children[0].data;
 		      else draw='-';
-			  away=markets[0].children[7].children[0].children[0].children[0].data;
+			  away=markets[0].children[6].children[0].children[0].children[0].data;
 			  marja=0;
 			 if(win != '-' && win != 0) marja += 100/parseFloat(win);
 			 if(draw != '-' && draw != 0) marja += 100/parseFloat(draw);
