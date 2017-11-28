@@ -83,6 +83,7 @@ function getHistoricalData(){
 				error:function(e){
 					$('.loader').removeClass('loading');
 					if(e)alert('Ошибка!');
+					else document.getElementById('showData').disabled = false;
 				}
 		});
 	});
