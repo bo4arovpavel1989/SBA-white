@@ -19,7 +19,7 @@ provider.getText = function (point) {
 
 
 var actualDate=new Date();
-var date1='2015-01-15';//start from here coz i got coords of previous time
+var date1='2010-01-01';//start from here coz i got coords of previous time
 var date2=actualDate.getFullYear()+'-'+actualDate.getMonth()+'-15'; //date of previous month
 if(actualDate.getMonth()<10) date2=actualDate.getFullYear()+'-0'+actualDate.getMonth()+'-15'; 
 if(actualDate.getMonth()==0)  date2=actualDate.getFullYear()-1+'12-15';
@@ -60,43 +60,49 @@ function getCoordinates(j,date,callback){
 				let timerId = setTimeout(()=>{recursion(j,date);return;}, 15*60*1000);//if geocoder doesnt response make next try
 				geocoder.geocode(rep).then(res=>{
 					clearTimeout(timerId);
-					let i=0;
-					console.log(j);
+					let isTooManyReq=false;
 					console.log('working on ' + bks[j].name);
-					console.log(res);
-					console.log(res.result.features.length);
 					var shortname = bks[j].bk;
 					var bkname = bks[j].name;
 					try{
 						res.errors.forEach(errorItem=>{
 							if(errorItem.reason=='Too Many Requests'){
 								console.log('TOO MANY REQUESTS');
-								setTimeout(()=>{recursion(j,date)}, 3*60*60*1000);
-								return;
+								isTooManyReq=true;
+								
 							}
 						});
 					}
 					catch(e){}
-					try{
-						res.result.features.forEach(point=>{
-							let bkPPS = new BkPPSCoordinates({bk:shortname, name:bkname, data: point,month:month,year:year}).save((err, rep2)=>{
-								console.log(date);
-								console.log(i + ' ' + bkname);
-								i++;
-								if(i==res.result.features.length) {
-									j++;
-									if(j<bks.length) recursion(j,date);
-									else callback();
-								}
+					if(!isTooManyReq){
+						try{
+							let queries=[];
+							res.result.features.forEach(point=>{
+								queries.push((callback2)=>{
+									let bkPPS = new BkPPSCoordinates({bk:shortname, name:bkname, data: point,month:month,year:year}).save((err, rep2)=>{
+										console.log(date + ' - ' + bkname);
+										callback2();
+									});	
+								});
 							});
-						});
-					}catch(e){
-						console.log('an error occured while accessing to geocoder');
-						console.log(i + ' ' + bkname);
-						j++;
-						if(j<bks.length) recursion(j,date);
-						else callback();
-					}	
+							async.series(queries,(err)=>{
+								j++;
+								if(j<bks.length) recursion(j,date);
+								else callback();
+							});
+						}catch(e){
+							console.log('an error occured while accessing to geocoder');
+							console.log(date + ' ' + bkname);
+							recursion(j,date);
+						}	
+					}else{
+						let timeout=true;
+						setTimeout(()=>{timeout=false},4*60*60*1000) //wait 4 hours coz its too many requests
+						console.log('TOO MANY REQUESTS timeout 4 hours');
+						while(timeout){	}
+						BkPPSCoordinates.remove({month:month,year:year}).exec();
+						recursion(j,date);
+					}
 				});
 			} else {
 				console.log(bks[j].bk);
