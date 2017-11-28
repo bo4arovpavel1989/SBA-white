@@ -78,13 +78,11 @@ function getHistoricalData(){
 				data: formData,
 				success: function(data){
 					$('.loader').removeClass('loading');
-					document.getElementById('showData').disabled = false;
 					drawHistoricalMap(data);
 				},
 				error:function(e){
 					$('.loader').removeClass('loading');
 					if(e)alert('Ошибка!');
-					document.getElementById('showData').disabled = false;
 				}
 		});
 	});
@@ -109,6 +107,7 @@ function getDataForDate(date,i,bk){
 			drawMapForDate(points, date[i],function(){
 				i++;
 				if(i<date.length)getDataForDate(date,i,bk);
+				else document.getElementById('showData').disabled = false;
 			});
 		}		
 	});
