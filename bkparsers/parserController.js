@@ -35,8 +35,8 @@ var callLineParsers = function(){
 			j=0;
 			clearInterval(lineInterval);
 		} else{
-			let lp=spawn('node',['lineparser/' + lineParsers[i]]);
-			console.log('spawned ' +  lineParsers[i]);
+			let lp=spawn('node',['lineparser/' + lineParsers[j]]);
+			console.log('spawned ' +  lineParsers[j]);
 			lp.stdout.on('data',(data)=>{
 				console.log(data.toString());
 			});
