@@ -96,12 +96,12 @@ function getCoordinates(j,date,callback){
 							recursion(j,date);
 						}	
 					}else{
-						let timeout=true;
-						setTimeout(()=>{timeout=false},4*60*60*1000) //wait 4 hours coz its too many requests
-						console.log('TOO MANY REQUESTS timeout 4 hours');
-						while(timeout){	}
-						BkPPSCoordinates.remove({bk:shortname,month:month,year:year}).exec();
-						recursion(j,date);
+						console.log('TOO MANY REQUESTS, timeout 4 hours for ' + bkname + ' - ' + date);
+						setTimeout(()=>{	
+							BkPPSCoordinates.remove({bk:shortname,month:month,year:year}).exec((err,rep)=>{
+								recursion(j,date);
+							});
+						},4*60*60*1000) //wait 4 hours coz its too many requests						
 					}
 				});
 			} else {
