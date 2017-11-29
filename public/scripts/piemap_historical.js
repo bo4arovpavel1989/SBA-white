@@ -81,17 +81,15 @@
 					success: function(data){
 						var playerController = new PlayerController();
 						console.log(playerController);
-						var elem=document.getElementById('playercontroller');
-						elem.addEventListener('pause',function(){});
 						$('.loader').removeClass('loading');
 						$('.playctrl').removeClass('hidden');
-						playControl(playerController,elem);
-						drawHistoricalMap(data,playerController,elem);
+						playControl(playerController);
+						drawHistoricalMap(data,playerController);
 					},
 					error:function(e){
 						$('.loader').removeClass('loading');
 						if(e)alert('Ошибка!');
-						else document.getElementById('showData').disabled = false;
+						document.getElementById('showData').disabled = false;
 					}
 			});
 		});
@@ -100,24 +98,34 @@
 	function PlayerController(){
 		this.isPause = false;
 		this.isStop = false;
-	}
+	}	
 		
-	function playControl(playerController,elem){
-		$('.pause').on('click',function(e){
+	function playControl(playerController){
+		$('#pause').on('click',function(e){
+			console.log(e.target);
+			$('#pause').toggleClass('btn-warning')
 			e.preventDefault();
-			elem.trigger('pause');
+			console.log('pause');
+			document.dispatchEvent(new Event('pause'));
+		});
+		$('#stop').on('click',function(e){
+			e.preventDefault();
+			document.dispatchEvent(new Event('stop'));
 		});
 	}
 	
-	function drawHistoricalMap(data,playerController,elem){
+	function drawHistoricalMap(data,playerController){
 		console.log(data);
-		getDataForDate(data.dates,0,data.bk,playerController,elem);
+		document.addEventListener('pause',function(){
+			playerController.isPause = !playerController.isPause;
+		});
+		document.addEventListener('stop',function(){
+			playerController.isStop = true;
+		});
+		getDataForDate(data.dates,0,data.bk,playerController);
 	}
 
-	function getDataForDate(date,i,bk,playerController,elem){
-		elem.on('pause',function(){
-			playerController.isPause = !playerController.isPause;
-		})
+	function getDataForDate(date,i,bk,playerController){
 		if(!playerController.isStop){
 			if(!playerController.isPause){
 				var year=date[i].split('-')[0];
@@ -132,15 +140,22 @@
 						});		
 						drawMapForDate(points, date[i],function(){
 							i++;
-							if(i<date.length)getDataForDate(date,i,bk,playerController,elem);
-							else document.getElementById('showData').disabled = false;
+							if(i<date.length)getDataForDate(date,i,bk,playerController);
+							else {		
+								$('#pause').addClass('btn-warning');
+								$('.playctrl').addClass('hidden');
+								document.getElementById('showData').disabled = false;
+							}	
 						});
 					}		
 				});
 			} else {
-				setTimeout(function(){getDataForDate(date,i,bk,playerController,elem)},500)
+				setTimeout(function(){getDataForDate(date,i,bk,playerController)},500)
 			}
 		}else {
+			$('#pause').addClass('btn-warning');
+			$('.playctrl').addClass('hidden');
+			document.getElementById('showData').disabled = false;
 			return;
 		}
 	}

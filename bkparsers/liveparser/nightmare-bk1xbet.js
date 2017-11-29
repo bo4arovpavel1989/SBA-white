@@ -27,13 +27,14 @@ nightmare
 			//betType = line.parent.parent.parent.parent.children[1].children[1].attribs['data-top10'];
 			sport = line.prev.prev.prev.prev.prev.prev.attribs.href;
 			sportType=sport.split('/')[1];
-			win = line.children[0].children[0].attribs['data-coef'];if(win == undefined) win='-';
-			//console.log('win - ' + win);
+			win = line.children[0].children[0].children[0].data;if(win == undefined) win='-';
+			console.log('win - ' + win);
 			try{
-				draw = line.children[0].children[2].attribs['data-coef'];if(draw == undefined) draw='-';
+				draw = line.children[0].children[1].children[0].data;if(draw == undefined) draw='-';
 			}catch(e){draw='-'}	
 			//console.log('draw - ' + draw);
-			away = line.children[0].children[4].attribs['data-coef'];if(away == undefined) away='-';
+			away = line.children[0].children[2].children[0].data;if(away == undefined) away='-';
+			//console.log('away - ' + away);
 			//console.log('away - ' + away);
 			let marja = 0;
 			if(win != '-' && win != 0) marja += 100/parseFloat(win);
@@ -46,7 +47,7 @@ nightmare
 				sportType=sportSpelling(sportType);
 				let coeff = new Coefficient({bk: 'bk1xbet', betType:'live', averageType:'immediate', date: now, sport: sportType, marja: marja, win: win, draw: draw, away: away}).save();
 			}
-		} catch(e) {}
+		} catch(e) {console.log(e)}
 	});
   })
   .catch(function (error) {
