@@ -3,7 +3,7 @@
  <div id="divHeaderLine1" style='margin-top: 40px; margin-left:40px;'>Карта изменения количества ППС букмекерских контор</div>
  <div id='formToHide' style='display:none;'>
  <form class='form-horizontal' id='chooseBkAndTime' style='margin-left:40px; margin-top: 40px;' action="/gethistorical_data" method="post" enctype="multipart/form-data">
-								 <div class="form-group row">
+								 <div id='viewFilter' class="form-group row">
 								 <label>Период выборки</label>
 											<select class="form-control" name='monthFrom' class='form-control'>
 												<option value='01'>Январь</option>
@@ -63,6 +63,7 @@
 										<option value='{{bk}}' data-name='{{name}}'>{{name}}</option>
 										{{/each}}
 									</select>
+									<br>
 									<input class="btn btn-primary" id='showData' type="submit" value="Начать просмотр"></input>
 									<a href='#' class="hidden playctrl btn btn-warning" id='pause'>Пауза</a>
 									<a href='#' class="hidden playctrl btn btn-danger" id='stop'>Стоп</a>

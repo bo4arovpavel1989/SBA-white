@@ -97,11 +97,7 @@ function getCoordinates(j,date,callback){
 						}	
 					}else{
 						console.log('TOO MANY REQUESTS, timeout 4 hours for ' + bkname + ' - ' + date);
-						setTimeout(()=>{	
-							BkPPSCoordinates.remove({bk:shortname,month:month,year:year}).exec((err,rep)=>{
-								recursion(j,date);
-							});
-						},4*60*60*1000) //wait 4 hours coz its too many requests						
+						setTimeout(()=>{recursion(j,date)},4*60*60*1000) //wait 4 hours coz its too many requests						
 					}
 				});
 			} else {

@@ -22,6 +22,7 @@
 	function startAll(){
 		$('.loader').removeClass('loading');
 		$('#formToHide').show(400);
+		playControl();
 		ymaps.ready(init);
 
 		function init(){     
@@ -80,16 +81,14 @@
 					data: formData,
 					success: function(data){
 						var playerController = new PlayerController();
-						console.log(playerController);
 						$('.loader').removeClass('loading');
 						$('.playctrl').removeClass('hidden');
-						playControl(playerController);
 						drawHistoricalMap(data,playerController);
 					},
 					error:function(e){
 						$('.loader').removeClass('loading');
 						if(e)alert('Ошибка!');
-						document.getElementById('showData').disabled = false;
+						resetControlButtons();
 					}
 			});
 		});
@@ -99,13 +98,17 @@
 		this.isPause = false;
 		this.isStop = false;
 	}	
-		
-	function playControl(playerController){
+	
+	function resetControlButtons(){
+			$('#pause').addClass('btn-warning');
+			$('.playctrl').addClass('hidden');
+			document.getElementById('showData').disabled = false;
+	}
+	
+	function playControl(){
 		$('#pause').on('click',function(e){
-			console.log(e.target);
-			$('#pause').toggleClass('btn-warning')
 			e.preventDefault();
-			console.log('pause');
+			$('#pause').toggleClass('btn-warning');
 			document.dispatchEvent(new Event('pause'));
 		});
 		$('#stop').on('click',function(e){
@@ -139,13 +142,8 @@
 							points.push(dat.data.geometry.coordinates);
 						});		
 						drawMapForDate(points, date[i],function(){
-							i++;
-							if(i<date.length)getDataForDate(date,i,bk,playerController);
-							else {		
-								$('#pause').addClass('btn-warning');
-								$('.playctrl').addClass('hidden');
-								document.getElementById('showData').disabled = false;
-							}	
+							if(i+1<date.length)getDataForDate(date,i+1,bk,playerController);
+							else resetControlButtons();	
 						});
 					}		
 				});
@@ -153,16 +151,14 @@
 				setTimeout(function(){getDataForDate(date,i,bk,playerController)},500)
 			}
 		}else {
-			$('#pause').addClass('btn-warning');
-			$('.playctrl').addClass('hidden');
-			document.getElementById('showData').disabled = false;
+			resetControlButtons();
 			return;
 		}
 	}
 
 	function drawMapForDate(points, date,callback){
 		setTimeout(cssDateShow(date),1000);
-		var filterView = document.getElementById("divHeaderLine1");
+		var filterView = document.getElementById("viewFilter");
 		filterView.scrollIntoView({block: "start", behavior: "smooth"});
 		heatMap.setData(points);
 		setTimeout(function(){callback();},5000);

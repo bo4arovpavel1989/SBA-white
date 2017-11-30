@@ -545,4 +545,5 @@ td,th {
 .dateshow.spread {
 	transform: scale(50);
 	opacity: 0;
+	pointer-events: none;
 }
