@@ -1,3 +1,4 @@
+//global functions here
 function cityAutocomplete(){
 	$.ajax({
 			url: '/autocomplete/city',	
