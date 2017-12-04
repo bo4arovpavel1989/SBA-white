@@ -19,7 +19,7 @@ provider.getText = function (point) {
 
 
 var actualDate=new Date();
-var date1='2012-10-15';//start from here coz i got coords of previous time
+var date1='2017-10-15';//start from here coz i got coords of previous time
 var date2=actualDate.getFullYear()+'-'+actualDate.getMonth()+'-15'; //date of previous month
 if(actualDate.getMonth()<10) date2=actualDate.getFullYear()+'-0'+actualDate.getMonth()+'-15'; 
 if(actualDate.getMonth()==0)  date2=actualDate.getFullYear()-1+'12-15';
