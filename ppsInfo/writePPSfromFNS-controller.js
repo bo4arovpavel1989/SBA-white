@@ -9,13 +9,10 @@ BkPPS.remove({},(err, rep)=>{
 });
 
 function startCalling(i){
-	var queriseList=[];
-	
 	writePPSfromFNS(i, (reply)=>{
 		if(reply&&i<BKLIST_LENGTH-1){
 			console.log('next bk');
-			i++;
-			startCalling(i);
+			startCalling(i+1);
 		} else {console.log('done');}
 	});	
 }

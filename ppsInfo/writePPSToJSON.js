@@ -4,7 +4,7 @@ var fs=require('fs-extra');
 var customFunctions=require('./../lib/customfunctions.js')
 var async=require('async');
 
-let date1='2015-06-01'; //wrote all previous
+let date1='2014-01-01'; //wrote all previous
 let date2='2017-11-15';
 let dates=customFunctions.calculateMiddleMonthes(date1,date2,{unlimited:true});
 let queries=[];
