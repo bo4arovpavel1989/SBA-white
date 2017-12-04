@@ -111,5 +111,7 @@ module.exports.spellNames= function(name){
 		case 'ООО Фортуна':
 			return 'betcity';
 			break;	
+		default:
+				return 'newBK';
 	}
 };
