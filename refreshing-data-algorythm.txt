@@ -18,6 +18,7 @@ Monthly refreshing data for onlline page
 -bkparsers/getLinePage (get average line data for previous month)
 -ppsInfo/getMonthlyDataForBKPage (get pps info for previous month)
 -commentparser/getMonthlyDataForBKPage
+-hh_api/getMonthlyDataForBKPage
 =============
 Line parsers
 -parserController works all the time (not necessary to work continuosly, but it should work frequently)
