@@ -496,6 +496,10 @@ h6,.page-content h6 a {font-weight: normal; font-style: normal; font-family: 'So
 .loader.loading {
 	display: block;
 }
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
 
 td,th {
 	text-align:center !important;
