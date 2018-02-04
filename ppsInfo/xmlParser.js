@@ -30,7 +30,7 @@ let headers = {
 	};
 
 let options = {
-			url:'https://www.nalog.ru/opendata/7707329152-reestrlicbookmaker/data-20171218-structure-20160803.xml',
+			url:'http://data.nalog.ru/opendata/7707329152-reestrlicbookmaker/data-20180118-structure-20160803.xml',
 			headers:headers,
 			encoding:null	
 	}; 
